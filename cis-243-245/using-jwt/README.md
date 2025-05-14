@@ -88,3 +88,30 @@ exports.verifyToken = (req, res, next) => {
   }
 };
 ```
+
+## using curl
+curl -X POST http://localhost:5000/register -H "Content-Type: application/json" -d '{"username": "user1", "password": "password123"}'
+
+curl -X POST http://localhost:5000/login -H "Content-Type: application/json" -d '{"username": "user1", "password": "password123"}'
+
+curl -X GET http://localhost:5000/dashboard -H "Authorization: Bearer your-jwt-token"
+
+{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzQ3MjMzOTA1LCJleHAiOjE3NDcyMzc1MDV9.1fqqmssGRK-fiWdXh0iOoPVXvDX0eoW_GQQEQ9eqnvs"}  
+
+$ curl -X GET http://localhost:5000/dashboard -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzQ3MjMzOTA1LCJleHAiOjE3NDcyMzc1MDV9.1fqqmssGRK-fiWdXh0iOoPVXvDX0eoW_GQQEQ9eqnvs "
+8-b6996892330f{"message":"Welcome to the dashboard, user1!"} 
+
+curl -X GET http://localhost:5000/dashboard -H "Authorization: {"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InVzZXIxIiwiaWF0IjoxNzQ3MjMzOTA1LCJleHAiOjE3NDcyMzc1MDV9.1fqqmssGRK-fiWdXh0iOoPVXvDX0eoW_GQQEQ9eqnvs"}   "
+
+curl -X POST http://localhost:30000/register -H "Content-Type: application/json" -d '{"username": "user1", "password": "password123"}'
+
+curl -X POST http://localhost:3000/signup -H "Content-Type: application/json" -d '{"name": "User1", ""user1", "password": "password123"}'
+
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{"email": "user1", "password": "password123"}'
+
+
+curl -X POST http://localhost:3000/login -H "Content-Type: application/json" -d '{"email": "user1", "password": "password123"}'
+{"success":true,"data":{"userId":"6824b6527dd8e9c077d9c3b8","email":"user1","token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI0YjY1MjdkZDhlOWMwNzdkOWMzYjgiLCJlbWFpbCI6InVzZXIxIiwiaWF0IjoxNzQ3MjQxMjQ2LCJleHAiOjE3NDcyNDQ4NDZ9.jSzLgbPSvar4m5UTT1kqox9_soo-Yi89gwg72orArmY"}}localepsilon@cis0768 MINGW64 ~/Documents/_QUARTER3/webdev-certificate-monorepo/cis-243-245/using-jwt/geeksforgeeks-jwt-auth-2025 (main)
+
+accessResource
+curl -X GET http://localhost:3000/accessResource -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODI0YjY1MjdkZDhlOWMwNzdkOWMzYjgiLCJlbWFpbCI6InVzZXIxIiwiaWF0IjoxNzQ3MjQxMjQ2LCJleHAiOjE3NDcyNDQ4NDZ9.jSzLgbPSvar4m5UTT1kqox9_soo-Yi89gwg72orArmY"
