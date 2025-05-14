@@ -1,5 +1,9 @@
 # webdev-certificate-monorepo
 
+## last modified: 5.11.2025
+1. https://www.robinwieruch.de/web-applications/
+1. https://www.reddit.com/r/reactjs/comments/rm48bc/what_is_storybook_used_for/
+
 ## last modified: 5.10.2025
 
 ## bash command line piping dir content to md file
