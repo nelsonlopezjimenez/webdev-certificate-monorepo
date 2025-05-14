@@ -1,4 +1,4 @@
-# Hamzakhan securing exress server
+# Hamzakhan securing express server
 
 ## server.js
 ```js
