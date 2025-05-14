@@ -1,6 +1,5 @@
 // server.js
 const express = require('express');
-const bodyParser = require('body-parser');
 const { registerUser, loginUser } = require('./userController');
 const { verifyToken } = require('./authMiddleware');
 
@@ -16,9 +15,6 @@ app.post('/login', loginUser);
 app.get('/dashboard', verifyToken, (req, res) => {
   res.json({ message: `Welcome to the dashboard, ${req.user.username}!` });
 });
-
-
-
 
 // Start the server
 app.listen(PORT, () => {
