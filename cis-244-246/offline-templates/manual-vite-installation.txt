@@ -1,0 +1,4 @@
+npm install -D vite
+edit index.html and add hello world
+npx vite
+
