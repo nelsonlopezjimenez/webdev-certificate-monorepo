@@ -2,6 +2,7 @@
 const express = require('express');
 const { registerUser, loginUser } = require('./userController');
 const { verifyToken } = require('./authMiddleware');
+const mongoose = require('mongoose')
 
 const app = express();
 const PORT = 5000;
