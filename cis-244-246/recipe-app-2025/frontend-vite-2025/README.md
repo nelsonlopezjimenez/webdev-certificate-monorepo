@@ -55,6 +55,10 @@
 ```
 ## Steps
 
+### Step 1g: backend done, frontend api.jsx created
+![step1g](src/steps/step-1g-backend-done.png)
+
+
 ### Step 1d - Recipes Local Array
 ![step1aa](src/steps/step-1d.png)
 ![step1aa](src/steps/step-1d-form-body.png)
