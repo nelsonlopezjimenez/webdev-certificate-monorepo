@@ -1,65 +1,26 @@
 <div>
-    <div><span>import</span><span> { useState, useEffect, useLayoutEffect } </span><span>from</span> <span>"react"</span><span>;</span></div>
-    <div><span>import</span> <span>"./App.css"</span><span>;</span></div>
-    <div><span>// ------- recipeList array local recipeList stored</span></div>
-    <div><span>function</span><span> App() {</span></div>
-    <div><span>&nbsp; </span><span>const</span><span> [recipeList, setRecipeList] = useState(recipeListObj);</span></div>
+    <div><span>function</span><span> Form (props){</span></div>
+    <div><span>&nbsp; </span><span>const</span><span> [oneRecipe, setOneRecipe] = useState({</span></div>
+    <div><span>&nbsp; &nbsp; title: </span><span>''</span><span>,</span></div>
+    <div><span>&nbsp; &nbsp; instructions: </span><span>''</span><span>,</span></div>
+    <div><span>&nbsp; &nbsp; ingredients: [],</span></div>
+    <div><span>&nbsp; &nbsp; img: </span><span>''</span></div>
+    <div><span>&nbsp; });</span></div>
     <br />
     <div><span>&nbsp; </span><span>return</span><span> (</span></div>
     <div><span>&nbsp; &nbsp; </span><span>&lt;&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"App"</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>h1</span> <span>style</span><span>=</span><span>{</span><span>{ display: </span><span>"flex"</span><span>, justifyContent: </span><span>"center"</span><span> }</span><span>}</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; My Recipes 2025</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>h1</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>List</span> <span>recipeListOb</span><span>=</span><span>{</span><span>recipeListObj</span><span>}</span> <span>/&gt;</span></div>
-    <div><span>&nbsp;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>Form</span><span>/&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-form-container"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>&lt;</span><span>form</span> <span>className</span><span>=</span><span>"recipe-form"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>label</span> <span>htmlFor</span><span>=</span><span>"recipe-title-input"</span><span>&gt;</span><span>Title</span><span>&lt;/</span><span>label</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>input</span> <span>type</span><span>=</span><span>"text"</span> <span>name</span><span>=</span><span>"title"</span> <span>id</span><span>=</span><span>"recipe-title-input"</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>key</span><span>=</span><span>"title"</span> <span>size</span><span>=</span><span>{</span><span>42</span><span>}</span> <span>autoComplete</span><span>=</span><span>"off"</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>value</span><span> = </span><span>{</span><span> oneRecipe.title </span><span>}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>/&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>&lt;/</span><span>form</span><span>&gt;</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
     <div><span>&nbsp; &nbsp; </span><span>&lt;/&gt;</span></div>
-    <div><span>&nbsp; );</span></div>
-    <div><span>}</span></div>
-    <div><span>function</span><span> List(props) {</span></div>
-    <div><span>&nbsp; </span><span>const</span><span> {recipeList, nextRecipeId } = props.recipeListOb</span></div>
-    <br />
-    <div><span>&nbsp; </span><span>const</span><span> recipesJSX = recipeList.map( (recipe, index) </span><span>=&gt;</span><span> (</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>Recipe</span> <span>key</span><span>=</span><span>{</span><span>recipe.id+recipe.title</span><span>}</span> <span>{</span><span>...recipe</span><span>}</span><span>/&gt;</span></div>
-    <div><span>&nbsp; ))</span></div>
-    <br />
-    <div><span>&nbsp; </span><span>return</span><span> (</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-list"</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; </span><span>{</span><span>recipesJSX</span><span>}</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
-    <div><span>&nbsp; );</span></div>
-    <div><span>}</span></div>
-    <div><span>function</span><span> Recipe(props) {</span></div>
-    <div><span>&nbsp; </span></div>
-    <div><span>&nbsp; </span><span>// ========== destructuring</span></div>
-    <div><span>&nbsp; </span><span>const</span><span> { title, img, instructions, id } = props;</span></div>
-    <div><span>&nbsp; </span><span>const</span><span> ingredientsJSX = props.ingredients.map((ing, index) </span><span>=&gt;</span><span> (</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>li</span> <span>key</span><span>=</span><span>{</span><span>index</span><span>}</span><span>&gt;</span><span>{</span><span>ing</span><span>}</span><span>&lt;/</span><span>li</span><span>&gt;</span></div>
-    <div><span>&nbsp; ));</span></div>
-    <div><span>&nbsp; </span><span>return</span><span> (</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-card"</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-card-img"</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>img</span> <span>src</span><span>=</span><span>{</span><span>img</span><span>}</span> <span>alt</span><span>=</span><span>{</span><span>title</span><span>}</span> <span>srcSet</span><span>=</span><span>""</span> <span>/&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-card-content"</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>h3</span> <span>className</span><span>=</span><span>"recipe-title"</span><span>&gt;</span><span>{</span><span>title</span><span>}</span><span>&lt;/</span><span>h3</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>h4</span><span>&gt;</span><span>Ingredients:</span><span>&lt;/</span><span>h4</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>ul</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>{</span><span>ingredientsJSX</span><span>}</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>ul</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>h4</span><span>&gt;</span><span>Instructions</span><span>&lt;/</span><span>h4</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>p</span><span>&gt;</span> <span>{</span><span>instructions</span><span>}</span><span>&lt;/</span><span>p</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>button</span> <span>type</span><span>=</span><span>"button"</span> <span>onClick</span><span>=</span><span>{</span><span>() </span><span>=&gt;</span><span> alert()</span><span>}</span><span>&gt;</span><span>DELETE</span><span>&lt;/</span><span>button</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
-    <div><span>&nbsp; );</span></div>
-    <div><span>}</span></div>
-    <div><span>function</span><span> Form (props){</span></div>
-    <div><span>&nbsp; </span><span>return</span><span> (</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>h2</span><span>&gt;</span><span>Form</span><span>&lt;/</span><span>h2</span><span>&gt;</span></div>
     <div><span>&nbsp; )</span></div>
     <div><span>}</span></div>
-    <div><span>export</span> <span>default</span><span> App;</span></div>
 </div>

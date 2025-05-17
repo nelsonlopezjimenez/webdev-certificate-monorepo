@@ -36,7 +36,7 @@ const recipeListObj = {
   nextRecipeId: 3,
 };
 function App() {
-  const [recipeList, setRecipeList] = useState(recipeListObj);
+  const [recipeListOb, setRecipeListOb] = useState(recipeListObj);
 
   return (
     <>
@@ -44,7 +44,7 @@ function App() {
         <h1 style={{ display: "flex", justifyContent: "center" }}>
           My Recipes 2025
         </h1>
-        <List recipeListOb={recipeListObj} />
+        <List recipeListO={recipeListOb} />
  
         <Form/>
       </div>
@@ -52,7 +52,7 @@ function App() {
   );
 }
 function List(props) {
-  const {recipeList, nextRecipeId } = props.recipeListOb
+  const {recipeList, nextRecipeId } = props.recipeListO;
 
   const recipesJSX = recipeList.map( (recipe, index) => (
     <Recipe key={recipe.id+recipe.title} {...recipe}/>
@@ -91,8 +91,27 @@ function Recipe(props) {
   );
 }
 function Form (props){
+  const [oneRecipe, setOneRecipe] = useState({
+    title: '',
+    instructions: '',
+    ingredients: [],
+    img: ''
+  });
+
   return (
-    <h2>Form</h2>
+    <>
+      <div className="recipe-form-container">
+         <form className="recipe-form">
+          <div>
+            <label htmlFor="recipe-title-input">Title</label>
+            <input type="text" name="title" id="recipe-title-input"
+              key="title" size={42} autoComplete="off"
+              value = { oneRecipe.title }
+            />
+          </div>
+         </form>
+      </div>
+    </>
   )
 }
 
