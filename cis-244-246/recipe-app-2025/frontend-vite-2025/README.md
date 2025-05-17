@@ -54,6 +54,16 @@
 }
 ```
 ## Steps
+
+### Step 1d - Recipes Local Array
+![step1aa](src/steps/step-1d.png)
+![step1aa](src/steps/step-1d-form-body.png)
+![step1aa](src/steps/step-1dd-handlesave.png)
+![step1aa](src/steps/step-1d-form-body.png)
+![step1aa](src/steps/step-1d-form-return.png)
+
+### Step 1c : Form, no values assigned
+![form start](step-1cc-form-field-without-onChange.png)
 ### Step 1
 ![step1a](src/steps/step-1a.png)
 ![step1aa](src/steps/step-1aa.png)
