@@ -1,26 +1,155 @@
 <div>
-    <div><span>function</span><span> Form (props){</span></div>
-    <div><span>&nbsp; </span><span>const</span><span> [oneRecipe, setOneRecipe] = useState({</span></div>
-    <div><span>&nbsp; &nbsp; title: </span><span>''</span><span>,</span></div>
-    <div><span>&nbsp; &nbsp; instructions: </span><span>''</span><span>,</span></div>
-    <div><span>&nbsp; &nbsp; ingredients: [],</span></div>
-    <div><span>&nbsp; &nbsp; img: </span><span>''</span></div>
-    <div><span>&nbsp; });</span></div>
+    <div><span>import { useState, useEffect, useLayoutEffect } from "react";</span></div>
+    <div><span>import "./App.css";</span></div>
+    <div><span>// ------- recipeList array local recipeList stored</span></div>
     <br />
-    <div><span>&nbsp; </span><span>return</span><span> (</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;&gt;</span></div>
+    <div><span>function App() {</span></div>
+    <div><span>&nbsp; const [recipeListOb, setRecipeListOb] = useState(recipeListObj); // {a:"",id:#},{},{}</span></div>
+    <div><span>&nbsp; const [recipeId, setRecipeId] = useState(recipeListObj.nextRecipeId);</span></div>
+    <div><span>&nbsp; const [recipeList, setRecipeList] = useState(recipeListObj.recipeList)</span></div>
+    <br />
+    <div><span>&nbsp; const handleSave = &nbsp;(recipe) =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; try {</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; const newRecipe = { ...recipe, id: recipeId};</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; console.log(newRecipe, recipeId);</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; setRecipeId(prev =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; return prev + 1;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; })</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; setRecipeList( [...recipeList, newRecipe]);</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; setRecipeListOb({recipeList: [...recipeList, newRecipe], nextRecipeId: recipeId})</span></div>
+    <div><span>&nbsp; &nbsp; } catch (error){</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; console.log(error);</span></div>
+    <div><span>&nbsp; &nbsp; }</span></div>
+    <div><span>&nbsp; }</span></div>
+    <div><span>&nbsp; return (</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"App"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>h1</span> <span>style</span><span>=</span><span>{{</span> <span>display:</span> <span>"flex",</span> <span>justifyContent:</span> <span>"center"</span> <span>}}</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; My Recipes 2025</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>h1</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>List</span> <span>recipeListO</span><span>=</span><span>{recipeListOb}</span><span> /&gt;</span></div>
+    <div><span>&nbsp;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>Form</span> <span>onSave</span><span> = </span><span>{</span> <span>handleSave</span> <span>}</span> <span>/</span><span>&gt;</span></div>
+    <br />
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>/&gt;</span></div>
+    <div><span>&nbsp; );</span></div>
+    <div><span>}</span></div>
+    <div><span>function List(props) {</span></div>
+    <div><span>&nbsp; const {recipeList, nextRecipeId } = props.recipeListO;</span></div>
+    <br />
+    <div><span>&nbsp; const recipesJSX = recipeList?.map( (recipe, index) =&gt; (</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>Recipe</span> <span>key</span><span>=</span><span>{recipe.id+recipe.title}</span> <span>{...recipe}</span><span>/&gt;</span></div>
+    <div><span>&nbsp; ))</span></div>
+    <div><span>&nbsp; return (</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-list"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; {recipesJSX}</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; );</span></div>
+    <div><span>}</span></div>
+    <div><span>function Recipe(props) {</span></div>
+    <div><span>&nbsp; // ========== destructuring</span></div>
+    <div><span>&nbsp; const { title, img, instruction, id } = props;</span></div>
+    <div><span>&nbsp; const ingredientJSX = props.ingredient?.map((ing, index) =&gt; (</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>li</span> <span>key</span><span>=</span><span>{index}</span><span>&gt;</span><span>{ing}</span><span>&lt;/</span><span>li</span><span>&gt;</span></div>
+    <div><span>&nbsp; ));</span></div>
+    <div><span>&nbsp; return (</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-card"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-card-img"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>img</span> <span>src</span><span>=</span><span>{img}</span> <span>alt</span><span>=</span><span>{title}</span> <span>srcSet</span><span>=</span><span>""</span> <span>/&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-card-content"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>h3</span> <span>className</span><span>=</span><span>"recipe-title"</span><span>&gt;</span><span>{title}</span><span>&lt;/</span><span>h3</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>h4</span><span>&gt;</span><span>Ingredients:</span><span>&lt;/</span><span>h4</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>ul</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {ingredientJSX}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>ul</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>h4</span><span>&gt;</span><span>Instructions</span><span>&lt;/</span><span>h4</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>p</span><span>&gt;</span><span> {instruction}</span><span>&lt;/</span><span>p</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>button</span> <span>type</span><span>=</span><span>"button"</span> <span>onClick</span><span>=</span><span>{()</span> <span>=</span><span>&gt;</span><span> alert()}&gt;DELETE</span><span>&lt;/</span><span>button</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; );</span></div>
+    <div><span>}</span></div>
+    <div><span>function Form (props){</span></div>
+    <div><span>&nbsp; const [oneRecipe, setOneRecipe] = useState({</span></div>
+    <div><span>&nbsp; &nbsp; title: '',</span></div>
+    <div><span>&nbsp; &nbsp; instruction: '',</span></div>
+    <div><span>&nbsp; &nbsp; ingredient: [],</span></div>
+    <div><span>&nbsp; &nbsp; img: ''</span></div>
+    <div><span>&nbsp; });</span></div>
+    <div><span>&nbsp; const onSave = event =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; event.preventDefault();</span></div>
+    <div><span>&nbsp; &nbsp; props.onSave( { ...oneRecipe });</span></div>
+    <div><span>&nbsp; &nbsp; setOneRecipe({</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; title: "",</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; instruction: "",</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; ingredient: [],</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; img: ""</span></div>
+    <div><span>&nbsp; &nbsp; })</span></div>
+    <div><span>&nbsp; }</span></div>
+    <div><span>&nbsp; const handleChange = (event) =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; setOneRecipe ( prevItem =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; return {...prevItem, [ event.target.name ]: event.target.value }</span></div>
+    <div><span>&nbsp; &nbsp; })</span></div>
+    <div><span>&nbsp; }</span></div>
+    <div><span>&nbsp; const handleChangeIng = (event) =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; const index = Number(event.target.name.split('-')[1]);</span></div>
+    <div><span>&nbsp; &nbsp; const ingredient = oneRecipe.ingredient.map((ingr, i) =&gt; (</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; i === index ? event.target.value : ingr</span></div>
+    <div><span>&nbsp; &nbsp; ));</span></div>
+    <div><span>&nbsp; &nbsp; setOneRecipe( prevItem =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; return { ...prevItem, ingredient }</span></div>
+    <div><span>&nbsp; &nbsp; });</span></div>
+    <div><span>&nbsp; };</span></div>
+    <div><span>&nbsp; const handleNewIngredient = event =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; setOneRecipe(prevItem =&gt; {</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; return {...prevItem, ingredient: [...prevItem.ingredient, ""]}</span></div>
+    <div><span>&nbsp; &nbsp; })</span></div>
+    <div><span>&nbsp; }</span></div>
+    <div><span>&nbsp; let ingredientInJSX = oneRecipe.ingredient?.map(( ing, index) =&gt; (</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-form-line"</span> <span>key</span><span> = </span><span>{</span><span>`ingredient-${index}`}</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>label</span> <span>htmlFor</span><span>=</span><span>{</span><span>`ingredient-${index}`}</span> <span>&gt;</span><span>{index + 1}</span><span>&lt;/</span><span>label</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>input</span> <span>type</span><span>=</span><span>"text"</span> <span>name</span><span>=</span><span>{</span><span>`ingredient-${index}`}</span> <span>id</span><span>=</span><span>{</span><span>`ingredient-${index}`}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>size</span><span> = </span><span>{45}</span> <span>autoComplete</span><span>=</span><span>"off"</span> <span>placeholder</span><span>=</span><span>"Ingredient"</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; </span><span>onChange</span><span> = </span><span>{</span> <span>handleChangeIng</span> <span>}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; </span><span>/&gt;</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; ));</span></div>
+    <div><span>&nbsp; return (</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>&gt;</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-form-container"</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>&lt;</span><span>form</span> <span>className</span><span>=</span><span>"recipe-form"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>&lt;</span><span>form</span> <span>className</span><span>=</span><span>"recipe-form"</span> <span>onSubmit</span><span>=</span><span>{onSave}</span><span>&gt;</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span><span>&gt;</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>label</span> <span>htmlFor</span><span>=</span><span>"recipe-title-input"</span><span>&gt;</span><span>Title</span><span>&lt;/</span><span>label</span><span>&gt;</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>input</span> <span>type</span><span>=</span><span>"text"</span> <span>name</span><span>=</span><span>"title"</span> <span>id</span><span>=</span><span>"recipe-title-input"</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>key</span><span>=</span><span>"title"</span> <span>size</span><span>=</span><span>{</span><span>42</span><span>}</span> <span>autoComplete</span><span>=</span><span>"off"</span></div>
-    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>value</span><span> = </span><span>{</span><span> oneRecipe.title </span><span>}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>key</span><span>=</span><span>"title"</span> <span>size</span><span>=</span><span>{42}</span> <span>autoComplete</span><span>=</span><span>"off"</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>value</span><span> = </span><span>{</span> <span>oneRecipe.title}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>onChange</span><span> = </span><span>{</span> <span>handleChange</span> <span>}</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>/&gt;</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>label</span> <span>htmlFor</span><span>=</span><span>"recipe-instructions-input"</span> <span>style</span><span>=</span><span>{{</span> <span>marginTop:</span> <span>'5px'}}</span><span>&gt;</span><span>Instructions</span><span>&lt;/</span><span>label</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>textarea</span> <span>name</span><span>=</span><span>"instruction"</span> <span>id</span><span>=</span><span>"recipe-instructions-input"</span> <span>cols</span><span>=</span><span>"50"</span> <span>rows</span><span>=</span><span>"8"</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>autoComplete</span><span>=</span><span>"off"</span> <span>value</span><span> = </span><span>{</span> <span>oneRecipe.instruction</span> <span>}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>onChange</span><span>=</span><span>{handleChange}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>textarea</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Ingredients:</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; {ingredientInJSX} </span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>button</span> <span>type</span><span>=</span><span>"button"</span> <span>className</span><span>=</span><span>"buttons"</span> <span>onClick</span><span>=</span><span>{handleNewIngredient}</span><span>&gt;</span><span>+</span><span>&lt;/</span><span>button</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>div</span> <span>className</span><span>=</span><span>"recipe-form-line"</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>label</span> <span>htmlFor</span><span>=</span><span>"recipe-img-input"</span><span>&gt;</span><span> Image URL</span><span>&lt;/</span><span>label</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>input</span> <span>type</span><span>=</span><span>"text"</span> <span>name</span><span>=</span><span>"img"</span> <span>id</span><span>=</span><span>"recipe-img-input"</span> <span>placeholder</span><span>=</span><span>""</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>size</span><span> = </span><span>{36}</span> <span>autoComplete</span><span>=</span><span>"0ff"</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>value</span><span> =</span><span>{</span> <span>oneRecipe.img</span> <span>}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>onChange</span><span>=</span><span>{handleChange}</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>/&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
+    <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; </span><span>&lt;</span><span>button</span> <span>type</span><span>=</span><span>"submit"</span> <span>&gt;</span><span>SAVE</span><span>&lt;/</span><span>button</span><span>&gt;</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</span><span>&lt;/</span><span>form</span><span>&gt;</span></div>
     <div><span>&nbsp; &nbsp; &nbsp; </span><span>&lt;/</span><span>div</span><span>&gt;</span></div>
-    <div><span>&nbsp; &nbsp; </span><span>&lt;/&gt;</span></div>
+    <div><span>&nbsp; &nbsp; </span><span>&lt;</span><span>/&gt;</span></div>
     <div><span>&nbsp; )</span></div>
     <div><span>}</span></div>
+    <div><span>export default App;</span></div>
 </div>
