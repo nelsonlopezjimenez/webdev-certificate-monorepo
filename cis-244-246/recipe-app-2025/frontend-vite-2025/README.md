@@ -63,8 +63,11 @@
 ![step1aa](src/steps/step-1d-form-return.png)
 
 ### Step 1c : Form, no values assigned
-![form start](step-1cc-form-field-without-onChange.png)
-### Step 1
+![form start](src/steps/step-1c.png)
+![form start](src/steps/step-1cc.png)
+![form start](src/steps/step-1cc-form-field-without-onChange.png)
+
+### Step 1a
 ![step1a](src/steps/step-1a.png)
 ![step1aa](src/steps/step-1aa.png)
 
