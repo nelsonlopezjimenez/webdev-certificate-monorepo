@@ -58,6 +58,11 @@
 ![step1a](src/steps/step-1a.png)
 ![step1aa](src/steps/step-1aa.png)
 
+### Step 1b
+![step1b](src/steps/step-1b.png)
+![step1bb](src/steps/step-1bb.png)
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
