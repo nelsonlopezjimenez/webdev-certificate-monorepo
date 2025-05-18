@@ -47,8 +47,8 @@ function App() {
     try {
       const data = await apiCalls.getAllData();
       console.log(data); // [{},{},{},{}] from mongoDb
-      setRecipeList(data);
-      setRecipeListOb({recipeList: [...recipeList], nextRecipeId: null})
+      setRecipeList([...recipeList, ...data]);
+      setRecipeListOb({recipeList: [...recipeList, ...data], nextRecipeId: null})
     } catch (error) {
       console.log(error)
     }
@@ -90,7 +90,7 @@ function List(props) {
   const {recipeList, nextRecipeId } = props.recipeListO;
 
   const recipesJSX = recipeList?.map( (recipe, index) => (
-    <Recipe key={recipe.id+recipe.title} {...recipe}/>
+    <Recipe key={recipe._id} {...recipe}/>
   ))
 
   return (
@@ -101,10 +101,10 @@ function List(props) {
 }
 function Recipe(props) {
   // ========== destructuring
-  const { title, img, instruction, id } = props;
-  const ingredientJSX = props.ingredient?.map((ing, index) => (
-    <li key={index}>{ing}</li>
-  ));
+  const { title, img, instruction, _id } = props;
+  const ingredientJSX = props.ingredient?.map((ing) => {
+    return <li key={_id+ing}>{ing}</li>
+  });
 
   return (
     <div className="recipe-card">
