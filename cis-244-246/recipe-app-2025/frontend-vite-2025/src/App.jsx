@@ -87,9 +87,9 @@ function App() {
   );
 }
 function List(props) {
-  const {recipeList, nextRecipeId } = props.recipeListO;
+  const {recipeList } = props.recipeListO;
 
-  const recipesJSX = recipeList?.map( (recipe, index) => (
+  const recipesJSX = recipeList?.map( (recipe) => (
     <Recipe key={recipe._id + recipe.title} {...recipe}/>
   ))
 
