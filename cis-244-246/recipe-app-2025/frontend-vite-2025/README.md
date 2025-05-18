@@ -55,6 +55,14 @@
 ```
 ## Steps
 
+### Step-j createRecipe POST fetch
+![step1j](src/steps/step-1j-api-createRecipe.png)
+
+
+### Step-1h loadRecipe from mongoDb with duplicate key
+![step1h](src/steps/step-1h.png)
+![step1h](src/steps/step-1hh-loadrecipe-wrong-key.png)
+
 ### Step 1g: backend done, frontend api.jsx created
 ![step1g](src/steps/step-1g-backend-done.png)
 
