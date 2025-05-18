@@ -58,15 +58,18 @@ function App() {
     // console.log(recipes);// []
   }, []);
 
-  const handleSave =  (recipe) => {
+  const handleSave =  async (recipe) => {
     try {
       const newRecipe = { ...recipe, id: recipeId};
       console.log(newRecipe, recipeId);
       setRecipeId(prev => {
         return prev + 1;
-      })
+      });
+      const data = await apiCalls.createRecipe(newRecipe);
+      if(data){console.log('NewRecipe added: 69')} else{"NewRecipe not added: 69"}
       setRecipeList( [...recipeList, newRecipe]);
       setRecipeListOb({recipeList: [...recipeList, newRecipe], nextRecipeId: recipeId})
+
     } catch (error){
       console.log(error);
     }
