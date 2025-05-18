@@ -90,7 +90,7 @@ function List(props) {
   const {recipeList, nextRecipeId } = props.recipeListO;
 
   const recipesJSX = recipeList?.map( (recipe, index) => (
-    <Recipe key={recipe._id} {...recipe}/>
+    <Recipe key={recipe._id + recipe.title} {...recipe}/>
   ))
 
   return (
