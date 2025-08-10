@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page Examples</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg p-4 fixed w-full top-0 z-50">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold text-gray-800">Landing Page Examples</h1>
+            <div class="space-x-4">
+                <button onclick="showPage(1)" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">Example 1</button>
+                <button onclick="showPage(2)" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600 transition">Example 2</button>
+                <button onclick="showPage(3)" class="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600 transition">Example 3</button>
+                <button onclick="showPage(4)" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition">Example 4</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="mt-20">
+        <!-- Example 1: Simple Hero Section -->
+        <div id="page1" class="page active">
+            <div class="min-h-screen bg-gradient-to-br from-blue-600 to-purple-700 flex items-center justify-center">
+                <div class="text-center text-white px-6">
+                    <h1 class="text-5xl md:text-7xl font-bold mb-6">Welcome to Our App</h1>
+                    <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">Transform your productivity with our amazing tool that helps you achieve more in less time.</p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                        <button class="px-8 py-3 bg-white text-blue-600 font-semibold rounded-lg hover:bg-gray-100 transition">Get Started</button>
+                        <button class="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-blue-600 transition">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 2: Split Layout -->
+        <div id="page2" class="page">
+            <div class="min-h-screen flex flex-col lg:flex-row">
+                <!-- Left Side -->
+                <div class="lg:w-1/2 bg-gray-900 flex items-center justify-center p-8">
+                    <div class="text-white max-w-md">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Build Faster</h1>
+                        <p class="text-lg mb-8 text-gray-300">Our platform gives you the tools to create, deploy, and scale your applications with ease.</p>
+                        <div class="space-y-4 mb-8">
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                                <span>Lightning fast deployment</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                                <span>24/7 monitoring</span>
+                            </div>
+                            <div class="flex items-center">
+                                <div class="w-2 h-2 bg-green-400 rounded-full mr-3"></div>
+                                <span>Global CDN</span>
+                            </div>
+                        </div>
+                        <button class="px-6 py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 transition">Start Building</button>
+                    </div>
+                </div>
+                <!-- Right Side -->
+                <div class="lg:w-1/2 bg-gradient-to-br from-green-400 to-blue-500 flex items-center justify-center p-8">
+                    <div class="w-80 h-80 bg-white/10 rounded-2xl backdrop-blur-sm border border-white/20 flex items-center justify-center">
+                        <div class="text-white text-center">
+                            <div class="w-16 h-16 bg-white/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+                                <div class="w-8 h-8 bg-white rounded-full"></div>
+                            </div>
+                            <p>Dashboard Preview</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 3: Card-based Layout -->
+        <div id="page3" class="page">
+            <div class="min-h-screen bg-gray-50 py-20 px-6">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Header -->
+                    <div class="text-center mb-16">
+                        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 mb-6">Choose Your Plan</h1>
+                        <p class="text-xl text-gray-600 max-w-2xl mx-auto">Select the perfect plan for your needs. Upgrade or downgrade at any time.</p>
+                    </div>
+                    
+                    <!-- Cards -->
+                    <div class="flex flex-col lg:flex-row gap-8 justify-center">
+                        <!-- Basic Plan -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8 flex-1 max-w-sm">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Basic</h3>
+                            <div class="text-4xl font-bold text-purple-600 mb-6">$9<span class="text-lg text-gray-500">/month</span></div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    Up to 5 projects
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    10GB storage
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    Email support
+                                </li>
+                            </ul>
+                            <button class="w-full py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition">Choose Basic</button>
+                        </div>
+
+                        <!-- Pro Plan -->
+                        <div class="bg-gradient-to-br from-purple-600 to-blue-600 rounded-2xl shadow-xl p-8 flex-1 max-w-sm transform scale-105">
+                            <div class="text-center text-white mb-4">
+                                <span class="bg-yellow-400 text-purple-900 px-3 py-1 rounded-full text-sm font-semibold">Most Popular</span>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-4">Pro</h3>
+                            <div class="text-4xl font-bold text-white mb-6">$29<span class="text-lg text-purple-200">/month</span></div>
+                            <ul class="space-y-3 mb-8 text-white">
+                                <li class="flex items-center">
+                                    <span class="text-yellow-400 mr-2">✓</span>
+                                    Unlimited projects
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-yellow-400 mr-2">✓</span>
+                                    100GB storage
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-yellow-400 mr-2">✓</span>
+                                    Priority support
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-yellow-400 mr-2">✓</span>
+                                    Advanced analytics
+                                </li>
+                            </ul>
+                            <button class="w-full py-3 bg-white text-purple-600 font-semibold rounded-lg hover:bg-gray-100 transition">Choose Pro</button>
+                        </div>
+
+                        <!-- Enterprise Plan -->
+                        <div class="bg-white rounded-2xl shadow-lg p-8 flex-1 max-w-sm">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-4">Enterprise</h3>
+                            <div class="text-4xl font-bold text-gray-900 mb-6">$99<span class="text-lg text-gray-500">/month</span></div>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    Everything in Pro
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    Custom integrations
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    Dedicated support
+                                </li>
+                                <li class="flex items-center">
+                                    <span class="text-green-500 mr-2">✓</span>
+                                    SLA guarantee
+                                </li>
+                            </ul>
+                            <button class="w-full py-3 bg-gray-900 text-white font-semibold rounded-lg hover:bg-gray-800 transition">Contact Sales</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Example 4: Feature Grid -->
+        <div id="page4" class="page">
+            <div class="min-h-screen bg-white">
+                <!-- Hero Section -->
+                <div class="bg-gradient-to-r from-red-500 to-pink-600 py-20 px-6">
+                    <div class="max-w-4xl mx-auto text-center text-white">
+                        <h1 class="text-4xl md:text-6xl font-bold mb-6">Everything You Need</h1>
+                        <p class="text-xl mb-8">Powerful features to help you succeed in your business goals.</p>
+                        <button class="px-8 py-3 bg-white text-red-600 font-semibold rounded-lg hover:bg-gray-100 transition">Explore Features</button>
+                    </div>
+                </div>
+
+                <!-- Features Grid -->
+                <div class="py-20 px-6">
+                    <div class="max-w-6xl mx-auto">
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            <!-- Feature 1 -->
+                            <div class="text-center p-6 hover:shadow-lg rounded-lg transition">
+                                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <div class="w-8 h-8 bg-red-500 rounded"></div>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Fast Performance</h3>
+                                <p class="text-gray-600">Lightning fast load times and optimized performance for the best user experience.</p>
+                            </div>
+
+                            <!-- Feature 2 -->
+                            <div class="text-center p-6 hover:shadow-lg rounded-lg transition">
+                                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <div class="w-8 h-8 bg-blue-500 rounded-full"></div>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Secure</h3>
+                                <p class="text-gray-600">Enterprise-grade security with end-to-end encryption and data protection.</p>
+                            </div>
+
+                            <!-- Feature 3 -->
+                            <div class="text-center p-6 hover:shadow-lg rounded-lg transition">
+                                <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <div class="w-8 h-8 bg-green-500 rounded-lg transform rotate-45"></div>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Scalable</h3>
+                                <p class="text-gray-600">Grows with your business from startup to enterprise scale seamlessly.</p>
+                            </div>
+
+                            <!-- Feature 4 -->
+                            <div class="text-center p-6 hover:shadow-lg rounded-lg transition">
+                                <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <div class="w-6 h-6 bg-purple-500 rounded-full"></div>
+                                    <div class="w-4 h-4 bg-purple-300 rounded-full -ml-2"></div>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Collaborative</h3>
+                                <p class="text-gray-600">Work together with your team in real-time with powerful collaboration tools.</p>
+                            </div>
+
+                            <!-- Feature 5 -->
+                            <div class="text-center p-6 hover:shadow-lg rounded-lg transition">
+                                <div class="w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <div class="w-8 h-8 bg-yellow-500 rounded-lg transform rotate-12"></div>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">Analytics</h3>
+                                <p class="text-gray-600">Deep insights and analytics to help you make data-driven decisions.</p>
+                            </div>
+
+                            <!-- Feature 6 -->
+                            <div class="text-center p-6 hover:shadow-lg rounded-lg transition">
+                                <div class="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                    <div class="w-8 h-2 bg-indigo-500 rounded-full"></div>
+                                </div>
+                                <h3 class="text-xl font-semibold mb-3">24/7 Support</h3>
+                                <p class="text-gray-600">Round-the-clock customer support to help you whenever you need assistance.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Section -->
+                <div class="bg-gray-900 py-16 px-6">
+                    <div class="max-w-4xl mx-auto text-center text-white">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Get Started?</h2>
+                        <p class="text-xl mb-8 text-gray-300">Join thousands of satisfied customers who trust our platform.</p>
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                            <button class="px-8 py-3 bg-red-600 text-white font-semibold rounded-lg hover:bg-red-700 transition">Start Free Trial</button>
+                            <button class="px-8 py-3 border-2 border-white text-white font-semibold rounded-lg hover:bg-white hover:text-gray-900 transition">Schedule Demo</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageNumber) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById('page' + pageNumber).classList.add('active');
+        }
+    </script>
+</body>
+</html>

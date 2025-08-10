@@ -66,5 +66,15 @@ export const getOneRecipe = ( async (id) => {
       console.log(error)
     }
   })
+
+  export const removeOneRecipe = ( async (id) => {
+    try {
+      let data = await fetch(APIURL + id, { method: 'delete'})
+      let result = await data.json();
+      return result;
+    } catch (error){
+      console.log(error)
+    }
+  })
   
   
