@@ -67,6 +67,14 @@ function App() {
     // console.log(recipes);// []
   }, []);
 
+  const handleDelete = async(id) => {
+    try {
+      const filteredRecipeArr = recipeList.filter(recipe => recipe.id != id);
+      setRecipeList(filteredRecipeArr);
+    } catch (error) {
+      console.log(`handleDelete something is wrong!!`)
+    }
+  }
   const handleSave =  async (recipe) => {
     try {
       const newRecipe = { ...recipe, id: recipeId};
@@ -89,7 +97,7 @@ function App() {
         <h1 style={{ display: "flex", justifyContent: "center" }}>
           My Recipes 2025
         </h1>
-        <List recipeList={recipeList} />
+        <List recipeList={recipeList} recipeDelete={handleDelete}/>
  
         <Form onSave = { handleSave } />
 
@@ -101,7 +109,7 @@ function List(props) {
   const recipeList = props.recipeList;
 
   const recipesJSX = recipeList?.map( (recipe) => (
-    <Recipe key={recipe.id + recipe.title} {...recipe}/>
+    <Recipe key={recipe.id + recipe.title} {...recipe} onDelete={props.recipeDelete}/>
   ))
 
   return (
@@ -112,11 +120,16 @@ function List(props) {
 }
 function Recipe(props) {
   // ========== destructuring
-  const { title, img, instruction, id } = props;
+  const { title, img, instruction, id, onDelete } = props;
   const ingredientJSX = props.ingredient?.map((ing) => {
     return <li key={id+ing}>{ing}</li>
   });
 
+    const recipeDelete = event => {
+      console.log(event.target)
+    event.preventDefault();
+    onDelete(id);
+  }
   return (
     <div className="recipe-card">
       <div className="recipe-card-img">
@@ -130,7 +143,7 @@ function Recipe(props) {
         </ul>
         <h4>Instructions</h4>
         <p> {instruction}</p>
-        <button type="button" onClick={() => alert(`Recipe id : ${id}`)}>DELETE</button>
+        <button type="button" onClick={(id) => recipeDelete(id)}>DELETE</button>
       </div>
     </div>
   );
