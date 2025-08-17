@@ -1,10 +1,21 @@
 # webdev-certificate-monorepo
 
-## last modified: 5.11.2025
+## last modified: 8.17.2025
+
+## 8.17.2025
+
+1. cis-244-246: recipe-app-2025
+    1. Frontend starting code has an object to pass the hardcoded recipe array and the id number for each recipe.
+    1. The logic is to add new recipes to the array and increase the id number by one
+    1. The app is not connected to the backend yet.
+    1. The problem for students is to figure out how to deal with the array inside and/or outside the object and how to elimitate the id number when connecting to the backend when mongo assigns a unique id.
+    1. PLAN: refactor the starting app to have an array instead of an object and to add separately the id and then eliminate it easily
+
+## 5.11.2025
 1. https://www.robinwieruch.de/web-applications/
 1. https://www.reddit.com/r/reactjs/comments/rm48bc/what_is_storybook_used_for/
 
-## last modified: 5.10.2025
+## 5.10.2025
 
 ## bash command line piping dir content to md file
 

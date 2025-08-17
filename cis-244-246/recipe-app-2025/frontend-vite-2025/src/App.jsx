@@ -45,7 +45,7 @@ function App() {
   const loadRecipes = async () => {
     // const data = await apiCalls.getAllRecipes();
     try {
-      const data = await apiCalls.getAllData();
+      // const data = await apiCalls.getAllData();
       console.log(data); // [{},{},{},{}] from mongoDb
       setRecipeList([...recipeList, ...data]);
       setRecipeListOb({recipeList: [...recipeList, ...data], nextRecipeId: null})
@@ -65,7 +65,7 @@ function App() {
       setRecipeId(prev => {
         return prev + 1;
       });
-      const data = await apiCalls.createRecipe(newRecipe);
+      // const data = await apiCalls.createRecipe(newRecipe);
       if(data){console.log('NewRecipe added: 69')} else{"NewRecipe not added: 69"}
       setRecipeList( [...recipeList, newRecipe]);
       setRecipeListOb({recipeList: [...recipeList, newRecipe], nextRecipeId: recipeId})
