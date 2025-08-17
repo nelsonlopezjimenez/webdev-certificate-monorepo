@@ -3,39 +3,39 @@ import { useState, useEffect, useLayoutEffect } from "react";
 import "./App.css";
 // ------- recipeArray local recipeList stored
 
-const recipeArr  =  [
-    {
-      id: 0,
-      title: "Spaghetti",
-      instruction:
-        "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
-      ingredient: ["pasta", "8 cups water", "1 box spaghetti"],
-      img: "spaghetti.jpg",
-    },
-    {
-      id: 1,
-      title: "Milkshake",
-      instruction: "Combine ice cream and milk.  Blend until creamy",
-      ingredient: ["2 Scoops Ice cream", "8 ounces milk"],
-      img: "milkshake.jpg",
-    },
-    {
-      id: 2,
-      title: "Avocado Toast",
-      instruction:
-        "Toast bread.  Slice avocado and spread on bread.  Add salt, oil, and pepper to taste.",
-      ingredient: [
-        "2 slices of bread",
-        "1 avocado",
-        "1 tablespoon olive oil",
-        "1 pinch of salt",
-        "pepper",
-      ],
-      img: "avocado_toast.jpg",
-    },
-  ];
+const recipeArr = [
+  {
+    id: 0,
+    title: "Spaghetti",
+    instruction:
+      "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
+    ingredient: ["pasta", "8 cups water", "1 box spaghetti"],
+    img: "spaghetti.jpg",
+  },
+  {
+    id: 1,
+    title: "Milkshake",
+    instruction: "Combine ice cream and milk.  Blend until creamy",
+    ingredient: ["2 Scoops Ice cream", "8 ounces milk"],
+    img: "milkshake.jpg",
+  },
+  {
+    id: 2,
+    title: "Avocado Toast",
+    instruction:
+      "Toast bread.  Slice avocado and spread on bread.  Add salt, oil, and pepper to taste.",
+    ingredient: [
+      "2 slices of bread",
+      "1 avocado",
+      "1 tablespoon olive oil",
+      "1 pinch of salt",
+      "pepper",
+    ],
+    img: "avocado_toast.jpg",
+  },
+];
 
-let recipeCount =  recipeArr.length;
+let recipeCount = recipeArr.length;
 
 function App() {
 
@@ -47,7 +47,7 @@ function App() {
     try {
       // list of recipes will come from mongo db.
       const newRecipe = {
-        id: recipeId  ,
+        id: recipeId,
         title: "Spaghetti",
         instruction:
           "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
@@ -56,7 +56,7 @@ function App() {
       };
       setRecipeId(prev => prev + 1)
       setRecipeList([...recipeList, newRecipe]);
-      
+
 
     } catch (error) {
       console.log(error)
@@ -67,7 +67,7 @@ function App() {
     // console.log(recipes);// []
   }, []);
 
-  const handleDelete = async(id) => {
+  const handleDelete = async (id) => {
     try {
       const filteredRecipeArr = recipeList.filter(recipe => recipe.id != id);
       setRecipeList(filteredRecipeArr);
@@ -75,18 +75,18 @@ function App() {
       console.log(`handleDelete something is wrong!!`)
     }
   }
-  const handleSave =  async (recipe) => {
+  const handleSave = async (recipe) => {
     try {
-      const newRecipe = { ...recipe, id: recipeId};
+      const newRecipe = { ...recipe, id: recipeId };
       console.log(newRecipe, recipeId);
       setRecipeId(prev => {
         return prev + 1;
       });
 
-      setRecipeList( [...recipeList, newRecipe]);
+      setRecipeList([...recipeList, newRecipe]);
 
 
-    } catch (error){
+    } catch (error) {
       console.log(error);
     }
   }
@@ -97,9 +97,9 @@ function App() {
         <h1 style={{ display: "flex", justifyContent: "center" }}>
           My Recipes 2025
         </h1>
-        <List recipeList={recipeList} recipeDelete={handleDelete}/>
- 
-        <Form onSave = { handleSave } />
+        <List recipeList={recipeList} recipeDelete={handleDelete} />
+
+        <Form onSave={handleSave} />
 
       </div>
     </>
@@ -108,8 +108,8 @@ function App() {
 function List(props) {
   const recipeList = props.recipeList;
 
-  const recipesJSX = recipeList?.map( (recipe) => (
-    <Recipe key={recipe.id + recipe.title} {...recipe} onDelete={props.recipeDelete}/>
+  const recipesJSX = recipeList?.map((recipe) => (
+    <Recipe key={recipe.id + recipe.title} {...recipe} onDelete={props.recipeDelete} />
   ))
 
   return (
@@ -122,11 +122,11 @@ function Recipe(props) {
   // ========== destructuring
   const { title, img, instruction, id, onDelete } = props;
   const ingredientJSX = props.ingredient?.map((ing) => {
-    return <li key={id+ing}>{ing}</li>
+    return <li key={id + ing}>{ing}</li>
   });
 
-    const recipeDelete = event => {
-      console.log(event.target)
+  const recipeDelete = event => {
+    console.log(event.target)
     event.preventDefault();
     onDelete(id);
   }
@@ -148,7 +148,7 @@ function Recipe(props) {
     </div>
   );
 }
-function Form (props){
+function Form(props) {
   const [oneRecipe, setOneRecipe] = useState({
     title: '',
     instruction: '',
@@ -157,7 +157,7 @@ function Form (props){
   });
   const onSave = event => {
     event.preventDefault();
-    props.onSave( { ...oneRecipe });
+    props.onSave({ ...oneRecipe });
     setOneRecipe({
       title: "",
       instruction: "",
@@ -166,8 +166,8 @@ function Form (props){
     })
   }
   const handleChange = (event) => {
-    setOneRecipe ( prevItem => {
-      return {...prevItem, [ event.target.name ]: event.target.value }
+    setOneRecipe(prevItem => {
+      return { ...prevItem, [event.target.name]: event.target.value }
     })
   }
   const handleChangeIng = (event) => {
@@ -175,55 +175,55 @@ function Form (props){
     const ingredient = oneRecipe.ingredient.map((ingr, i) => (
       i === index ? event.target.value : ingr
     ));
-    setOneRecipe( prevItem => {
+    setOneRecipe(prevItem => {
       return { ...prevItem, ingredient }
     });
   };
   const handleNewIngredient = event => {
     setOneRecipe(prevItem => {
-      return {...prevItem, ingredient: [...prevItem.ingredient, ""]}
+      return { ...prevItem, ingredient: [...prevItem.ingredient, ""] }
     })
   }
-  let ingredientInJSX = oneRecipe.ingredient?.map(( ing, index) => (
-    <div className="recipe-form-line" key = {`ingredient-${index}`}>
+  let ingredientInJSX = oneRecipe.ingredient?.map((ing, index) => (
+    <div className="recipe-form-line" key={`ingredient-${index}`}>
       <label htmlFor={`ingredient-${index}`} >{index + 1}</label>
-      <input type="text" name={`ingredient-${index}`} id={`ingredient-${index}`} 
-        size = {45} autoComplete="off" placeholder="Ingredient"
-        onChange = { handleChangeIng }
+      <input type="text" name={`ingredient-${index}`} id={`ingredient-${index}`}
+        size={45} autoComplete="off" placeholder="Ingredient"
+        onChange={handleChangeIng}
       />
     </div>
   ));
   return (
     <>
       <div className="recipe-form-container">
-         <form className="recipe-form" onSubmit={onSave}>
+        <form className="recipe-form" onSubmit={onSave}>
           <div>
             <label htmlFor="recipe-title-input">Title</label>
             <input type="text" name="title" id="recipe-title-input"
               key="title" size={42} autoComplete="off"
-              value = { oneRecipe.title}
-              onChange = { handleChange }
+              value={oneRecipe.title}
+              onChange={handleChange}
             />
           </div>
-          <label htmlFor="recipe-instructions-input" style={{ marginTop: '5px'}}>Instructions</label>
-            <textarea name="instruction" id="recipe-instructions-input" cols="50" rows="8"
-              autoComplete="off" value = { oneRecipe.instruction } 
+          <label htmlFor="recipe-instructions-input" style={{ marginTop: '5px' }}>Instructions</label>
+          <textarea name="instruction" id="recipe-instructions-input" cols="50" rows="8"
+            autoComplete="off" value={oneRecipe.instruction}
+            onChange={handleChange}
+          >
+          </textarea>
+          Ingredients:
+          {ingredientInJSX}
+          <button type="button" className="buttons" onClick={handleNewIngredient}>+</button>
+          <div className="recipe-form-line">
+            <label htmlFor="recipe-img-input"> Image URL</label>
+            <input type="text" name="img" id="recipe-img-input" placeholder=""
+              size={36} autoComplete="0ff"
+              value={oneRecipe.img}
               onChange={handleChange}
-            >
-            </textarea>
-            Ingredients:
-              {ingredientInJSX} 
-            <button type="button" className="buttons" onClick={handleNewIngredient}>+</button>
-            <div className="recipe-form-line">
-              <label htmlFor="recipe-img-input"> Image URL</label>
-              <input type="text" name="img" id="recipe-img-input" placeholder=""
-                size = {36} autoComplete="0ff"
-                value ={ oneRecipe.img }
-                onChange={handleChange}
-              />
-            </div>
-            <button type="submit" >SAVE</button>
-         </form>
+            />
+          </div>
+          <button type="submit" >SAVE</button>
+        </form>
       </div>
     </>
   )
