@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect } from "react";
-import * as apiCalls from './api.jsx';
+
 import "./App.css";
 // ------- recipeList array local recipeList stored
 const recipeListObj = {
@@ -43,9 +43,9 @@ function App() {
   const [recipeList, setRecipeList] = useState(recipeListObj.recipeList)
 
   const loadRecipes = async () => {
-    // const data = await apiCalls.getAllRecipes();
+
     try {
-      // const data = await apiCalls.getAllData();
+
       console.log(data); // [{},{},{},{}] from mongoDb
       setRecipeList([...recipeList, ...data]);
       setRecipeListOb({recipeList: [...recipeList, ...data], nextRecipeId: null})
@@ -65,7 +65,7 @@ function App() {
       setRecipeId(prev => {
         return prev + 1;
       });
-      // const data = await apiCalls.createRecipe(newRecipe);
+
       if(data){console.log('NewRecipe added: 69')} else{"NewRecipe not added: 69"}
       setRecipeList( [...recipeList, newRecipe]);
       setRecipeListOb({recipeList: [...recipeList, newRecipe], nextRecipeId: recipeId})
