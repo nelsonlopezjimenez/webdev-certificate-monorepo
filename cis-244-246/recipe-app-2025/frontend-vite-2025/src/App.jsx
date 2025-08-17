@@ -371,116 +371,83 @@ function EditRecipeForm({ recipe, onSave, onCancel, isVisible }) {
   }
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: 0,
-      left: 0,
-      right: 0,
-      bottom: 0,
-      backgroundColor: 'rgba(0, 0, 0, 0.5)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      zIndex: 1000
-    }}>
-      <div style={{
-        backgroundColor: 'white',
-        padding: '20px',
-        borderRadius: '10px',
-        maxWidth: '600px',
-        width: '90%',
-        maxHeight: '90vh',
-        overflowY: 'auto',
-        position: 'relative'
-      }}>
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'space-between', 
-          alignItems: 'center', 
-          marginBottom: '20px' 
-        }}>
+    <div id='editOuter'>
+      <div id='editInner'>
+        <div id='editInnerElem'>
           <h2>Edit Recipe</h2>
-          <button 
-            type="button" 
-            onClick={onCancel}
-            style={{ 
-              background: 'none', 
-              border: 'none', 
-              fontSize: '24px', 
-              cursor: 'pointer',
-              color: '#666'
-            }}
-          >
-            ×
+          <button id='editBttnCancel' type='button' onClick={onCancel} >
+            x
           </button>
         </div>
+          <div className="recipe-form-container">
+           <form className="recipe-form" onSubmit={onSaveEdit}>
+             <div>
+               <label htmlFor="edit-recipe-title-input">Title</label>
+               <input 
+                 type="text" 
+                 name="title" 
+                 id="edit-recipe-title-input"
+                 key="title" 
+                 size={42} 
+                 autoComplete="off"
+                 value={oneRecipe.title}
+                 onChange={handleChange}
+               />
+             </div>
+        
+             <label htmlFor="edit-recipe-instructions-input" style={{ marginTop: '5px' }}>
+               Instructions
+             </label>
+             <textarea 
+               name="instruction" 
+               id="edit-recipe-instructions-input" 
+               cols="50" 
+               rows="8"
+               autoComplete="off" 
+               value={oneRecipe.instruction}
+               onChange={handleChange}
+             />
+        
+             Ingredients:
+             {ingredientInJSX}
+             <button type="button" className="buttons" onClick={handleNewIngredient}>
+               +
+             </button>
+        
+             <div className="recipe-form-line">
+               <label htmlFor="edit-recipe-img-input">Image URL</label>
+               <input 
+                 type="text" 
+                 name="img" 
+                 id="edit-recipe-img-input" 
+                 placeholder=""
+                 size={36} 
+                 autoComplete="off"
+                 value={oneRecipe.img}
+                 onChange={handleChange}
+               />
+             </div>
+        
+             <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+               <button type="submit" style={{ backgroundColor: '#4CAF50', color: 'white' }}>
+                 SAVE CHANGES
+               </button>
+               <button 
+                 type="button" 
+                 onClick={onCancel}
+                 style={{ backgroundColor: '#f44336', color: 'white' }}
+               >
+                 CANCEL
+               </button>
+             </div>
+           </form>
+         </div>
 
-        <div className="recipe-form-container">
-          <form className="recipe-form" onSubmit={onSaveEdit}>
-            <div>
-              <label htmlFor="edit-recipe-title-input">Title</label>
-              <input 
-                type="text" 
-                name="title" 
-                id="edit-recipe-title-input"
-                key="title" 
-                size={42} 
-                autoComplete="off"
-                value={oneRecipe.title}
-                onChange={handleChange}
-              />
-            </div>
-            
-            <label htmlFor="edit-recipe-instructions-input" style={{ marginTop: '5px' }}>
-              Instructions
-            </label>
-            <textarea 
-              name="instruction" 
-              id="edit-recipe-instructions-input" 
-              cols="50" 
-              rows="8"
-              autoComplete="off" 
-              value={oneRecipe.instruction}
-              onChange={handleChange}
-            />
-            
-            Ingredients:
-            {ingredientInJSX}
-            <button type="button" className="buttons" onClick={handleNewIngredient}>
-              +
-            </button>
-            
-            <div className="recipe-form-line">
-              <label htmlFor="edit-recipe-img-input">Image URL</label>
-              <input 
-                type="text" 
-                name="img" 
-                id="edit-recipe-img-input" 
-                placeholder=""
-                size={36} 
-                autoComplete="off"
-                value={oneRecipe.img}
-                onChange={handleChange}
-              />
-            </div>
-            
-            <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
-              <button type="submit" style={{ backgroundColor: '#4CAF50', color: 'white' }}>
-                SAVE CHANGES
-              </button>
-              <button 
-                type="button" 
-                onClick={onCancel}
-                style={{ backgroundColor: '#f44336', color: 'white' }}
-              >
-                CANCEL
-              </button>
-            </div>
-          </form>
-        </div>
+
+
       </div>
     </div>
-  );
+  )
 }
 
 export default App;
