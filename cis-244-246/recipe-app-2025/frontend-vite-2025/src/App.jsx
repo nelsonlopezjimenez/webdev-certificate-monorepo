@@ -41,6 +41,8 @@ function App() {
 
   const [recipeId, setRecipeId] = useState(recipeCount);
   const [recipeList, setRecipeList] = useState(recipeArr);
+  const [editingRecipe, setEditingRecipe] = useState(null);
+  const [showEditForm, setShowEditForm] = useState(false);
 
   const loadRecipes = async () => {
 
@@ -91,15 +93,38 @@ function App() {
     }
   }
 
+  const handleEdit = (recipe) => {
+    setEditingRecipe(recipe);
+    setShowEditForm(true);
+  }
+
+  const handleSaveEdit = (updatedRecipe) => {
+    setRecipeList(prevList => prevList.map(recipe => recipe.id === updatedRecipe.id
+      ?
+      updatedRecipe : recipe
+    )
+    );
+    setShowEditForm(false);
+    setEditingRecipe(null);
+  }
+
+  const handleCancelEdit = () => {
+    setShowEditForm(false);
+    setEditingRecipe(null);
+  }
+
   return (
     <>
       <div className="App">
         <h1 style={{ display: "flex", justifyContent: "center" }}>
           My Recipes 2025
         </h1>
-        <List recipeList={recipeList} recipeDelete={handleDelete} />
+        <List recipeList={recipeList} recipeDelete={handleDelete} onEdit={handleEdit} />
 
         <Form onSave={handleSave} />
+
+        <EditRecipeForm recipe={editingRecipe} onSave={handleSaveEdit} 
+           onCancel={handleCancelEdit} isVisible={showEditForm} />
 
       </div>
     </>
@@ -109,7 +134,8 @@ function List(props) {
   const recipeList = props.recipeList;
 
   const recipesJSX = recipeList?.map((recipe) => (
-    <Recipe key={recipe.id + recipe.title} {...recipe} onDelete={props.recipeDelete} />
+    <Recipe key={recipe.id + recipe.title} {...recipe} onDelete={props.recipeDelete}
+       onEdit={props.onEdit} />
   ))
 
   return (
@@ -120,7 +146,7 @@ function List(props) {
 }
 function Recipe(props) {
   // ========== destructuring
-  const { title, img, instruction, id, onDelete } = props;
+  const { title, img, instruction, id, onDelete, onEdit } = props;
   const ingredientJSX = props.ingredient?.map((ing) => {
     return <li key={id + ing}>{ing}</li>
   });
@@ -130,6 +156,12 @@ function Recipe(props) {
     event.preventDefault();
     onDelete(id);
   }
+
+  const recipeEdit = event => {
+    event.preventDefault();
+    onEdit(props); // pass the entire recipe object
+  }
+  
   return (
     <div className="recipe-card">
       <div className="recipe-card-img">
@@ -143,7 +175,26 @@ function Recipe(props) {
         </ul>
         <h4>Instructions</h4>
         <p> {instruction}</p>
-        <button type="button" onClick={(id) => recipeDelete(id)}>DELETE</button>
+        {/* <button type="button" onClick={(id) => recipeDelete(id)}>DELETE</button> */}
+  {/* Add Edit button next to Delete button */}
+        <div style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
+          <button 
+            type="button" 
+            onClick={recipeEdit}
+            style={{ backgroundColor: '#2196F3', color: 'white', padding: '5px 10px' }}
+          >
+            EDIT
+          </button>
+          <button 
+            type="button" 
+            onClick={(id) => recipeDelete(id)}
+            style={{ backgroundColor: '#f44336', color: 'white', padding: '5px 10px' }}
+          >
+            DELETE
+          </button>
+
+
+        </div>
       </div>
     </div>
   );
@@ -170,6 +221,7 @@ function Form(props) {
       return { ...prevItem, [event.target.name]: event.target.value }
     })
   }
+
   const handleChangeIng = (event) => {
     const index = Number(event.target.name.split('-')[1]);
     const ingredient = oneRecipe.ingredient.map((ingr, i) => (
@@ -179,6 +231,7 @@ function Form(props) {
       return { ...prevItem, ingredient }
     });
   };
+
   const handleNewIngredient = event => {
     setOneRecipe(prevItem => {
       return { ...prevItem, ingredient: [...prevItem.ingredient, ""] }
@@ -227,6 +280,207 @@ function Form(props) {
       </div>
     </>
   )
+}
+function EditRecipeForm({ recipe, onSave, onCancel, isVisible }) {
+  const [oneRecipe, setOneRecipe] = useState({
+    title: '',
+    instruction: '',
+    ingredient: [],
+    img: ''
+  });
+
+  // Populate form when recipe prop changes
+  useEffect(() => {
+    if (recipe) {
+      setOneRecipe({
+        title: recipe.title || '',
+        instruction: recipe.instruction || '',
+        ingredient: recipe.ingredient || [],
+        img: recipe.img || ''
+      });
+    }
+  }, [recipe]);
+
+  const onSaveEdit = event => {
+    event.preventDefault();
+    // Include the original id when saving
+    const updatedRecipe = { ...oneRecipe, id: recipe.id };
+    onSave(updatedRecipe);
+
+  }
+
+  const handleChange = (event) => {
+    setOneRecipe(prevItem => {
+      return { ...prevItem, [event.target.name]: event.target.value }
+    })
+  }
+
+  const handleChangeIng = (event) => {
+    const index = Number(event.target.name.split('-')[1]);
+    const ingredient = oneRecipe.ingredient.map((ingr, i) => (
+      i === index ? event.target.value : ingr
+    ));
+    setOneRecipe(prevItem => {
+      return { ...prevItem, ingredient }
+    });
+  };
+
+  const handleNewIngredient = event => {
+    setOneRecipe(prevItem => {
+      return { ...prevItem, ingredient: [...prevItem.ingredient, ""] }
+    })
+  }
+
+  const removeIngredient = (indexToRemove) => {
+    setOneRecipe(prevItem => {
+      return { 
+        ...prevItem, 
+        ingredient: prevItem.ingredient.filter((_, index) => index !== indexToRemove)
+      }
+    });
+  }
+
+  let ingredientInJSX = oneRecipe.ingredient?.map((ing, index) => (
+    <div className="recipe-form-line" key={`ingredient-${index}`}>
+      <label htmlFor={`ingredient-${index}`}>{index + 1}</label>
+      <input 
+        type="text" 
+        name={`ingredient-${index}`} 
+        id={`ingredient-${index}`}
+        value={ing}
+        size={40} 
+        autoComplete="off" 
+        placeholder="Ingredient"
+        onChange={handleChangeIng}
+      />
+      {oneRecipe.ingredient.length > 1 && (
+        <button 
+          type="button" 
+          onClick={() => removeIngredient(index)}
+          style={{ marginLeft: '5px', color: 'red', fontWeight: 'bold' }}
+        >
+          ×
+        </button>
+      )}
+    </div>
+  ));
+
+  // Don't render if not visible or no recipe
+  if (!isVisible || !recipe) {
+    return null;
+  }
+
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      right: 0,
+      bottom: 0,
+      backgroundColor: 'rgba(0, 0, 0, 0.5)',
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
+      zIndex: 1000
+    }}>
+      <div style={{
+        backgroundColor: 'white',
+        padding: '20px',
+        borderRadius: '10px',
+        maxWidth: '600px',
+        width: '90%',
+        maxHeight: '90vh',
+        overflowY: 'auto',
+        position: 'relative'
+      }}>
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'space-between', 
+          alignItems: 'center', 
+          marginBottom: '20px' 
+        }}>
+          <h2>Edit Recipe</h2>
+          <button 
+            type="button" 
+            onClick={onCancel}
+            style={{ 
+              background: 'none', 
+              border: 'none', 
+              fontSize: '24px', 
+              cursor: 'pointer',
+              color: '#666'
+            }}
+          >
+            ×
+          </button>
+        </div>
+
+        <div className="recipe-form-container">
+          <form className="recipe-form" onSubmit={onSaveEdit}>
+            <div>
+              <label htmlFor="edit-recipe-title-input">Title</label>
+              <input 
+                type="text" 
+                name="title" 
+                id="edit-recipe-title-input"
+                key="title" 
+                size={42} 
+                autoComplete="off"
+                value={oneRecipe.title}
+                onChange={handleChange}
+              />
+            </div>
+            
+            <label htmlFor="edit-recipe-instructions-input" style={{ marginTop: '5px' }}>
+              Instructions
+            </label>
+            <textarea 
+              name="instruction" 
+              id="edit-recipe-instructions-input" 
+              cols="50" 
+              rows="8"
+              autoComplete="off" 
+              value={oneRecipe.instruction}
+              onChange={handleChange}
+            />
+            
+            Ingredients:
+            {ingredientInJSX}
+            <button type="button" className="buttons" onClick={handleNewIngredient}>
+              +
+            </button>
+            
+            <div className="recipe-form-line">
+              <label htmlFor="edit-recipe-img-input">Image URL</label>
+              <input 
+                type="text" 
+                name="img" 
+                id="edit-recipe-img-input" 
+                placeholder=""
+                size={36} 
+                autoComplete="off"
+                value={oneRecipe.img}
+                onChange={handleChange}
+              />
+            </div>
+            
+            <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+              <button type="submit" style={{ backgroundColor: '#4CAF50', color: 'white' }}>
+                SAVE CHANGES
+              </button>
+              <button 
+                type="button" 
+                onClick={onCancel}
+                style={{ backgroundColor: '#f44336', color: 'white' }}
+              >
+                CANCEL
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
