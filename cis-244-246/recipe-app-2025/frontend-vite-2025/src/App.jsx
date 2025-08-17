@@ -130,7 +130,7 @@ function Recipe(props) {
         </ul>
         <h4>Instructions</h4>
         <p> {instruction}</p>
-        <button type="button" onClick={() => alert()}>DELETE</button>
+        <button type="button" onClick={() => alert(`Recipe id : ${id}`)}>DELETE</button>
       </div>
     </div>
   );
