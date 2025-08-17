@@ -1,9 +1,9 @@
 import { useState, useEffect, useLayoutEffect } from "react";
 
 import "./App.css";
-// ------- recipeList array local recipeList stored
-const recipeListObj = {
-  recipeList: [
+// ------- recipeArray local recipeList stored
+
+const recipeArr  =  [
     {
       id: 0,
       title: "Spaghetti",
@@ -33,22 +33,31 @@ const recipeListObj = {
       ],
       img: "avocado_toast.jpg",
     },
-  ],
-  nextRecipeId: 3,
-};
+  ];
+
+let recipeCount =  recipeArr.length;
 
 function App() {
-  const [recipeListOb, setRecipeListOb] = useState(recipeListObj); // {a:"",id:#},{},{}
-  const [recipeId, setRecipeId] = useState(recipeListObj.nextRecipeId);
-  const [recipeList, setRecipeList] = useState(recipeListObj.recipeList)
+
+  const [recipeId, setRecipeId] = useState(recipeCount);
+  const [recipeList, setRecipeList] = useState(recipeArr);
 
   const loadRecipes = async () => {
 
     try {
+      // list of recipes will come from mongo db.
+      const newRecipe = {
+        id: recipeId  ,
+        title: "Spaghetti",
+        instruction:
+          "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
+        ingredient: ["pasta", "8 cups water", "1 box spaghetti"],
+        img: "spaghetti.jpg",
+      };
+      setRecipeId(prev => prev + 1)
+      setRecipeList([...recipeList, newRecipe]);
+      
 
-      console.log(data); // [{},{},{},{}] from mongoDb
-      setRecipeList([...recipeList, ...data]);
-      setRecipeListOb({recipeList: [...recipeList, ...data], nextRecipeId: null})
     } catch (error) {
       console.log(error)
     }
@@ -66,9 +75,8 @@ function App() {
         return prev + 1;
       });
 
-      if(data){console.log('NewRecipe added: 69')} else{"NewRecipe not added: 69"}
       setRecipeList( [...recipeList, newRecipe]);
-      setRecipeListOb({recipeList: [...recipeList, newRecipe], nextRecipeId: recipeId})
+
 
     } catch (error){
       console.log(error);
@@ -81,7 +89,7 @@ function App() {
         <h1 style={{ display: "flex", justifyContent: "center" }}>
           My Recipes 2025
         </h1>
-        <List recipeListO={recipeListOb} />
+        <List recipeList={recipeList} />
  
         <Form onSave = { handleSave } />
 
@@ -90,10 +98,10 @@ function App() {
   );
 }
 function List(props) {
-  const {recipeList } = props.recipeListO;
+  const recipeList = props.recipeList;
 
   const recipesJSX = recipeList?.map( (recipe) => (
-    <Recipe key={recipe._id + recipe.title} {...recipe}/>
+    <Recipe key={recipe.id + recipe.title} {...recipe}/>
   ))
 
   return (
@@ -104,9 +112,9 @@ function List(props) {
 }
 function Recipe(props) {
   // ========== destructuring
-  const { title, img, instruction, _id } = props;
+  const { title, img, instruction, id } = props;
   const ingredientJSX = props.ingredient?.map((ing) => {
-    return <li key={_id+ing}>{ing}</li>
+    return <li key={id+ing}>{ing}</li>
   });
 
   return (
