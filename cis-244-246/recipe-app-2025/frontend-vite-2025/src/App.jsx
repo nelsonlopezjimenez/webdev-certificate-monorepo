@@ -6,7 +6,7 @@ import "./App.css";
 const recipeArr  =  [
     {
       id: 0,
-      title: "Spaghetti",
+      title: "Spaghetti ###############",
       instruction:
         "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
       ingredient: ["pasta", "8 cups water", "1 box spaghetti"],
