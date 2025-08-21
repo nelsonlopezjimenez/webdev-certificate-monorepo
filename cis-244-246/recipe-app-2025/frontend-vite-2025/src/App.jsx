@@ -159,6 +159,7 @@ function Recipe(props) {
 
   const recipeEdit = event => {
     event.preventDefault();
+    console.log(props)
     onEdit(props); // pass the entire recipe object
   }
   
