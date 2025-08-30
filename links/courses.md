@@ -1,6 +1,7 @@
 # Computer Science Courses
 
 1. [CS193X Spring 2023](https://web.stanford.edu/class/cs193x/lectures.html)
+    1. [final-project](https://web.stanford.edu/class/cs193x/project/)
     1. [Intro to JavaScript](https://web.stanford.edu/class/cs193x/lectures/02/02-slides.pdf)
     1. [Assignment 3.1](https://web.stanford.edu/class/cs193x/assign3.1/)
 1. CS193X: Spring 2017

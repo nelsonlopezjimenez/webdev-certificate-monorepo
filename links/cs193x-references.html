@@ -1,0 +1,1264 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reference and Resources | CS193X</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <!-- <link rel="stylesheet" href="css/global.css"> -->
+     <style>@import url("https://fonts.googleapis.com/icon?family=Material+Icons");
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  padding-bottom: 2rem;
+
+  background-color: #fafafa;
+  color: #222;
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  color: #006cb8;
+}
+
+a:hover {
+  color: #00548f;
+}
+
+h1, h2, h3, strong {
+  color: black;
+}
+
+h1 {
+  font-size: x-large;
+}
+
+h2, h3, h4 {
+  margin-top: 0.5rem;
+}
+
+h2 {
+  font-size: 1.3rem;
+}
+
+h3 {
+  font-size: 1.2rem;;
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+figcaption {
+  font-size: small;
+}
+
+aside, blockquote {
+  background-color: #edeff0;
+}
+
+code, pre {
+  background-color: #edeff0;
+  font-size: 1rem;
+}
+
+p, ol, ul {
+  margin: 0.75rem 0;
+}
+
+ul {
+  padding-left: 1.5em;
+}
+
+pre {
+  line-height: 1.5em;
+  padding: 0.5rem;
+}
+
+section {
+  margin-bottom: 2rem;
+}
+
+#headerbar {
+  display: flex;
+  justify-content: center;
+
+  padding: 0.5rem 0;
+  width: 100%;
+
+  background-color: #8c1515;
+  color: white;
+  font-size: large;
+}
+
+#headerbar nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  max-width: 1280px;
+  width: 100%;
+}
+
+#headerbar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#headerbar a {
+  color: inherit;
+  margin: 0 0.25rem;
+}
+
+#headerbar #logo {
+  font-size: 120%;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#main {
+  max-width: 1280px;
+  width: 100%;
+}
+
+#footer {
+  margin-top: 3rem;
+}
+
+.title-area {
+  margin-bottom: 1rem;
+}
+
+#title {
+  margin-bottom: 0;
+}
+
+#author {
+  font-size: small;
+  text-align: right;
+}
+
+#footer address {
+  font-size: small;
+}
+
+.infobox {
+  flex: none;
+  background-color: #f4f4f4;
+  margin: 0 0 1rem 1rem;
+  padding: 0.25rem 1rem;
+}
+
+.nobullet {
+  list-style: none;
+  padding-left: 0.5rem;
+}
+
+.sidebyside {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.spaced-list li {
+  margin-bottom: 0.75rem;
+}
+
+.external-icon {
+  margin-left: 0.1rem;
+}
+
+.material-icons {
+  font-family: 'Material Icons';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1em;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+
+  /* Support for all WebKit browsers. */
+  -webkit-font-smoothing: antialiased;
+  /* Support for Safari and Chrome. */
+  text-rendering: optimizeLegibility;
+
+  /* Support for Firefox. */
+  -moz-osx-font-smoothing: grayscale;
+
+  /* Support for IE. */
+  font-feature-settings: 'liga';
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Styles for mboile */
+@media screen and (max-width: 800px) {
+  h1 {
+    font-size: large;
+  }
+
+  h2 {
+    position: sticky;
+    top: 0;
+    padding: 0.25rem 0;
+    background-color: #fafafa;
+  }
+
+  #headerbar nav {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #headerbar ul {
+    flex-wrap: wrap;
+  }
+
+  #navright {
+    margin-top: 6px;
+    font-size: small;
+  }
+
+  #headerbar #logo {
+    font-size: large;
+  }
+
+  #main {
+    padding: 0 0.5rem;
+  }
+
+  .infobox {
+    flex-shrink: 1;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .infobox {
+    margin: 0;
+    padding: 0;
+  }
+
+  .sidebyside {
+    flex-wrap: wrap;
+  }
+}
+
+/* Styles for printing */
+@media not print {
+  .printonly {
+    display: none;
+  }
+}
+
+@media print {
+  body {
+    display: block;
+  }
+
+  a, a:active, a:visited {
+    color: blue;
+  }
+
+  section h2 {
+    font-size: medium;
+    margin-bottom: 0;
+  }
+
+  section h2 + p {
+    margin-top: 0;
+  }
+
+  #headerbar {
+    display: none;
+  }
+  article > section > :not(:first-child) {
+  margin-left: 1em;
+}
+}
+</style>
+    <!-- <script type="module" src="js/global.js"></script> -->
+     <script>
+      const makeExternal = () => {
+  for (let link of document.querySelectorAll("a.external")) {
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    let icon = document.createElement("span");
+    icon.classList.add("external-icon");
+    icon.classList.add("material-icons");
+    icon.textContent = "launch";
+    icon.setAttribute("aria-hidden", true);
+    let sr = document.createElement("span");
+    sr.classList.add("sr-only");
+    sr.textContent = "[external]";
+    link.append("", icon, sr);
+  }
+};
+makeExternal();
+     </script>
+    <!-- <link rel="stylesheet" href="css/reference.css"> -->
+  </head>
+  <body>
+    <header id="headerbar">
+      <nav>
+        <ul id="navleft">
+          <li><a id="logo" href="./">CS193X Spring 2023</a></li>
+          <li><a href="info.html">Course Info</a></li>
+          <li><a href="lectures.html">Lectures and Schedule</a></li>
+        </ul>
+        <ul id="navright" role="list">
+          <li><a href="assignments.html">Assignments</a></li>
+          <li><a href="project/">Final Project</a></li>
+          <li><a href="officehours.html">Office Hours</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main" aria-label="Reference and Resources">
+      <div class="title-area">
+        <h1 id="title">Reference and Resources</h1>
+        <address id="author">Written by Neel Kishnani, Jason Chuen, Michael, and the teaching team</address>
+      </div>
+
+      <p>Here is a collection of some of the major syntax, elements, functions, etc. we use in this course. What is mentioned below follows best practices and our recommendations; the lecture materials may discuss alternatives.</p>
+      <p>Links point to <a href="https://developer.mozilla.org/en-US/docs/" target="_blank" rel="noopener noreferrer">MDN Web Docs</a>.</p>
+
+      <section>
+        <h2>Contents</h2>
+        <ul>
+          <li><a href="#html">HTML</a></li>
+          <li><a href="#css">CSS</a></li>
+          <li><a href="#jslang">JavaScript Language</a></li>
+          <li><a href="#browser">JavaScript in the Browser</a></li>
+          <li><a href="#db">Database</a></li>
+        </ul>
+      </section>
+
+      <article id="html">
+        <h2>HTML</h2>
+
+        <section>
+          <h3>General Page Structure</h3>
+          <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    ...
+  &lt;/head&gt;
+  &lt;body&gt;
+    ...
+  &lt;/body&gt;
+&lt;/html&gt;</pre>
+        </section>
+
+        <section>
+          <h3><code>head</code> Elements</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/title" target="_blank" rel="noopener noreferrer"><code>&lt;title&gt;</code></a></td>
+              <td>Page title shown in browser (tab bar, history)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta" target="_blank" rel="noopener noreferrer"><code>&lt;meta&gt;</code></a> (leaf)</td>
+              <td>Information about the page</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link" target="_blank" rel="noopener noreferrer"><code>&lt;link rel="stylesheet" href="..."&gt;</code></a> (leaf)</td>
+              <td>Include a CSS file (see link for other things that can be linked)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/script" target="_blank" rel="noopener noreferrer"><code>&lt;script type="module" src="..."&gt;&lt;/script&gt;</code></a></td>
+              <td>Include a JS module</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Common Page Elements</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Heading_Elements" target="_blank" rel="noopener noreferrer"><code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, ..., <code>&lt;h6&gt;</code></a></td>
+              <td>Headings (smaller number = bigger text)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a" target="_blank" rel="noopener noreferrer"><code>&lt;a href="..."&gt;</code></a></td>
+              <td>Link to another page</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/p" target="_blank" rel="noopener noreferrer"><code>&lt;p&gt;</code></a></td>
+              <td>Paragraph</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/br" target="_blank" rel="noopener noreferrer"><code>&lt;br&gt;</code></a> (leaf)</td>
+              <td>Line break (see <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model/Whitespace" target="_blank" rel="noopener noreferrer">How Whitespace is Handled</a>)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img" target="_blank" rel="noopener noreferrer"><code>&lt;img src="..."&gt;</code></a> (leaf)</td>
+              <td>Include an image</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/strong" target="_blank" rel="noopener noreferrer"><code>&lt;strong&gt;</code></a></td>
+              <td>Make text stand out (bold)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em" target="_blank" rel="noopener noreferrer"><code>&lt;em&gt;</code></a></td>
+              <td>Emphasize text (italics)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ul" target="_blank" rel="noopener noreferrer"><code>&lt;ul&gt;</code></a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/ol" target="_blank" rel="noopener noreferrer"><code>&lt;ol&gt;</code></a></td>
+              <td>Unordered (bulleted) and ordered (numbered) list</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/li" target="_blank" rel="noopener noreferrer"><code>&lt;li&gt;</code></a></td>
+              <td>List item (wrap each item in <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code>)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/div" target="_blank" rel="noopener noreferrer"><code>&lt;div&gt;</code></a></td>
+              <td>Generic block element</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/span" target="_blank" rel="noopener noreferrer"><code>&lt;span&gt;</code></a></td>
+              <td>Generic inline element</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Page Regions</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/header" target="_blank" rel="noopener noreferrer"><code>&lt;header&gt;</code></a></td>
+              <td>Header of hte page, or of a section/article/region</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main" target="_blank" rel="noopener noreferrer"><code>&lt;main&gt;</code></a></td>
+              <td>The main content of the page (e.g. the part that's not part of a nav bar or footer)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/footer" target="_blank" rel="noopener noreferrer"><code>&lt;footer&gt;</code></a></td>
+              <td>Footer of the page or a region</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/nav" target="_blank" rel="noopener noreferrer"><code>&lt;nav&gt;</code></a></td>
+              <td>A collection of links/buttons/etc. for moving around the page/app</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/section" target="_blank" rel="noopener noreferrer"><code>&lt;section&gt;</code></a></td>
+              <td>A section of the page (e.g. a sidebar, block of content with a heading, etc.)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/article" target="_blank" rel="noopener noreferrer"><code>&lt;article&gt;</code></a></td>
+              <td>A section of hte page that is more independent, e.g. a blog post, announcement, event, etc.</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Elements for User Interaction</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form" target="_blank" rel="noopener noreferrer"><code>&lt;form&gt;</code></a></td>
+              <td>Wrap a collection of controls (inputs, buttons, etc.)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input" target="_blank" rel="noopener noreferrer"><code>&lt;input&gt;</code></a> (leaf)</td>
+              <td>Accept user input (see <code>type</code>)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label" target="_blank" rel="noopener noreferrer"><code>&lt;label&gt;</code></a></td>
+              <td>Associate a label with an input (wrap <code>&lt;input&gt;</code> or use <code>for</code> attribute)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button" target="_blank" rel="noopener noreferrer"><code>&lt;button&gt;</code></a></td>
+              <td>A clickable button. Default <code>type</code> is <code>submit</code> if inside a form</td>
+            </tr>
+          </table>
+        </section>
+
+      <p><strong>Note:</strong> Elements marked "(leaf)" don't contain children and thus should not have a closing tag.</p>
+      </article>
+      <hr>
+      <article id="css">
+        <h2>CSS</h2>
+
+        <section>
+          <h3>Selectors</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Type_selectors" target="_blank" rel="noopener noreferrer"><code>tag</code></a></td>
+              <td>Select all <code>&lt;tag&gt;</code> elements</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Class_selectors" target="_blank" rel="noopener noreferrer"><code>.class</code></a></td>
+              <td>Select all elements with class <code>class</code></td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/ID_selectors" target="_blank" rel="noopener noreferrer"><code>#id</code></a></td>
+              <td>Select all elements with id <code>id</code></td>
+            </tr>
+            <tr>
+              <td><code>type.class</code></td>
+              <td>Select <code>type</code> elements with class <code>class</code></td>
+            </tr>
+            <tr>
+              <td><code>s1 s2</code></td>
+              <td>Select <code>s2</code> if <code>s2</code> is a descendant of <code>s1</code></td>
+            </tr>
+            <tr>
+              <td><code>s1, s2</code></td>
+              <td>Select <code>s1</code> and <code>s2</code></td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Child_combinator" target="_blank" rel="noopener noreferrer"><code>s1 &gt; s2</code></a></td>
+              <td>For direct child</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/Universal_selectors" target="_blank" rel="noopener noreferrer"><code>.box &gt; *</code></a></td>
+              <td>For universal selector (ex. selects all direct children of .box)</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Font and Color Properties</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-family" target="_blank" rel="noopener noreferrer"><code>font-family</code></a></td>
+              <td>Type face</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-style" target="_blank" rel="noopener noreferrer"><code>font-style</code></a></td>
+              <td>For italics</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-weight" target="_blank" rel="noopener noreferrer"><code>font-weight</code></a></td>
+              <td>For bold</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration" target="_blank" rel="noopener noreferrer"><code>text-decoration</code></a></td>
+              <td>For underline/overline/strikethrough</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/color" target="_blank" rel="noopener noreferrer"><code>color</code></a></td>
+              <td>Text (foreground) color</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/background-color" target="_blank" rel="noopener noreferrer"><code>background-color</code></a></td>
+              <td>Background color</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/text-align" target="_blank" rel="noopener noreferrer"><code>text-align</code></a></td>
+              <td>Align text (left, center, right)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/border" target="_blank" rel="noopener noreferrer"><code>border</code></a></td>
+              <td>Set border width <code>[length] [style] [color]</code></td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/font-size" target="_blank" rel="noopener noreferrer"><code>font-size</code></a></td>
+              <td>For setting the size of the font</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Positioning</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="noopener noreferrer"><code>static</code></a></td>
+              <td>(default) element is positioned according to the normal flow of the document</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="noopener noreferrer"><code>relative</code></a></td>
+              <td>positioned relative to its normal position</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="noopener noreferrer"><code>absolute</code></a></td>
+              <td>elements are removed from the normal flow</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/position" target="_blank" rel="noopener noreferrer"><code>fixed</code></a></td>
+              <td>element is positioned relative to the viewport</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Layout Properties</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/display" target="_blank" rel="noopener noreferrer"><code>display</code></a></td>
+              <td>Override default page flow with <code>block</code> or <code>inline</code></td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Spacing and Box Model</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/margin" target="_blank" rel="noopener noreferrer"><code>margin</code></a></td>
+              <td>Add spacing between elements outside of the border. (Can set separately like <code>margin-top</code></td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/padding" target="_blank" rel="noopener noreferrer"><code>padding</code></a></td>
+              <td>Add spacing to an element inside the border.</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Calculations</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/calc" target="_blank" rel="noopener noreferrer"><code>calc()</code></a></td>
+              <td>For performing calculations</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Units/Size</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/percentage" target="_blank" rel="noopener noreferrer"><code>percentage</code></a></td>
+              <td>Represents a percentage value</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/Glossary/Viewport" target="_blank" rel="noopener noreferrer"><code>viewport</code></a></td>
+              <td>For Browser Window</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/em" target="_blank" rel="noopener noreferrer"><code>em</code></a></td>
+              <td>For relative unit (emphasizes text)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/Building_blocks/Values_and_units" target="_blank" rel="noopener noreferrer"><code>rem</code></a></td>
+              <td>For font size of root element</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/height" target="_blank" rel="noopener noreferrer"><code>height</code></a></td>
+              <td>For setting height</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/width" target="_blank" rel="noopener noreferrer"><code>width</code></a></td>
+              <td>For setting width</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Flexbox</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Basic_Concepts_of_Flexbox" target="_blank" rel="noopener noreferrer"><code>display-flex</code></a></td>
+              <td>For setting display as flex</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank" rel="noopener noreferrer"><code>flex-direction</code></a></td>
+              <td>For specifying which direction the main axis runs</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank" rel="noopener noreferrer"><code>justify-content</code></a></td>
+              <td>For controlling where the flex items sit on the main axis</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank" rel="noopener noreferrer"><code>align-items</code></a></td>
+              <td>For alligning flex items  in flexbox</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-grow" target="_blank" rel="noopener noreferrer"><code>flex-grow</code></a></td>
+              <td>For specifying the flex grow factor</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/CSS/flex-shrink" target="_blank" rel="noopener noreferrer"><code>flex-shrink</code></a></td>
+              <td>For setting the flex shrink factor of a flex item</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox" target="_blank" rel="noopener noreferrer"><code>flex-wrap</code></a></td>
+              <td>For wrapping flex items</td>
+            </tr>
+          </table>
+        </section>
+      </article>
+      <hr>
+      <article id="jslang">
+        <h2>JavaScript Language</h2>
+
+        <section>
+          <h3>Syntax</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_operators" target="_blank" rel="noopener noreferrer"><code>+, -, *, /, %</code>, etc.</a></td>
+              <td>Arithmetic, comparison, assignment, and other operators</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Strict_equality" target="_blank" rel="noopener noreferrer"><code>===</code> and <code>!==</code></a></td>
+              <td>Equality tests (don't use <code>==</code> and <code>!=</code> except with <code>null</code>)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let" target="_blank" rel="noopener noreferrer"><code>let x = ...;</code></a></td>
+              <td>Declare variables</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const" target="_blank" rel="noopener noreferrer"><code>const x = ...;</code></a></td>
+              <td>Declare constants (can't be reassigned)</td>
+            </tr>
+            <tr>
+              <td><code>let arr = [...];</code></td>
+              <td>Declare and initialize an array</td>
+            </tr>
+            <tr>
+              <td><code>let obj = { key: value, ... };</code></td>
+              <td>Declare and initialize an Object (key/value store)</td>
+            </tr>
+            <tr>
+              <td><code>arr[i]</code>, <code>obj[x]</code></td>
+              <td>Get element/value from array/object (<code>undefined</code> if out of bounds/key doesn't exist)</td>
+            </tr>
+            <tr>
+              <td><code>obj.x</code></td>
+              <td>Get value of "x" (the literal key x, not the variable) in obj</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in" target="_blank" rel="noopener noreferrer"><code>"key" in obj</code></a></td>
+              <td>Check if key exists in obj</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete" target="_blank" rel="noopener noreferrer"><code>delete obj.key;</code></a></td>
+              <td>Remove key/value pair from obj. (Note: does not work for arrays)</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Control Structures</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else" target="_blank" rel="noopener noreferrer"><code>if (...) ... else ...</code></a></td>
+              <td>Conditional statement</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while" target="_blank" rel="noopener noreferrer"><code>while (...) ...</code></a></td>
+              <td>Loops</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for" target="_blank" rel="noopener noreferrer"><code>for (let i = ...; ...; ...) ...</code></a></td>
+              <td>Traditional (e.g. counter-based) for loops</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...of" target="_blank" rel="noopener noreferrer"><code>for (let x of ...) ...</code></a></td>
+              <td>Loop over the elements of an array (Note: avoid <code>for ... in</code>)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions" target="_blank" rel="noopener noreferrer"><code>const fn = (arg1, arg2, ...) =&gt; ...</code></a></td>
+              <td>Declare functions</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return" target="_blank" rel="noopener noreferrer"><code>return ...;</code></a></td>
+              <td>Return from function</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener noreferrer"><code>let [x, y, ...rest] = arr;</code></a></td>
+              <td>"Destructure": extract first element(s), put remaining element(s) in rest (an array)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment" target="_blank" rel="noopener noreferrer"><code>let { binky, winky, ...rest } = obj;</code></a></td>
+              <td>"Destructure": extract certain key/value pairs, put remaining into rest (an Object)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals" target="_blank" rel="noopener noreferrer"><code>`... ${...} ...`</code></a></td>
+              <td>Template string (${...} can be any expression)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch" target="_blank" rel="noopener noreferrer"><code>try { ... } catch (e) { ... }</code></a></td>
+              <td>If an exception is thrown within the try, store it in e and run the catch code (otherwise skip the catch)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw" target="_blank" rel="noopener noreferrer"><code>throw new Error(message)</code></a></td>
+              <td>Throw a new exception with a message (can also have other Error classes)</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Data Types</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean" target="_blank" rel="noopener noreferrer"><code>Boolean</code></a></td>
+              <td><code>true</code> or <code>false</code></td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number" target="_blank" rel="noopener noreferrer"><code>Number</code></a></td>
+              <td>Integer or floating-point (real) numbers</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String" target="_blank" rel="noopener noreferrer"><code>String</code></a></td>
+              <td>Unicode strings (suggest double quotes for literals)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/null" target="_blank" rel="noopener noreferrer"><code>null</code></a></td>
+              <td>"Intentionally" not set</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined" target="_blank" rel="noopener noreferrer"><code>undefined</code></a></td>
+              <td>Not set (uninitialized, out of bounds, etc.)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener noreferrer"><code>Array</code></a></td>
+              <td>Indexed collection of elements</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object" target="_blank" rel="noopener noreferrer"><code>Object</code></a></td>
+              <td>Collection of key/value pairs</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error" target="_blank" rel="noopener noreferrer"><code>Error</code></a></td>
+              <td>Represents an exception (that can be thrown), with a message and stack trace</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Array methods</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push" target="_blank" rel="noopener noreferrer"><code>arr.push(x, ...)</code></a></td>
+              <td>Add element(s) to an array</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/indexOf" target="_blank" rel="noopener noreferrer"><code>arr.indexOf(x)</code></a></td>
+              <td>Get index of x in arr (-1 if not found)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice" target="_blank" rel="noopener noreferrer"><code>arr.slice(start, end)</code></a></td>
+              <td>Return a subarray (also works for strings)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice" target="_blank" rel="noopener noreferrer"><code>arr.splice(index, delCount, ins1, ...)</code></a></td>
+              <td>Insert and/or remove elements at index</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Object methods (called on Object itself)</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" target="_blank" rel="noopener noreferrer"><code>Object.keys(obj)</code></a></td>
+              <td>Get an array of the keys of obj</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/values" target="_blank" rel="noopener noreferrer"><code>Object.values(obj)</code></a></td>
+              <td>Get an array of the values of obj</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/entries" target="_blank" rel="noopener noreferrer"><code>Object.entries(obj)</code></a></td>
+              <td>Get an array of the key/value pairs (arrays of length 2) of obj</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign" target="_blank" rel="noopener noreferrer"><code>Object.assign(target, source)</code></a></td>
+              <td>Copies all enumerable own properties from one or more source objects to a target object.</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Modules</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export" target="_blank" rel="noopener noreferrer"><code>export let x = ...;</code><br><code>export const x = ...;</code></a></td>
+              <td>Named exports</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/export" target="_blank" rel="noopener noreferrer"><code>export default ...;</code></a></td>
+              <td>Default export</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener noreferrer"><code>import { x } from "./x.js";</code></a></td>
+              <td>Named import (name must match export)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import" target="_blank" rel="noopener noreferrer"><code>import X from "./x.js";</code></a></td>
+              <td>Default import (can change name)</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes" target="_blank" rel="noopener noreferrer"><code>Classes</code></a></h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/class" target="_blank" rel="noopener noreferrer"><code>class X { ... }</code></a></td>
+              <td>Declare a class</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor" target="_blank" rel="noopener noreferrer"><code>constructor(...) { ... }</code></a></td>
+              <td>Called when instance of class created</td>
+            </tr>
+            <tr>
+              <td><code>method(...) { ... }</code></td>
+              <td>Declare method inside class (no arrow)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/new" target="_blank" rel="noopener noreferrer"><code>new X(...);</code></a></td>
+              <td>Instantiate a new object of class X</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this" target="_blank" rel="noopener noreferrer"><code>this.x</code>, <code>this.method(...)</code></a></td>
+              <td>Refer to class instance variables and methods</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Async Logic</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function" target="_blank" rel="noopener noreferrer"><code>async function</code></a></td>
+              <td>Declares an async function where the await keyword is permitted within the function body.</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await" target="_blank" rel="noopener noreferrer"><code>await</code></a></td>
+              <td>The await operator is used to wait for a Promise and get its fulfillment value. It can only be used inside an async function or at the top level of a module.</td>
+            </tr>
+          </table>
+        </section>
+      </article>
+      <hr>
+      <article id="browser">
+        <h2>JavaScript in the Browser</h2>
+
+        <section>
+          <h3>Global variables and functions</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Console/log" target="_blank" rel="noopener noreferrer"><code>console.log(...)</code></a></td>
+              <td>Print to browser console</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/alert" target="_blank" rel="noopener noreferrer"><code>alert(message)</code></a></td>
+              <td>Display an alert message (popup). Good for quick/testing messages</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window" target="_blank" rel="noopener noreferrer"><code>window</code></a></td>
+              <td>"Global object": Store variables here to access them in console</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/" target="_blank" rel="noopener noreferrer"><code>document</code></a></td>
+              <td>Access parts of the DOM and DOM manipulation functions</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch" target="_blank" rel="noopener noreferrer"><code>fetch</code></a></td>
+              <td>the fetch method provides an easy, logical way to fetch resources asynchronously across the network.</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Traversing the DOM tree</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/head" target="_blank" rel="noopener noreferrer"><code>document.head</code></a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/body" target="_blank" rel="noopener noreferrer"><code>document.body</code></a></td>
+              <td>Access the <code>&lt;head&gt;</code> and <code>&lt;body&gt;</code> elements</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/forms" target="_blank" rel="noopener noreferrer"><code>document.forms</code></a></td>
+              <td>A Collection of the <code>&lt;form&gt;</code> elements on the page</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/parentElement" target="_blank" rel="noopener noreferrer"><code>elem.parentElement</code></a></td>
+              <td>Get an element's parent</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/children" target="_blank" rel="noopener noreferrer"><code>elem.children</code></a></td>
+              <td>Get a Collection of an element's children</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection" target="_blank" rel="noopener noreferrer"><code>coll.length</code>, <code>coll[i]</code></a></td>
+              <td>Access elements of a Collection via array syntax</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLCollection" target="_blank" rel="noopener noreferrer"><code>coll[id]</code> or <code>coll.id</code></a></td>
+              <td>Access elements of a Collection by their <code>id</code> attribute</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector" target="_blank" rel="noopener noreferrer"><code>document.querySelector(selector)</code></a></td>
+              <td>Access the first element that matches <code>selector</code>, a valid CSS selector string</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll" target="_blank" rel="noopener noreferrer"><code>document.querySelectorAll(selector)</code></a></td>
+              <td>Get a Collection of elements that match <code>selector</code>, a valid CSS selector string</td>
+            </tr>
+            <tr>
+              <td><code>elem.querySelector(...)</code>, <code>elem.querySelectorAll(...)</code></td>
+              <td>Same as above, but only search elements inside of <code>elem</code></td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Manipulating DOM Elements</h3>
+          <table>
+            <tr>
+              <td><code>elem.id</code>, <code>elem.href</code>, <code>elem.src</code>, etc.</td>
+              <td>Get/set HTML attributes on an element</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/textContent" target="_blank" rel="noopener noreferrer"><code>elem.textContent</code></a></td>
+              <td>Get/set text (string) inside element. Setting to <code>""</code> also removes all children</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/style" target="_blank" rel="noopener noreferrer"><code>elem.style</code></a></td>
+              <td>Get/set CSS properties of an element. Properties use <code>camelCase</code> instead of hyphens (e.g. <code>fontSize</code> for CSS's <code>font-size</code>).</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/classList" target="_blank" rel="noopener noreferrer"><code>elem.classList</code></a></td>
+              <td>Get/modify list of CSS classes of an element</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Adding/removing elements</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement" target="_blank" rel="noopener noreferrer"><code>document.createElement(tag)</code></a></td>
+              <td>Create a new element of type <code>tag</code> (e.g. <code>"p"</code>). Does not add to tree</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Node/cloneNode" target="_blank" rel="noopener noreferrer"><code>elem.cloneNode(true)</code></a></td>
+              <td>Create a copy of <code>elem</code> and all of its children. Does not add to tree</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/prepend" target="_blank" rel="noopener noreferrer"><code>parent.prepend(child)</code></a></td>
+              <td>Add <code>child</code> to the tree as <code>parent</code>'s first child. <code>child</code> can be an element or text (a string)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/append" target="_blank" rel="noopener noreferrer"><code>parent.append(child)</code></a></td>
+              <td>Add <code>child</code> to the tree as <code>parent</code>'s last child. <code>child</code> can be an element or text (a string)</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/after" target="_blank" rel="noopener noreferrer"><code>a.after(b)</code></a></td>
+              <td>Add <code>b</code> as a sibling immediately after <code>a</code>.</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element/remove" target="_blank" rel="noopener noreferrer"><code>elem.remove()</code></a></td>
+              <td>Remove <code>elem</code> from the tree (can still manipulate it and add it back later)</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Handling Events</h3>
+          <table>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener noreferrer"><code>elem.addEventListener(type, fn)</code></a></td>
+              <td>Call <code>fn</code> when the <code>type</code> event occurs on <code>elem</code></td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/currentTarget" target="_blank" rel="noopener noreferrer"><code>event.currentTarget</code></a></td>
+              <td>(<code>event</code> is the argument passed to handler) Get the element you added the handler to that triggered the event</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind" target="_blank" rel="noopener noreferrer"><code>this._handler = this._handler.bind(this)</code></a></td>
+              <td>Add this to a class <code>constructor</code> for any methods you want to use as event handlers</td>
+            </tr>
+            <tr>
+              <td><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault" target="_blank" rel="noopener noreferrer"><code>event.preventDefault()</code></a></td>
+              <td>Prevent default behavior of action from occuring (clicking link, submitting button, etc.)</td>
+            </tr>
+          </table>
+        </section>
+      </article>
+      <hr>
+      <article id="db">
+        <h2>Databases and MongoDB</h2>
+
+        <section>
+          <h3>Mongosh Shell</h3>
+          <table>
+            <tr>
+              <td>show dbs</td>
+              <td>list all databases</td>
+            </tr>
+            <tr>
+              <td>use dbNameHere</td>
+              <td>switching between databases</td>
+            </tr>
+            <tr>
+              <td>show collectionNameHere</td>
+              <td>list all collections in current database</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.drop/" target="_blank" rel="noopener noreferrer"><code>db.collectionNameHere.drop()</code></a></td>
+              <td>Delete collection</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/db.dropDatabase/" target="_blank" rel="noopener noreferrer"><code>db.dropDatabase()</code></a></td>
+              <td>Delete the database</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Collection Operations</h3>
+          <table>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertOne/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.insertOne(doc)</code></a></td>
+              <td>add a document (doc = javascript object) into collection</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.insertMany/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.insertMany(docs)</code></a></td>
+              <td>add an array of documents (docs = array of javascript objects) into collection</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/core/document/#:~:text=in%20the%20document.-,The%20_id%20Field,ObjectId%20for%20the%20_id%20field." target="_blank" rel="noopener noreferrer"><code>_id</code></a></td>
+              <td>each document stored in a collection requires a unique _id field; so don't confuse this with the "id" we set</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.find/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.find({query})</code></a></td>
+              <td>retrieve all documents in collection that matches query (key/values); no query gets all documents</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.findOne/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.findOne({query})</code></a></td>
+              <td>retrieve first document in collection that matches query (key/values); no gauranteed order</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Query Operators</h3>
+          <table>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/gt/#mongodb-query-op.-gt" target="_blank" rel="noopener noreferrer"><code>$gt</code></a></td>
+              <td>Matches values that are greater than a specified value; db.groceries.find({cost: {$gt: 30} })</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/lt/#mongodb-query-op.-lt" target="_blank" rel="noopener noreferrer"><code>$lt</code></a></td>
+              <td>Matches values that are less than a specified value; db.groceries.find({cost: {$lt: 100} }) </td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/gte/#mongodb-query-op.-gte" target="_blank" rel="noopener noreferrer"><code>$gte</code></a></td>
+              <td>Matches values that are greater than or equal to a specified value; db.groceries.find({cost: {$gte: 50} })</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/lte/#mongodb-query-op.-lte" target="_blank" rel="noopener noreferrer"><code>$lte</code></a></td>
+              <td>Matches values that are less than or equal to a specified value; db.groceries.find({cost: {$lte: 200} })</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/in/#mongodb-query-op.-in" target="_blank" rel="noopener noreferrer"><code>$in</code></a></td>
+              <td>Matches element in array; db.students.find({ id: {$in: ["kashif", "michael"]} })</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/regex/#mongodb-query-op.-regex" target="_blank" rel="noopener noreferrer"><code>$regex</code></a></td>
+              <td>Matches text (regular expression); db.courses.find({ code: {$regex: "^CS106"} })</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Update and Delete</h3>
+          <table>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/db.collection.replaceOne/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.replaceOne(query, doc)</code></a></td>
+              <td>Replace first document matching query with doc; db.myCollection.replaceOne({num:133}, {num:193, binky: "pinky})</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/db.collection.deleteOne/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.deleteOne(query)</code></a></td>
+              <td>Removes a single document from a collection</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/db.collection.deleteMany/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.deleteMany(query)</code></a></td>
+              <td>Delete document(s) matching query</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/db.collection.updateOne/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.updateOne(query, update)</code></a></td>
+              <td>Updates a single document within the collection based on the filter</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/query/db.collection.updateMany/" target="_blank" rel="noopener noreferrer"><code>db.collectionName.updateMany(query, update)</code></a></td>
+              <td>Updates all documents that match the specified filter for a collection</td>
+            </tr>
+            <tr>
+              <td>NOTE: don't use update when you want to replace, you will get confusing errors about not using update operators.</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Update Operators</h3>
+          <table>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/operator/update/set/" target="_blank" rel="noopener noreferrer"><code>$set</code></a></td>
+              <td> replaces the value of a field with the specified value</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>Accessing a collection</h3>
+          <table>
+            <tr>
+              <td>conn.db(name)</td>
+              <td> Get a database object (not async)</td>
+            </tr>
+            <tr>
+              <td>db.collection(name)</td>
+              <td> Get collection object (not async)</td>
+            </tr>
+          </table>
+        </section>
+
+        <section>
+          <h3>MongoDB in Node</h3>
+          <table>
+            <tr>
+              <td>Note: generally most methods are the same as in mongosh</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/cursor.hasNext/" target="_blank" rel="noopener noreferrer"><code>.hasNext() or .next() </code></a></td>
+              <td> to loop through (are async)</td>
+            </tr>
+            <tr>
+              <td><a href="https://www.mongodb.com/docs/manual/reference/method/cursor.toArray/" target="_blank" rel="noopener noreferrer"><code> .toArray()</code></a></td>
+              <td> to convert to array (is async)</td>
+            </tr>
+          </table>
+        </section>
+      </article>
+      <hr>
+
+    </main>
+
+    <footer id="footer">
+      <address>&copy; 2023 Stanford University. Website created by Michael Chang and the CS193X teaching team.</address>
+    </footer>
+  </body>
+</html>
