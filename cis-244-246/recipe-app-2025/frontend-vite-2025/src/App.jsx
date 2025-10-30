@@ -6,7 +6,7 @@ import "./App.css";
 const recipeArr  =  [
     {
       id: 0,
-      title: "Spaghetti ###############",
+      title: "Spaghetti  " ,
       instruction:
         "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
       ingredient: ["pasta", "8 cups water", "1 box spaghetti"],
@@ -39,7 +39,7 @@ let recipeCount =  recipeArr.length;
 
 function App() {
 
-  const [recipeId, setRecipeId] = useState(recipeCount);
+  const [recipeId, setRecipeId] = useState(0);
   const [recipeList, setRecipeList] = useState(recipeArr);
 
   const loadRecipes = async () => {
@@ -48,7 +48,7 @@ function App() {
       // list of recipes will come from mongo db.
       const newRecipe = {
         id: recipeId  ,
-        title: "Spaghetti",
+        title: "Spaghetti ############### ",
         instruction:
           "Open jar of Spaghetti sauce.  Bring to simmer.  Boil water.  Cook pasta until done.  Combine pasta and sauce",
         ingredient: ["pasta", "8 cups water", "1 box spaghetti"],
