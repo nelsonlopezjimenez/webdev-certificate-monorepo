@@ -130,6 +130,7 @@ function Recipe(props) {
         </ul>
         <h4>Instructions</h4>
         <p> {instruction}</p>
+            {/* // ############# IMPLEMENT THE DELETE ACTION */}
         <button type="button" onClick={() => alert()}>DELETE</button>
       </div>
     </div>
