@@ -1,5 +1,5 @@
 import { useState, useEffect, useLayoutEffect } from "react";
-
+      // **********  FIND THE QUESTION BELOW
 import "./App.css";
 // ------- recipeArray local recipeList stored
 
@@ -99,7 +99,7 @@ function App() {
 }
 function List(props) {
   const recipeList = props.recipeList;
-
+                  // ##########  QUESTION: WHY THE ID IS REPEATED AND REACT DOES NOT COMPLAIN ABOUT THE KEYS?
   const recipesJSX = recipeList?.map( (recipe) => (
     <Recipe key={recipe.id + recipe.title} {...recipe}/>
   ))
