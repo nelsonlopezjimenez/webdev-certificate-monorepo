@@ -42,11 +42,11 @@ Create rules for the following effects, keep in mind you need to accomplish this
     - a background color of #E8FBFB
     - a padding of 5px on all sides
     - a margin of 10px on the top only
-    - child items should flex
-      - be centered on the main line
-      - space between on the cross line
+    - child items should flex so that:
+      - section elements are on the left
+      - image elements are on the right
     - h2's should be full width
-    - paragraphs should be 75% of its parents width
+    - the section elements should be 75% of its parents width
     - images should be 25% of its parents width
 
 1.  spans in an h2
