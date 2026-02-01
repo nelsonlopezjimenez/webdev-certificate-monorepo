@@ -23,7 +23,7 @@
         }
 ```
 1. Run the html file
-1. select "Download quiz package QTI 2.1" which actually does not generate the package, it generate one file.
+1. select "Download quiz package QTI 2.1" which actually does not generate the package, it generate one file.![qti-generator](qti-generator.png)
 1. create a folder with correct name depending on the topic and questions
 1. copy the generated file twice: change name to ismmanifest.xml and the other to mern-quiz.xml ![files](two-files-extract.PNG)
 1. compress the folder and upload to canvas as qti
