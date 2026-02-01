@@ -27,4 +27,4 @@
 1. create a folder with correct name depending on the topic and questions
 1. copy the generated file twice: change name to imsmanifest.xml and the other to mern-quiz.xml ![files](two-files-extract.PNG)
 1. compress the folder and upload to canvas as qti
-1. It saves the questions a quiz and as question bank as well.
+1. It saves the questions as a quiz and as question bank as well.
