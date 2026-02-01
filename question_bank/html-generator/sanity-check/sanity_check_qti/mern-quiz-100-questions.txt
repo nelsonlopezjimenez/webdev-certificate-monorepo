@@ -1,0 +1,562 @@
+--- imsmanifest.xml ---
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="MERN_QUIZ_100" version="1.0" 
+          xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+          xmlns:imsqti="http://www.imsglobal.org/xsd/imsqti_v1p2">
+  <metadata>
+    <schema>IMS QTI</schema>
+    <schemaversion>1.1.3</schemaversion>
+    <lom xmlns="http://ltsc.ieee.org/xsd/LOM">
+      <general>
+        <title>
+          <string language="en">MERN Stack Frontend Development Quiz</string>
+        </title>
+        <description>
+          <string language="en">Comprehensive assessment covering React fundamentals and state management with 100 questions</string>
+        </description>
+      </general>
+    </lom>
+  </metadata>
+  <organizations default="MERN_ORG">
+    <organization identifier="MERN_ORG" structure="rooted-hierarchy">
+      <title>MERN Stack Quiz Organization</title>
+      <item identifier="QUIZ_ITEM" identifierref="QUIZ_RESOURCE">
+        <title>MERN Stack Quiz</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="QUIZ_RESOURCE" type="imsqti_assessment_xmlv1p2" href="mern-quiz.xml">
+      <file href="mern-quiz.xml"/>
+      <metadata>
+        <schema>IMS QTI</schema>
+        <schemaversion>1.1.3</schemaversion>
+      </metadata>
+      <file href="questions/question_001.xml"/>
+      <file href="questions/question_002.xml"/>
+      <file href="questions/question_003.xml"/>
+      <file href="questions/question_004.xml"/>
+      <file href="questions/question_005.xml"/>
+    </resource>
+  </resources>
+</manifest>
+
+
+--- mern-quiz.xml ---
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2">
+  <assessment ident="MERN_QUIZ_100" title="MERN Stack Frontend Development - Complete Quiz">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>qmd_assessmenttype</fieldlabel>
+        <fieldentry>Examination</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>qmd_scoretype</fieldlabel>
+        <fieldentry>Percentage</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry>7200</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>3</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="MAIN_SECTION">
+      <qtimetadata>
+        <qtimetadatafield>
+          <fieldlabel>section_type</fieldlabel>
+          <fieldentry>default</fieldentry>
+        </qtimetadatafield>
+      </qtimetadata>
+      <item ident="ITEM_1" title="Question 1">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_1</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> React Fundamentals</p>
+                  <p><strong>Difficulty:</strong> beginner</p>
+                  <div class="question-text">What is the correct way to create a functional component in React?</div>
+                  
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[function MyComponent() { return &lt;div&gt;Hello&lt;/div&gt;; }]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[const MyComponent = () =&gt; { return &lt;div&gt;Hello&lt;/div&gt;; }]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[const MyComponent = function() { return &lt;div&gt;Hello&lt;/div&gt;; }]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[All of the above]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_4</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">2</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_1"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_1"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_1">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> All three syntaxes are valid ways to create functional components in React.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_1">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> All of the above</p>
+                  <p><strong>Explanation:</strong> All three syntaxes are valid ways to create functional components in React.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_2" title="Question 2">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_2</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> React Fundamentals</p>
+                  <p><strong>Difficulty:</strong> beginner</p>
+                  <div class="question-text">Which hook is used to manage state in functional components?</div>
+                  
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[useEffect]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[useState]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[useContext]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[useReducer]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_2</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">2</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_2"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_2"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_2">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> useState is the primary hook for managing component state in functional components.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_2">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> useState</p>
+                  <p><strong>Explanation:</strong> useState is the primary hook for managing component state in functional components.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_3" title="Question 3">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>3</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_3</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> React Fundamentals</p>
+                  <p><strong>Difficulty:</strong> intermediate</p>
+                  <div class="question-text">What will this code output?</div>
+                  <pre style="background: #f4f4f4; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0;"><code>const [count, setCount] = useState(0);
+
+const handleClick = () =&gt; {
+  setCount(count + 1);
+  setCount(count + 1);
+  console.log(count);
+};</code></pre>
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[0, then count becomes 2]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[2, then count becomes 2]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[0, then count becomes 1]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[1, then count becomes 2]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_3</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">3</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_3"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_3"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_3">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> State updates are asynchronous and batched. The console.log runs with the current value (0), and both setCount calls use the same stale closure value.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_3">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> 0, then count becomes 1</p>
+                  <p><strong>Explanation:</strong> State updates are asynchronous and batched. The console.log runs with the current value (0), and both setCount calls use the same stale closure value.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_4" title="Question 4">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>true_false_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_4</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> React Fundamentals</p>
+                  <p><strong>Difficulty:</strong> beginner</p>
+                  <div class="question-text">useEffect runs after every render by default.</div>
+                  
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[True]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[False]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_1</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">2</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_4"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_4"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_4">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> useEffect runs after every render when no dependency array is provided.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_4">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> True</p>
+                  <p><strong>Explanation:</strong> useEffect runs after every render when no dependency array is provided.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_5" title="Question 5">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_5</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> React Fundamentals</p>
+                  <p><strong>Difficulty:</strong> beginner</p>
+                  <div class="question-text">What is the correct syntax for conditional rendering in JSX?</div>
+                  
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[{condition ? &lt;div&gt;True&lt;/div&gt; : &lt;div&gt;False&lt;/div&gt;}]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[{if(condition) &lt;div&gt;True&lt;/div&gt; else &lt;div&gt;False&lt;/div&gt;}]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[{condition &amp;&amp; &lt;div&gt;True&lt;/div&gt;}]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Both a and c]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_4</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">2</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_5"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_5"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_5">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> Both ternary operator and logical AND operator are valid for conditional rendering.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_5">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> Both a and c</p>
+                  <p><strong>Explanation:</strong> Both ternary operator and logical AND operator are valid for conditional rendering.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+    </section>
+  </assessment>
+</questestinterop>

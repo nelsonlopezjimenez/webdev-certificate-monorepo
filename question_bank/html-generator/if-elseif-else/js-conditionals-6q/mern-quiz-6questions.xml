@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2">
+  <assessment ident="JS_CONDITIONALS_QUIZ_25" title="JavaScript Conditionals 25 Questions">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>qmd_assessmenttype</fieldlabel>
+        <fieldentry>Examination</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>qmd_scoretype</fieldlabel>
+        <fieldentry>Percentage</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>qmd_timelimit</fieldlabel>
+        <fieldentry>7200</fieldentry>
+      </qtimetadatafield>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>3</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="MAIN_SECTION">
+      <qtimetadata>
+        <qtimetadatafield>
+          <fieldlabel>section_type</fieldlabel>
+          <fieldentry>default</fieldentry>
+        </qtimetadatafield>
+      </qtimetadata>
+      <item ident="ITEM_1" title="Question 1">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_1</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> If Statements</p>
+                  <p><strong>Difficulty:</strong> beginner</p>
+                  <div class="question-text">What will this code output?</div>
+                  <pre style="background: #f4f4f4; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0;"><code>let x = 10;
+
+if (x &gt; 5) {
+  console.log(&apos;Greater&apos;);
+}
+console.log(&apos;Done&apos;);</code></pre>
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Greater]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Done]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Greater
+Done]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Nothing]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_3</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">2</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_1"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_1"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_1">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> The if condition (x &gt; 5) is true, so &apos;Greater&apos; is logged. Then execution continues to the next line, logging &apos;Done&apos;. Both statements execute, producing two lines of output.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_1">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> Greater
+Done</p>
+                  <p><strong>Explanation:</strong> The if condition (x &gt; 5) is true, so &apos;Greater&apos; is logged. Then execution continues to the next line, logging &apos;Done&apos;. Both statements execute, producing two lines of output.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_2" title="Question 2">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_2</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> If Statements</p>
+                  <p><strong>Difficulty:</strong> beginner</p>
+                  <div class="question-text">What happens when the if condition is false?</div>
+                  <pre style="background: #f4f4f4; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0;"><code>let temperature = 15;
+
+if (temperature &gt; 30) {
+  console.log(&apos;Hot&apos;);
+}
+
+console.log(&apos;Weather checked&apos;);</code></pre>
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Logs &apos;Hot&apos; and &apos;Weather checked&apos;]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Logs only &apos;Weather checked&apos;]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Logs only &apos;Hot&apos;]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Logs nothing]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_2</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">2</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_2"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_2"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_2">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> Since temperature (15) is not greater than 30, the if block is skipped. Only the statement outside the if block executes, logging &apos;Weather checked&apos;.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_2">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> Logs only &apos;Weather checked&apos;</p>
+                  <p><strong>Explanation:</strong> Since temperature (15) is not greater than 30, the if block is skipped. Only the statement outside the if block executes, logging &apos;Weather checked&apos;.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_3" title="Question 3">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>true_false_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_3</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> If Statements</p>
+                  <p><strong>Difficulty:</strong> beginner</p>
+                  <div class="question-text">An if statement can exist without curly braces if it contains only one statement.</div>
+                  <pre style="background: #f4f4f4; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0;"><code>if (x &gt; 5)
+  console.log(&apos;True&apos;);</code></pre>
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[True]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[False]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_1</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">2</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_3"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_3"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_3">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> True. If an if statement has only one statement, curly braces are optional. However, using braces is considered best practice for readability and maintainability.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_3">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> True</p>
+                  <p><strong>Explanation:</strong> True. If an if statement has only one statement, curly braces are optional. However, using braces is considered best practice for readability and maintainability.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_4" title="Question 4">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>3</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_4</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> If Statements</p>
+                  <p><strong>Difficulty:</strong> intermediate</p>
+                  <div class="question-text">What will this code output?</div>
+                  <pre style="background: #f4f4f4; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0;"><code>let score = 0;
+
+if (score) {
+  console.log(&apos;Has score&apos;);
+}
+
+if (!score) {
+  console.log(&apos;No score&apos;);
+}</code></pre>
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Has score]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[No score]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Both outputs]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Nothing]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_2</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">3</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_4"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_4"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_4">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> In JavaScript, 0 is a falsy value. The first if (score) evaluates to false. The second if (!score) evaluates to true, so &apos;No score&apos; is logged.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_4">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> No score</p>
+                  <p><strong>Explanation:</strong> In JavaScript, 0 is a falsy value. The first if (score) evaluates to false. The second if (!score) evaluates to true, so &apos;No score&apos; is logged.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_5" title="Question 5">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>3</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_5</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> If Statements</p>
+                  <p><strong>Difficulty:</strong> intermediate</p>
+                  <div class="question-text">Which values will cause this if statement to execute?</div>
+                  <pre style="background: #f4f4f4; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0;"><code>if (value) {
+  console.log(&apos;Truthy&apos;);
+}</code></pre>
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Only true]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Any non-zero number, non-empty string, objects, arrays]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Only numbers greater than 0]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Only strings]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_2</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">3</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_5"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_5"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_5">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> Any truthy value will execute the if block: non-zero numbers, non-empty strings, objects, arrays, true. Falsy values are: false, 0, &apos;&apos;, null, undefined, NaN.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_5">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> Any non-zero number, non-empty string, objects, arrays</p>
+                  <p><strong>Explanation:</strong> Any truthy value will execute the if block: non-zero numbers, non-empty strings, objects, arrays, true. Falsy values are: false, 0, &apos;&apos;, null, undefined, NaN.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+      <item ident="ITEM_6" title="Question 6">
+          <itemmetadata>
+            <qtimetadata>
+              <qtimetadatafield>
+                <fieldlabel>question_type</fieldlabel>
+                <fieldentry>multiple_choice_question</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>points_possible</fieldlabel>
+                <fieldentry>2</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>original_answer_ids</fieldlabel>
+                <fieldentry>CHOICE_1,CHOICE_2,CHOICE_3,CHOICE_4</fieldentry>
+              </qtimetadatafield>
+              <qtimetadatafield>
+                <fieldlabel>assessment_question_identifierref</fieldlabel>
+                <fieldentry>ITEM_6</fieldentry>
+              </qtimetadatafield>
+            </qtimetadata>
+          </itemmetadata>
+          <presentation>
+            <material>
+              <mattext texttype="text/html"><![CDATA[
+                <div class="text">
+                  <p><strong>Category:</strong> If-Else Statements</p>
+                  <p><strong>Difficulty:</strong> beginner</p>
+                  <div class="question-text">What will this code output?</div>
+                  <pre style="background: #f4f4f4; padding: 15px; border-radius: 4px; overflow-x: auto; margin: 15px 0;"><code>let age = 16;
+
+if (age &gt;= 18) {
+  console.log(&apos;Adult&apos;);
+} else {
+  console.log(&apos;Minor&apos;);
+}</code></pre>
+                </div>
+              ]]></mattext>
+            </material>
+            <response_lid ident="response1" rcardinality="Single" rtiming="No">
+              <render_choice shuffle="No" minnumber="1" maxnumber="1">
+                <response_label ident="CHOICE_1" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Adult]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_2" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Minor]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_3" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Both Adult and Minor]]></mattext>
+                    </material>
+                  </response_label>
+                <response_label ident="CHOICE_4" rshuffle="No">
+                    <material>
+                      <mattext texttype="text/html"><![CDATA[Nothing]]></mattext>
+                    </material>
+                  </response_label>
+              </render_choice>
+            </response_lid>
+          </presentation>
+          <resprocessing>
+            <outcomes>
+              <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+            </outcomes>
+            <respcondition continue="No">
+              <conditionvar>
+                <varequal respident="response1">CHOICE_2</varequal>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">2</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="correct_fb_6"/>
+            </respcondition>
+            <respcondition continue="Yes">
+              <conditionvar>
+                <other/>
+              </conditionvar>
+              <setvar action="Set" varname="SCORE">0</setvar>
+              <displayfeedback feedbacktype="Response" linkrefid="incorrect_fb_6"/>
+            </respcondition>
+          </resprocessing>
+          <itemfeedback ident="correct_fb_6">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #27ae60; font-weight: bold; margin-bottom: 10px;">✓ Correct!</div>
+                  <p><strong>Explanation:</strong> Since age (16) is less than 18, the if condition is false. The else block executes, logging &apos;Minor&apos;.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+          <itemfeedback ident="incorrect_fb_6">
+            <flow_mat>
+              <material>
+                <mattext texttype="text/html"><![CDATA[
+                  <div style="color: #e74c3c; font-weight: bold; margin-bottom: 10px;">✗ Incorrect</div>
+                  <p><strong>Correct answer:</strong> Minor</p>
+                  <p><strong>Explanation:</strong> Since age (16) is less than 18, the if condition is false. The else block executes, logging &apos;Minor&apos;.</p>
+                ]]></mattext>
+              </material>
+            </flow_mat>
+          </itemfeedback>
+        </item>
+    </section>
+  </assessment>
+</questestinterop>

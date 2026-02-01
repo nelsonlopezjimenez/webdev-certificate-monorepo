@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="MERN_QUIZ_100" version="1.0" 
+          xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+          xmlns:imsqti="http://www.imsglobal.org/xsd/imsqti_v1p2">
+  <metadata>
+    <schema>IMS QTI</schema>
+    <schemaversion>1.1.3</schemaversion>
+    <lom xmlns="http://ltsc.ieee.org/xsd/LOM">
+      <general>
+        <title>
+          <string language="en">MERN Stack Frontend Development Quiz</string>
+        </title>
+        <description>
+          <string language="en">Comprehensive assessment covering React fundamentals and state management with 100 questions</string>
+        </description>
+      </general>
+    </lom>
+  </metadata>
+  <organizations default="MERN_ORG">
+    <organization identifier="MERN_ORG" structure="rooted-hierarchy">
+      <title>MERN Stack Quiz Organization</title>
+      <item identifier="QUIZ_ITEM" identifierref="QUIZ_RESOURCE">
+        <title>MERN Stack Quiz</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="QUIZ_RESOURCE" type="imsqti_assessment_xmlv1p2" href="mern-quiz.xml">
+      <file href="mern-quiz.xml"/>
+      <metadata>
+        <schema>IMS QTI</schema>
+        <schemaversion>1.1.3</schemaversion>
+      </metadata>
+      <file href="questions/question_001.xml"/>
+      <file href="questions/question_002.xml"/>
+      <file href="questions/question_003.xml"/>
+      <file href="questions/question_004.xml"/>
+      <file href="questions/question_005.xml"/>
+    </resource>
+  </resources>
+</manifest>
+
+

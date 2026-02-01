@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<questestinterop xmlns="http://www.imsglobal.org/xsd/ims_qtiasiv1p2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.imsglobal.org/xsd/ims_qtiasiv1p2 http://www.imsglobal.org/xsd/ims_qtiasiv1p2p1.xsd">
+  <assessment ident="gf9025c82ed7f21161708c12c9921fd4a" title="zebra-3924..529-threeq">
+    <qtimetadata>
+      <qtimetadatafield>
+        <fieldlabel>cc_maxattempts</fieldlabel>
+        <fieldentry>1</fieldentry>
+      </qtimetadatafield>
+    </qtimetadata>
+    <section ident="root_section">
+      <item ident="ga2a9bd438848578a14f86ec25053f0f8" title="Question">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1.0</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>2643,4334,7663,6372</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>assessment_question_identifierref</fieldlabel>
+              <fieldentry>ga5e695852c8683a63e9d7664a41be82d</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html">&lt;div&gt;&lt;span class="_title"&gt;Which of the following is true about control structures?&lt;/span&gt;&lt;/div&gt;</mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="2643">
+                <material>
+                  <mattext texttype="text/plain">Control structures make desicions based on Boolean values.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="4334">
+                <material>
+                  <mattext texttype="text/plain">Control structures are exclusive to JavaScript.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="7663">
+                <material>
+                  <mattext texttype="text/plain">Control structures are used in code to avoid program errors.</mattext>
+                </material>
+              </response_label>
+              <response_label ident="6372">
+                <material>
+                  <mattext texttype="text/plain">Control structures are methods that return at least one value.</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">2643</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="g396969310bc9c43826fbbabc03b50373" title="Question">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1.0</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>7107,2244,1960,9089</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>assessment_question_identifierref</fieldlabel>
+              <fieldentry>gff41bf0acc72206a1ac59c3968e4dd13</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html">&lt;div&gt;Which JavaScript statement should you use to test for a single condition and branch to a process?&lt;/div&gt;</mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="7107">
+                <material>
+                  <mattext texttype="text/plain">The if statement</mattext>
+                </material>
+              </response_label>
+              <response_label ident="2244">
+                <material>
+                  <mattext texttype="text/plain">The while statement</mattext>
+                </material>
+              </response_label>
+              <response_label ident="1960">
+                <material>
+                  <mattext texttype="text/plain">The if...else statement</mattext>
+                </material>
+              </response_label>
+              <response_label ident="9089">
+                <material>
+                  <mattext texttype="text/plain">The for statement</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">7107</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+      <item ident="g8e1d3a2b098e68217c516aebaa222d34" title="Question">
+        <itemmetadata>
+          <qtimetadata>
+            <qtimetadatafield>
+              <fieldlabel>question_type</fieldlabel>
+              <fieldentry>multiple_choice_question</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>points_possible</fieldlabel>
+              <fieldentry>1.0</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>original_answer_ids</fieldlabel>
+              <fieldentry>6766,8768,5100,4070</fieldentry>
+            </qtimetadatafield>
+            <qtimetadatafield>
+              <fieldlabel>assessment_question_identifierref</fieldlabel>
+              <fieldentry>g1699bdc168ecb7f675246e64e82e6fba</fieldentry>
+            </qtimetadatafield>
+          </qtimetadata>
+        </itemmetadata>
+        <presentation>
+          <material>
+            <mattext texttype="text/html">&lt;div&gt;&lt;span class="_title"&gt;Which code will display an alert if the variable timerMinutes has a value 10?&lt;/span&gt;&lt;/div&gt;</mattext>
+          </material>
+          <response_lid ident="response1" rcardinality="Single">
+            <render_choice>
+              <response_label ident="6766">
+                <material>
+                  <mattext texttype="text/plain">if (timerMinutes == 10) alert("Time Expired!");</mattext>
+                </material>
+              </response_label>
+              <response_label ident="8768">
+                <material>
+                  <mattext texttype="text/plain">if ("timerMinutes" = 10) { alert("Time Expired!"); }</mattext>
+                </material>
+              </response_label>
+              <response_label ident="5100">
+                <material>
+                  <mattext texttype="text/plain">if ("timerMinutes" == 10); { alert("Time Expired!"); }</mattext>
+                </material>
+              </response_label>
+              <response_label ident="4070">
+                <material>
+                  <mattext texttype="text/plain">if ("timerMinutes" = 10) alert("Time Expired!");</mattext>
+                </material>
+              </response_label>
+            </render_choice>
+          </response_lid>
+        </presentation>
+        <resprocessing>
+          <outcomes>
+            <decvar maxvalue="100" minvalue="0" varname="SCORE" vartype="Decimal"/>
+          </outcomes>
+          <respcondition continue="No">
+            <conditionvar>
+              <varequal respident="response1">6766</varequal>
+            </conditionvar>
+            <setvar action="Set" varname="SCORE">100</setvar>
+          </respcondition>
+        </resprocessing>
+      </item>
+    </section>
+  </assessment>
+</questestinterop>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest identifier="JS_CONDITIONALS_QUIZ_25" version="1.0" 
+          xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+          xmlns:imsqti="http://www.imsglobal.org/xsd/imsqti_v1p2">
+  <metadata>
+    <schema>IMS QTI</schema>
+    <schemaversion>1.1.3</schemaversion>
+    <lom xmlns="http://ltsc.ieee.org/xsd/LOM">
+      <general>
+        <title>
+          <string language="en">JavaScript: Conditionals Quiz</string>
+        </title>
+        <description>
+          <string language="en">Comprehensive assessment covering conditionals if-else-elseif-else, ternary op with 25 questions</string>
+        </description>
+      </general>
+    </lom>
+  </metadata>
+  <organizations default="MERN_ORG">
+    <organization identifier="MERN_ORG" structure="rooted-hierarchy">
+      <title>MERN Stack Quiz Organization</title>
+      <item identifier="QUIZ_ITEM" identifierref="QUIZ_RESOURCE">
+        <title>MERN Stack Quiz</title>
+      </item>
+    </organization>
+  </organizations>
+  <resources>
+    <resource identifier="QUIZ_RESOURCE" type="imsqti_assessment_xmlv1p2" href="mern-quiz.xml">
+      <file href="mern-quiz.xml"/>
+      <metadata>
+        <schema>IMS QTI</schema>
+        <schemaversion>1.1.3</schemaversion>
+      </metadata>
+      <file href="questions/question_001.xml"/>
+      <file href="questions/question_002.xml"/>
+      <file href="questions/question_003.xml"/>
+      <file href="questions/question_004.xml"/>
+      <file href="questions/question_005.xml"/>
+      <file href="questions/question_006.xml"/>
+      <file href="questions/question_007.xml"/>
+      <file href="questions/question_008.xml"/>
+      <file href="questions/question_009.xml"/>
+      <file href="questions/question_010.xml"/>
+      <file href="questions/question_011.xml"/>
+      <file href="questions/question_012.xml"/>
+      <file href="questions/question_013.xml"/>
+      <file href="questions/question_014.xml"/>
+      <file href="questions/question_015.xml"/>
+      <file href="questions/question_016.xml"/>
+      <file href="questions/question_017.xml"/>
+      <file href="questions/question_018.xml"/>
+      <file href="questions/question_019.xml"/>
+      <file href="questions/question_020.xml"/>
+      <file href="questions/question_021.xml"/>
+      <file href="questions/question_022.xml"/>
+      <file href="questions/question_023.xml"/>
+      <file href="questions/question_024.xml"/>
+      <file href="questions/question_025.xml"/>
+    </resource>
+  </resources>
+</manifest>
