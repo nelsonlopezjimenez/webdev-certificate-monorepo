@@ -2,11 +2,12 @@
 
 ## last modified: 2.3.2026
 
+```sh
 Private repo (main) ──→ strip markers + remove .7z ──→ Public repo (main)
      ↕                                                       ↕
   Gitea + GitHub                                        Gitea + GitHub
+```
 
-  
 ## last modified: 8.17.2025
 
 ## 2.6.2026
