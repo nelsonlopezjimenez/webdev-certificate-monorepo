@@ -1,0 +1,19 @@
+{
+  "name": "webdev-certificate-monorepo-solution",
+  "version": "1.0.0",
+  "description": "Private course repo with solutions — syncs to public repos",
+  "scripts": {
+    "sync":             "bash sync-repos.sh all",
+    "sync:private":     "bash sync-repos.sh private",
+    "sync:public":      "bash sync-repos.sh public",
+    "sync:gitea":       "bash sync-repos.sh private-gitea && bash sync-repos.sh public-gitea",
+    "sync:github":      "bash sync-repos.sh private-github && bash sync-repos.sh public-github",
+    "sync:dry-run":     "bash sync-repos.sh --dry-run",
+    "sync:status":      "bash sync-repos.sh --status",
+    "strip:preview":    "node strip-solutions.js . --dry-run --verbose",
+    "strip:student":    "node strip-solutions.js . -o ./student-dist -r todo",
+    "strip:blank":      "node strip-solutions.js . -o ./student-dist -r blank",
+    "setup:hooks":      "cp post-commit .git/hooks/post-commit && chmod +x .git/hooks/post-commit && echo '✅ Post-commit hook installed.'",
+    "setup:remotes":    "echo '⚠️  Edit this command with your URLs first' && echo 'git remote add private-gitea  git@your-gitea:you/webdev-certificate-monorepo-solution.git' && echo 'git remote add private-github git@github.com:you/webdev-certificate-monorepo-solution.git' && echo 'git remote add public-gitea   git@your-gitea:you/webdev-certificate-monorepo.git' && echo 'git remote add public-github  git@github.com:you/webdev-certificate-monorepo.git'"
+  }
+}

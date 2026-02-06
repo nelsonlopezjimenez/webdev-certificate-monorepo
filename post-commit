@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# ============================================================================
+# post-commit hook
+#
+# Automatically syncs to all remotes after every commit on main.
+# Place in .git/hooks/post-commit or install via: npm run setup:hooks
+#
+# To skip the hook temporarily:
+#   git commit --no-verify -m "quick fix"
+# ============================================================================
+
+BRANCH=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+# Only auto-sync on main branch
+if [ "$BRANCH" != "main" ]; then
+  exit 0
+fi
+
+# Check if sync script exists
+SYNC_SCRIPT="./sync-repos.sh"
+if [ ! -f "$SYNC_SCRIPT" ]; then
+  echo "⚠️  sync-repos.sh not found — skipping auto-sync."
+  exit 0
+fi
+
+echo ""
+echo "🔄 Post-commit: syncing to all remotes..."
+echo ""
+
+bash "$SYNC_SCRIPT" all
+
+exit 0
