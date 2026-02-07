@@ -47,6 +47,7 @@ const SUPPORTED_EXTENSIONS = new Set([
   ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs",
   ".css", ".scss", ".less",
   ".html", ".htm", ".svg", ".xml",
+  ".md",
   ".json", // in case of jsonc with comments
 ]);
 
@@ -71,7 +72,7 @@ const MARKER_PATTERNS = [
     regex: /^[ \t]*<!--\s*={2,}\s*SOLUTION\s+START\s*={2,}\s*-->.*\n([\s\S]*?)^[ \t]*<!--\s*={2,}\s*SOLUTION\s+END\s*={2,}\s*-->.*\n?/gm,
     commentPrefix: "<!--",
     commentSuffix: "-->",
-    extensions: new Set([".html", ".htm", ".svg", ".xml"]),
+    extensions: new Set([".html", ".htm", ".svg", ".xml", ".md"]),
   },
 ];
 
