@@ -35,6 +35,7 @@
   <!-- === SOLUTION END === -->
 ## **Question 3: The 10 Errors ⚠️**
 
+  <!-- === SOLUTION START === -->
 1. ❌ `<title>My Website` → ✅ `<title>My Website</title>`
 2. ❌ `<Body>` → ✅ `<body>` (lowercase)
 3. ❌ `<h1>...</h2>` → ✅ `<h1>...</h1>` (matching tags)
@@ -47,7 +48,8 @@
 10. ❌ `<p>Copyright 2024` → ✅ `<p>Copyright 2024</p>`
 
 ---
-
+  <!-- === SOLUTION END === -->
+  
 ## **Question 4: Accessibility Attributes  ✓**
 
 **Aria**: Accessible Rich Internet Aplication
