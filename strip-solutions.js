@@ -195,8 +195,12 @@ function getReplacementText(indent, ext, replaceMode) {
 
 function stripSolutions(content, filePath, replaceMode) {
   const ext = path.extname(filePath).toLowerCase();
-  let result = content;
+    // Normalize line endings to \n for regex matching, restore original after
+  const hasCarriageReturn = content.includes("\r\n");
+  let result = hasCarriageReturn ? content.replace(/\r\n/g, "\n") : content;
   let strippedCount = 0;
+
+  
 
   for (const pattern of MARKER_PATTERNS) {
     // Reset regex state
@@ -226,6 +230,10 @@ function stripSolutions(content, filePath, replaceMode) {
 
       return startMarker + "\n" + replacement + endMarker + "\n";
     });
+  }
+    // Restore original line endings
+  if (hasCarriageReturn) {
+    result = result.replace(/\n/g, "\r\n");
   }
 
   return { result, strippedCount };
