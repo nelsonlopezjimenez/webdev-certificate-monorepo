@@ -1,5 +1,37 @@
 # webdev-certificate-monorepo
 
+## 2.8.2026
+Current version of sync-repo is still 1: ie, it is saving full solutions and 7z in private-gitea/github. No amend in git commit yet.
+
+Script sync-repos-v2 version 2 is to consider 3 scenarios: 
+1. no 7z files in github (public or private)
+1. no 7z files in private-gitea
+1. yes 7z files in public-gitea
+
+Script sync-repos version 3 with minimal changes due to extra commit in public versions. However, the tree would diverge with time.
+1. **Students only pull** from public-gitea (not yet public-github) and never push back
+1. **Force push** replaces the entire branch, so there's no merge conflict
+1. **Instructor never pull** from public - all work is in private. 
+
+The public repo is essentially a **one-way mirror**. It doesn't need to share history with private. It just needs to show the right content at any point in time. 
+
+But just in case I will reclone to follow.
+
+### What Actually Happen?
+```sh
+Private:  A --- B --- C --- D (main)
+                            ↓ amend (strip solutions)
+Public:   A --- B --- C --- D' (force pushed)
+```
+Commits A, B, C keep the **same SHA** (they weren't modified). Only the latest commit D becomes D' (different SHA because different content). 
+Next sync:
+```sh
+Private:  A --- B --- C --- D --- E (main)
+                                  ↓ amend
+Public:   A --- B --- C --- D'--- E' (force pushed, D' gets overwritten by D)
+```
+Wait — that's actually a problem. D' (stripped) ≠ D (original), so E''s parent is D' but force push replaces the whole branch. Over time, every commit on public will have a different SHA from the original.
+
 ## last modified: 2.3.2026
 
 ```sh
