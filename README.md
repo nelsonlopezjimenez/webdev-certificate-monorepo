@@ -17,7 +17,7 @@ The public repo is essentially a **one-way mirror**. It doesn't need to share hi
 
 But just in case I will reclone to follow.
 
-### What Actually Happen?
+### What Actually Happens?
 ```sh
 Private:  A --- B --- C --- D (main)
                             ↓ amend (strip solutions)
