@@ -1,0 +1,12 @@
+* {
+  border: 5px dotted pink;
+}
+h1 {
+  color: blue;
+  background-color: yellow;
+  border: 1px solid black;
+}
+
+p {
+  color: red;
+}
