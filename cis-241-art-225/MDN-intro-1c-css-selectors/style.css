@@ -21,6 +21,7 @@ hr {
 #class-selectors .base-box {
   background-image: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3));
   padding: 3px 3px 3px 7px;
+  border: 6px green solid;
 }
 
 #class-selectors .important {
@@ -121,6 +122,8 @@ hr {
 #pseudo-class-selectors a:hover {
   text-decoration: underline;
   color: red;
+  background-color:green;
+  color: white;
 }
 
 #pseudo-class-selectors li:nth-of-type(2n) {
@@ -172,3 +175,4 @@ h1 + p {
   font-weight: bold;
   color: blue;
 }
+
