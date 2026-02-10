@@ -1,5 +1,3 @@
-Let me create the files using available tools. I'll present both documents:Let me present the exam and answer key directly:
-
 # 📝 **JavaScript Midterm - Written Response Questions**
 
 ## **10 Questions (100 points total)**
