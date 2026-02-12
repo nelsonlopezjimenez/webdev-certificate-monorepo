@@ -70,7 +70,7 @@ Use language-specific comment markers in your source files:
 ```js
 function solve(items) {
   // === SOLUTION START ===
-  return items.reduce((sum, item) => sum + item.price, 0);
+  // TODO: Write your solution here
   // === SOLUTION END ===
 }
 ```
@@ -79,8 +79,7 @@ function solve(items) {
 ```css
 .container {
   /* === SOLUTION START === */
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  // TODO: Write your solution here
   /* === SOLUTION END === */
 }
 ```
@@ -89,7 +88,7 @@ function solve(items) {
 ```html
 <div id="app">
   <!-- === SOLUTION START === -->
-  <h1>Hello World</h1>
+  // TODO: Write your solution here
   <!-- === SOLUTION END === -->
 </div>
 ```
