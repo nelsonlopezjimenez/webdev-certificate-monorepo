@@ -6,14 +6,16 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<meta charset="utf-10"> <!-- This is an error! -->
 </heading>
+
 <body>
+	<!-- Header Section -->
+	<header>
+		<!-- There is an error here, check the image file extension by viewing your folder contents in SublimeText!-->
+		<img src="ARlogo.jpg">
+	</header>
 
 	<div id="main_content">
-		<header>
-			<!-- There is an error here, check the image file extension by viewing your folder contents in SublimeText!-->
-			<img src="ARlogo.jpg">
-		</header>
-
+		<!-- Recipe Title and Info -->
 		<section id="recipe">
 			<h1> Fresh Southern Peach Cobbler </h1>
 
@@ -24,20 +26,32 @@
 				<img src="full-star-2015.svg" alt="star">
 				<img src="half-star-2015.svg">
 
-				<h3> Recipe by aeposey </h3>
-				<p> "I've been experimenting with cobbler for some time and this recipe is the final result. Loved by all." </p>
+				<p><strong>Recipe by aeposey</strong></p>
+
+				<p class="description"> "I've been experimenting with cobbler for some time and this recipe is the final
+					result. Loved by
+					all." </p>
 
 				<button id="save">
 					Save
 				</button>
 			</section>
 
-			<video controls="">
-				<source src="cobbler_video.mp4" type="video/mp4">
-					Your browser does not support video.
-			</video>
+			<!-- Main Content Area - Recipe and About -->
+			<div id="content-wrapper">
+				<!-- Recipe Section (will contain video) -->
+				<section id="recipe">
+					<h2>Recipe Video</h2>
+					<video controls width="100%">
+						<source src="peach-cobbler-video.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+				</section>
+			</div>
 
-			<br>
+			<hr>
+
+			<!-- Ingredients Section -->
 			<section id="ingredients">
 				<h2> Ingredients </h2>
 				<hr>
@@ -59,21 +73,34 @@
 				</ul>
 			</section>
 
+			<hr>
+
+			<!-- Directions Section -->
 			<section>
 				<h2> Directions </h2>
 				<hr>
-				<ol> 
+				<ol>
 					<li> Preheat oven to 425 degrees F </li>
-					<li> In a large bowl, combine peaches, 1/4 cup white sugar, 1/4 cup brown sugar, 1/4 teaspoon cinnamon, nutmeg, lemon juice, and cornstarch. Toss to coat evenly, and pour into a 2 quart baking dish. Bake in preheated oven for 10 minutes. </li>
-					<li> Meanwhile, in a large bowl, combine flour, 1/4 cup white sugar, 1/4 cup brown sugar, baking powder, and salt. Blend in butter with your fingertips, or a pastry blender, until mixture resembles coarse meal. Stir in water until just combined. </li>
-					<li> Remove peaches from oven, and drop spoonfuls of topping over them. Sprinkle entire cobbler with the sugar and cinnamon mixture. Bake until topping is golden, about 30 minutes. </li>
+					<li> In a large bowl, combine peaches, 1/4 cup white sugar, 1/4 cup brown sugar, 1/4 teaspoon
+						cinnamon, nutmeg, lemon juice, and cornstarch. Toss to coat evenly, and pour into a 2 quart
+						baking dish. Bake in preheated oven for 10 minutes. </li>
+					<li> Meanwhile, in a large bowl, combine flour, 1/4 cup white sugar, 1/4 cup brown sugar, baking
+						powder, and salt. Blend in butter with your fingertips, or a pastry blender, until mixture
+						resembles coarse meal. Stir in water until just combined. </li>
+					<li> Remove peaches from oven, and drop spoonfuls of topping over them. Sprinkle entire cobbler
+						with
+						the sugar and cinnamon mixture. Bake until topping is golden, about 30 minutes. </li>
 				</ol>
 			</section>
 
-			<section id="reviews">
+			<hr>
+			
+			<!-- Reviews Section -->
+			<section id="reviews-section">
 				<h2> Reviews <span id="number-reviews"> (3) </span> </h2>
 				<hr>
-				<div id="one">
+				<div id="reviews">
+					<section id="one" id="review-1">
 						<img src="user-1.jpg" alt="user-1">
 						PIXIE_BIT
 						<img src="full-star-2015.svg" alt="star">
@@ -81,32 +108,40 @@
 						<img src="full-star-2015.svg" alt="star">
 						<img src="full-star-2015.svg" alt="star">
 						<img src="empty-star.svg">
-				
-					This is a good peach cobbler - just the right spices and sweetness. You should note however the amount of baking powder - this is a very "cake-like" cobbler. 
-				</div>
 
-				<div id="two">
-					<img src="user-2.jpg" alt="user-2">
-					southerncook
-					<img src="full-star-2015.svg" alt="star">
-					<img src="full-star-2015.svg" alt="star">
-					<img src="full-star-2015.svg" alt="star">
-					<img src="empty-star.svg" alt="star">
-					<img src="empty-star.svg" alt="star">
+						This is a good peach cobbler - just the right spices and sweetness. You should note however the
+						amount of baking powder - this is a very "cake-like" cobbler.
+					</section>
 
-					This is an okay recipe. To me though, it's not a peach cobbler, it's peaches and biscuits. I live in the south and I don't know why this would be called southern peach cobbler. 
-				</div>
+					<section id="two">
+						<img src="user-2.jpg" alt="user-2">
+						southerncook
+						<img src="full-star-2015.svg" alt="star">
+						<img src="full-star-2015.svg" alt="star">
+						<img src="full-star-2015.svg" alt="star">
+						<img src="empty-star.svg" alt="star">
+						<img src="empty-star.svg" alt="star">
 
-				<div id="three">
-					<img src="user-3.png">
-					i-like-food
-					<img src="full-star-2015.svg" alt="star">
-					<img src="full-star-2015.svg" alt="star">
-					<img src="full-star-2015.svg" alt="star">
-					<img src="full-star-2015.svg" alt="star">
-					<img src="full-star-2015.svg" alt="star">
-				
-					This is absolutely one of my favorite recipes that I've tried so far. The ingredient proportions are right on the mark, and the procedure is so easy. 
+						This is an okay recipe. To me though, it's not a peach cobbler, it's peaches and biscuits. I
+						live in
+						the south and I don't know why this would be called southern peach cobbler.
+					</section>
+
+					<section id="three">
+						<img src="user-3.png">
+						i-like-food
+						<img src="full-star-2015.svg" alt="star">
+						<img src="full-star-2015.svg" alt="star">
+						<img src="full-star-2015.svg" alt="star">
+						<img src="full-star-2015.svg" alt="star">
+						<img src="full-star-2015.svg" alt="star">
+
+						This is absolutely one of my favorite recipes that I've tried so far. The ingredient proportions
+						are right on the mark, and the procedure is so easy. The ingredient proportions are right on.
+						This was our Thanksgiving peach cobbler and I'm sure it will be in rotation for years to come.
+						The only change I made was that I used fresh peaches instead of canned and I doubled the recipe
+						to make a larger cobbler.
+					</section>
 				</div>
 			</section>
 
@@ -117,6 +152,7 @@
 				<img src="twitter.png">
 				<img src="email.png" alt="email">
 			</section>
-		</div>
+	</div>
 </body>
+
 </html>
