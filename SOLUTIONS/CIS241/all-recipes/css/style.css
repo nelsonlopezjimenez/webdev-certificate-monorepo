@@ -1,0 +1,108 @@
+body {
+    width: 98%;
+    margin: auto;
+    background-color: #e6e6e6;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    /* border: 4px solid blue; */
+}
+
+header {
+    background-color: rgba(226, 225, 225, 0.42);
+}
+#main_content {
+    background-color: white;
+    /* border: 5px red solid ; */
+}
+#recipe {
+    display: flex;
+    flex-direction: row;
+}
+
+#aboutDiv {
+    width: 60%;
+}
+
+#content-wrapper {
+    width: 40%;
+}
+
+
+#main-content {
+    background-color: white;
+}
+
+hr {
+    border-color: orange;
+}
+
+ul {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 0px;
+}
+
+ul li {
+    flex: 0 0 50%;
+    padding-bottom: 1%;
+
+}
+
+ul li::before {
+    content: '';
+    background-image: url('../images/plus-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 40px;
+    width: 40px;
+    display: inline-block;
+    margin-right: 8px;
+    padding-left: 0;
+}
+ol {
+    padding-top: 15px;
+}
+ol li {
+    padding-bottom: 15px;
+}
+
+#save {
+    border-radius: 2%;
+    border-width: 0px;
+    color: white;
+    background-color: orange;
+    width: 200px;
+}
+#reviews {
+  display: flex;
+  gap: 20px;
+}
+
+#one, #two, #three {
+  flex: 1; /* Equal width columns */
+  border: 5px dotted orange;
+  /* Add padding as needed */
+}
+#reviews section {
+    padding: 15px;
+}
+#reviews img:first-child {
+  border-radius: 50%;
+
+  padding: 0;
+  /* Set appropriate width/height */
+}
+.username {
+    font-size: xx-large;
+    /* padding-left: 15px; */
+}
+#reviews div img {
+    width:2em;
+}
+#reviews p {
+    padding-left:20px;
+    margin: 0;
+}
+#share img {
+    width: 100px;
+}
