@@ -4,10 +4,10 @@
 # sync-repos.sh
 #
 # Syncs your private repo (with solutions) to 4 remotes:
-#   - private-gitea   → solutions kept, no .7z
-#   - private-github  → solutions kept, no .7z
-#   - public-gitea    → solutions stripped, .7z kept (offline students)
-#   - public-github   → solutions stripped, no .7z
+#   - private-gitea   → full content (solutions + .7z)
+#   - private-github  → full content (solutions + .7z)
+#   - public-gitea    → stripped (no solutions, no .7z)
+#   - public-github   → stripped (no solutions, no .7z)
 #
 # USAGE:
 #   ./sync-repos.sh                    # sync to all 4 remotes
@@ -35,15 +35,23 @@ FAILED_REMOTES=()
 # Configuration
 # ---------------------------------------------------------------------------
 
+# Remote names (adjust if you prefer different names)
 PRIVATE_GITEA="private-gitea"
 PRIVATE_GITHUB="private-github"
 PUBLIC_GITEA="public-gitea"
 PUBLIC_GITHUB="public-github"
 
+# Branch
 BRANCH="${2:-$(git symbolic-ref --short HEAD 2>/dev/null)}"
 
+# Strip script
 STRIP_SCRIPT="strip-solutions.js"
 REPLACE_MODE="todo"    # "todo", "blank", or "none"
+
+# Files/patterns to exclude from public repos
+EXCLUDE_PATTERNS=(
+  "*.7z"
+)
 
 # ---------------------------------------------------------------------------
 # Colors
@@ -78,25 +86,16 @@ check_remote() {
 show_status() {
   echo ""
   echo -e "${CYAN}📡 Remote Configuration${NC}"
-  echo "──────────────────────────────────────────────────────────────────"
-  printf "  %-18s %-14s %-10s %s\n" "REMOTE" "SOLUTIONS" ".7Z" "URL"
-  echo "──────────────────────────────────────────────────────────────────"
-
-  show_remote_status() {
-    local remote="$1" sol="$2" z7="$3"
-    local url
+  echo "──────────────────────────────────────────────────"
+  for remote in "$PRIVATE_GITEA" "$PRIVATE_GITHUB" "$PUBLIC_GITEA" "$PUBLIC_GITHUB"; do
     url=$(git remote get-url "$remote" 2>/dev/null || echo "NOT CONFIGURED")
-    local icon="${GREEN}✓${NC}"
-    [[ "$url" == "NOT CONFIGURED" ]] && icon="${RED}✗${NC}"
-    printf "  ${icon} %-16s %-14s %-10s %s\n" "$remote" "$sol" "$z7" "$url"
-  }
-
-  show_remote_status "$PRIVATE_GITEA"  "kept"     "excluded"
-  show_remote_status "$PRIVATE_GITHUB" "kept"     "excluded"
-  show_remote_status "$PUBLIC_GITEA"   "stripped" "kept"
-  show_remote_status "$PUBLIC_GITHUB"  "stripped" "excluded"
-
-  echo "──────────────────────────────────────────────────────────────────"
+    if [[ "$url" == "NOT CONFIGURED" ]]; then
+      echo -e "  ${RED}✗${NC} $remote → $url"
+    else
+      echo -e "  ${GREEN}✓${NC} $remote → $url"
+    fi
+  done
+  echo "──────────────────────────────────────────────────"
   echo -e "  Branch: ${YELLOW}$BRANCH${NC}"
   echo -e "  Strip script: $([ -f "$STRIP_SCRIPT" ] && echo "${GREEN}found${NC}" || echo "${RED}missing${NC}")"
   echo ""
@@ -104,118 +103,95 @@ show_status() {
 }
 
 # ---------------------------------------------------------------------------
-# Generic filtered push
-#   $1 = remote name
-#   $2 = strip solutions? (true/false)
-#   $3 = exclude .7z?     (true/false)
+# Push to private remotes (full content, as-is)
 # ---------------------------------------------------------------------------
-push_filtered() {
+push_private() {
   local remote="$1"
-  local strip_solutions="$2"
-  local exclude_7z="$3"
-
   check_remote "$remote" || return 0
 
-  # Build description
-  local desc=""
-  if [ "$strip_solutions" = true ] && [ "$exclude_7z" = true ]; then
-    desc="stripped, no .7z"
-  elif [ "$strip_solutions" = true ]; then
-    desc="stripped, .7z kept"
-  elif [ "$exclude_7z" = true ]; then
-    desc="solutions kept, no .7z"
-  else
-    desc="full content"
-  fi
+  info "Pushing to $remote/$BRANCH (full content)..."
 
-  info "Pushing to $remote/$BRANCH ($desc)..."
-
-  # ── No filtering needed → simple push ───────────────────────────────
-  if [ "$strip_solutions" = false ] && [ "$exclude_7z" = false ]; then
-    if [ "$DRY_RUN" = true ]; then
-      echo "  [dry-run] git push $remote $BRANCH"
-      echo ""
-      return 0
-    fi
-
-    if git push "$remote" "$BRANCH" 2>/dev/null; then
-      success "$remote push complete ($desc)."
-    else
-      warn "$remote unreachable — skipping."
-      FAILED_REMOTES+=("$remote")
-    fi
-    echo ""
-    return 0
-  fi
-
-  # ── Filtered push → temp branch ─────────────────────────────────────
   if [ "$DRY_RUN" = true ]; then
-    echo "  [dry-run] Would create filtered commit ($desc)"
+    echo "  [dry-run] git push $remote $BRANCH"
+    return 0
+  fi
+
+  if git push "$remote" "$BRANCH" 2>/dev/null; then
+    success "$remote push complete."
+  else
+    warn "$remote unreachable — skipping."
+    FAILED_REMOTES+=("$remote")
+  fi
+  echo ""
+}
+
+# ---------------------------------------------------------------------------
+# Push to public remotes (stripped solutions, no .7z)
+# ---------------------------------------------------------------------------
+push_public() {
+  local remote="$1"
+  check_remote "$remote" || return 0
+
+  info "Pushing to $remote/$BRANCH (stripped, no .7z)..."
+
+  if [ "$DRY_RUN" = true ]; then
+    echo "  [dry-run] Would strip solutions and exclude .7z files"
     echo "  [dry-run] git push $remote <filtered>:$BRANCH --force"
+    success "$remote dry-run complete."
     echo ""
     return 0
   fi
 
-  TEMP_BRANCH="_sync_${remote}_$$"
+  # ── Create temp branch with filtered content ──────────────────────────
+  TEMP_BRANCH="_public_sync_$$"
   ORIGINAL_BRANCH="$BRANCH"
 
   git checkout -b "$TEMP_BRANCH" --quiet
 
-  # Step 1: Strip solution markers
-  if [ "$strip_solutions" = true ]; then
-    if [ -f "$STRIP_SCRIPT" ]; then
-      node "$STRIP_SCRIPT" . --in-place -r "$REPLACE_MODE" 2>/dev/null
-      git add -A
-    else
-      warn "strip-solutions.js not found — skipping solution stripping."
-    fi
+  # ── Step 1: Strip solution markers ────────────────────────────────────
+  if [ -f "$STRIP_SCRIPT" ]; then
+    # Strip in place on the temp branch
+    node "$STRIP_SCRIPT" . --in-place -r "$REPLACE_MODE" 2>/dev/null
+
+    # The strip script only processes supported extensions.
+    # Stage the changes.
+    git add -A
+  else
+    warn "strip-solutions.js not found — skipping solution stripping."
   fi
 
-  # Step 2a: Exclude .7z files
-  if [ "$exclude_7z" = true ]; then
-    git ls-files "*.7z" 2>/dev/null | while read -r file; do
+  # ── Step 2: Remove excluded file patterns ─────────────────────────────
+  for pattern in "${EXCLUDE_PATTERNS[@]}"; do
+    git ls-files "$pattern" 2>/dev/null | while read -r file; do
       git rm --cached -q "$file" 2>/dev/null || true
       rm -f "$file" 2>/dev/null || true
     done
-    git add -A
-  fi
+  done
+  git add -A
 
-  # Step 2b: Exclude SOLUTIONS folders (always on public repos)
-  if [ "$strip_solutions" = true ]; then
-    # Find all files under any SOLUTIONS directory at any depth
-    git ls-files 2>/dev/null | grep -i "/SOLUTIONS/\|^SOLUTIONS/" | while read -r file; do
-      git rm --cached -q "$file" 2>/dev/null || true
-      rm -f "$file" 2>/dev/null || true
-    done
-    git add -A
-  fi
-
-  # Step 3: Amend HEAD commit with filtered content (no extra commit)
+  # ── Step 3: Commit and push ───────────────────────────────────────────
   ORIG_MSG=$(git log -1 --pretty=format:"%s")
-  git commit --amend --allow-empty -q -m "$ORIG_MSG"
+
+  if ! git diff --cached --quiet 2>/dev/null; then
+    git commit -q -m "$ORIG_MSG"
+  else
+    # Even if no diff, amend to ensure clean tree
+    git commit --allow-empty -q -m "$ORIG_MSG"
+  fi
 
   if git push "$remote" "${TEMP_BRANCH}:${BRANCH}" --force 2>/dev/null; then
-    success "$remote push complete ($desc)."
+    success "$remote push complete (solutions stripped, .7z excluded)."
   else
     warn "$remote unreachable — skipping."
     FAILED_REMOTES+=("$remote")
   fi
 
-  # Cleanup
+  # ── Cleanup ───────────────────────────────────────────────────────────
   git checkout "$ORIGINAL_BRANCH" --quiet
   git branch -D "$TEMP_BRANCH" --quiet 2>/dev/null
 
   echo ""
 }
-
-# ---------------------------------------------------------------------------
-# Remote-specific wrappers
-#                              remote          strip?  no .7z?
-# ---------------------------------------------------------------------------
-push_private_gitea()  { push_filtered "$PRIVATE_GITEA"  false  true;  }
-push_private_github() { push_filtered "$PRIVATE_GITHUB" false  true;  }
-push_public_gitea()   { push_filtered "$PUBLIC_GITEA"   true   false; }
-push_public_github()  { push_filtered "$PUBLIC_GITHUB"  true   true;  }
 
 # ---------------------------------------------------------------------------
 # Main
@@ -261,36 +237,37 @@ echo ""
 
 case "$TARGET" in
   all)
-    push_private_gitea
-    push_private_github
-    push_public_gitea
-    push_public_github
+    push_private "$PRIVATE_GITEA"
+    push_private "$PRIVATE_GITHUB"
+    push_public  "$PUBLIC_GITEA"
+    push_public  "$PUBLIC_GITHUB"
     ;;
   private)
-    push_private_gitea
-    push_private_github
+    push_private "$PRIVATE_GITEA"
+    push_private "$PRIVATE_GITHUB"
     ;;
   public)
-    push_public_gitea
-    push_public_github
+    push_public "$PUBLIC_GITEA"
+    push_public "$PUBLIC_GITHUB"
     ;;
   private-gitea)
-    push_private_gitea
+    push_private "$PRIVATE_GITEA"
     ;;
   private-github)
-    push_private_github
+    push_private "$PRIVATE_GITHUB"
     ;;
   public-gitea)
-    push_public_gitea
+    push_public "$PUBLIC_GITEA"
     ;;
   public-github)
-    push_public_github
+    push_public "$PUBLIC_GITHUB"
     ;;
   --dry-run)
-    push_private_gitea
-    push_private_github
-    push_public_gitea
-    push_public_github
+    # Already handled, run all with dry-run
+    push_private "$PRIVATE_GITEA"
+    push_private "$PRIVATE_GITHUB"
+    push_public  "$PUBLIC_GITEA"
+    push_public  "$PUBLIC_GITHUB"
     ;;
   *)
     error "Unknown target: $TARGET\nUsage: $0 [all|private|public|private-gitea|private-github|public-gitea|public-github] [branch]"
