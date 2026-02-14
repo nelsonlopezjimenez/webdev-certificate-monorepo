@@ -1,4 +1,4 @@
-Correct. With the artifact approach:
+# With the artifact approach:
 
 **What changes:**
 - `.7z` files go in `.gitignore` — not tracked in Git at all
