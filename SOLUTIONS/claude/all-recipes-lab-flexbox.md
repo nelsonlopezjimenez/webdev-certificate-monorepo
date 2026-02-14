@@ -247,9 +247,62 @@ Add a `<div>` tag with class value of "star-reviews" around each section of star
 
 Viewport units allow our text to scale relative to the browser window size, creating a more fluid and responsive design. Unlike fixed pixel values, viewport units adjust automatically as the window resizes.
 
+At the end of Part A and without proper scaling, your website may look something like:
+![iphone-peach_cobbler-onescreen](./iphone-peach_cobbler-onescreen.png)
+In order to read any of the text you would have to zoom in many times and some of the text sizing doesn't make sense: some items may look larger that h1 tags.
+![iphone sizes](./iphone-size.png)
+Not only will your webnsite be hard to read, but your "user" will likely navigate away after experiencing frustraction, resulting in potential loss of revenue or advertising sales!
+
+Designing our website so that it is viewable on a variety of digital devices is of great importance. In 2016, the number of individual web page views on mobile devices exceeded those of individual web page views on desktop computers! Because of this, the web development community has coined the term: **mobile first design.**
+
+![mobile first design](./mobile-vs-desktop-trends.png)
+
+
+
+### Part B1: Viewport Sizing
+
+So far we’ve worked with pixels and percentages. There are many different ways to size content on a web page, however the most “dynamic” sizing method made available in CSS3 is “viewport sizing.” 
+Viewport units are extremely powerful in responsive web design because they allow you to size your content according to the size of the current browser window. Viewport units are numerical values, where the number corresponds to (1% * the number) of the width/height of the window your website is rendering on. There will be some examples further down in this document.
+![viewport units](./vw-vh-vmin-vmax.png)
+
+
 **Resources:**
 - [Viewport Units on MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/length#viewport-percentage_lengths)
 - [Responsive Typography on W3Schools](https://www.w3schools.com/css/css_rwd_intro.asp)
+
+In general, we will mostly be using viewport units to dynamically size our text! However, viewport units can also be used to resize images + heights of our content.
+
+**Let’s see the math…**
+Let’s convert some font-sizes from pixels to viewport unit sizing:
+#### Example 1: Converting font-size.
+	Values: 
+		Viewport width (based on most desktops): 1440px
+		Current font size (default font size): 16px
+
+	Conversion:  
+    Step 1: (1440px * 0.01) * 1px;         =                 14.4px
+    Step 2: (16px / 14.4px) * 1vw;           =               1.11vw 
+
+
+	Therefore, 16px on a desktop is equivalent to ~1vw. 
+
+#### Example 2: Converting image sizing.
+	Values:
+		Viewport width: 1440px;
+		Viewport height: 800px;
+		Image width: 150px;
+		Image height: 250px;
+
+
+	Conversion:	
+		Width:
+		Step 1: (1440px * .01) * 1px              =                     14.4px;
+		Step 2: (150px / 14.4px) * 1vw            =                     10.42vw
+
+
+		Height:
+		Step 1: (800px * .01) * 1px               =                     8px;
+		Step 2: (250px / 8px) * 1vh               =                     31.25vh; 
 
 ### Steps:
 
@@ -317,8 +370,6 @@ Viewport units allow our text to scale relative to the browser window size, crea
    }
    ```
 
-**Note:** Modern browsers handle viewport units well, so fallback pixel values are no longer necessary for basic viewport unit usage.
-
 ---
 
 ## Part C: Styling for Mobile - Media Queries
@@ -385,7 +436,7 @@ Alternatively, add your mobile styles at the bottom of your main stylesheet:
 
 ### Mobile Styles (for screens 500px and under)
 
-Because screens are so much smaller on mobile compared to desktop, we need to completely change up the way our content is sized and laid out!
+Because screens are so much smaller on mobile compared to desktop, we need to completely change up the way our content is sized and laid out! Following the steps below. After the below styles have been applied, your website should look something like the screenshots at the end of this document.
 
 **General Content:**
 ```css
@@ -431,13 +482,19 @@ p {
 
 ---
 
-**#about Section:**
+**#recipe Section:**
 
 On mobile, we switch from a two-column layout to single-column (stack vertically).
 
 **Using Flexbox:**
 ```css
-#about {
+#recipe {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#about-div {
   width: 100%;
 }
 
@@ -446,8 +503,9 @@ On mobile, we switch from a two-column layout to single-column (stack vertically
 }
 
 /* If you used a flexbox container wrapper, change it to column */
-.content-wrapper {
-  flex-direction: column; /* Stack vertically instead of side-by-side */
+#content-wrapper {
+    width: 100%;
+    /* Stack vertically instead of side-by-side */
 }
 ```
 
@@ -455,7 +513,7 @@ On mobile, we switch from a two-column layout to single-column (stack vertically
 
 **Save Button:**
 ```css
-.save-button { /* or #save-button */
+#save-button { /* or #save-button */
   width: 40vw;
   font-size: 10vw;
 }
@@ -463,18 +521,16 @@ On mobile, we switch from a two-column layout to single-column (stack vertically
 
 ---
 
-**#recipe Section:**
+**#video-id Section:**
 
 The video should now take full width:
 
 ```css
-#recipe {
-  width: 100%;
-}
-
-#recipe video {
-  width: 95%;
-  height: 50vh;
+#video-id {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50vh;
 }
 ```
 
@@ -490,6 +546,9 @@ ul li {
   flex: 0 0 100%; /* Full width - single column */
   font-size: 6vw;
   text-align: left;
+}
+#ingredients ul {
+    padding-left: 0;
 }
 ```
 
@@ -573,6 +632,16 @@ Switch from three columns to single column (stacked vertically).
   height: auto;
 }
 ```
+
+## Example Display
+
+![mobile 1](./zmobile1.png)
+![mobile 1a](./zmobile1a.png)
+![mobile 1b](./zmobile1b.png)
+![mobile 1c](./zmobile1c.png)
+![mobile 1d](./zmobile1d.png)
+![mobile 1e](./zmobile1e.png)
+![mobile 1f](./zmobile1f.png)
 
 ---
 

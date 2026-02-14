@@ -51,7 +51,7 @@ p {
     /* Stack vertically instead of side-by-side */
 }
 
-.save-button {
+#save-button {
     /* or #save-button */
     width: 40vw;
     font-size: 10vw;
