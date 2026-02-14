@@ -1,0 +1,124 @@
+/* 1. Reset/Base Styles */
+* {
+    text-align: center;
+}
+
+body {
+    width: 100%;
+}
+
+/* 2. Header */
+header img {
+    height: 15vh;
+    width: 100%;
+}
+
+/* 3. Main Content  Typography*/
+h1 {
+    font-size: 10vw;
+}
+
+h2 {
+    font-size: 9vw;
+}
+
+h3 {
+    font-size: 7vw;
+}
+
+p {
+    font-size: 8vw;
+}
+
+/* 4. Recipe Section */
+#recipe {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+#about-div {
+    width: 100%;
+}
+
+#about img {
+    width: 10vw;
+}
+
+/* If you used a flexbox container wrapper, change it to column */
+#content-wrapper {
+    width: 100%;
+    /* Stack vertically instead of side-by-side */
+}
+
+.save-button {
+    /* or #save-button */
+    width: 40vw;
+    font-size: 10vw;
+}
+
+#video-id {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50vh;
+}
+
+/* 5. Ingredients */
+#ingredients ul {
+    padding-left: 0;
+}
+
+ul li {
+    flex: 0 0 100%;
+    /* Full width - single column */
+    font-size: 6vw;
+    text-align: left;
+}
+
+ul li::before {
+    content: '';
+    background-image: url('../images/plus-icon.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 3vh;
+    width: 3vh;
+    display: inline-block;
+    margin-right: 8px;
+}
+
+/* 6. Directions */
+ol li {
+    width: 100%;
+    /* Full width */
+    font-size: 7vw;
+    text-align: left;
+}
+
+.username {
+    font-size: 8vw;
+}
+
+/* 7. Reviews */
+#reviews {
+    flex-direction: column;
+    /* Stack vertically */
+}
+
+#reviews section {
+    /* or #one, #two, #three */
+    padding-top: 10px;
+    /* Small padding on top */
+    height: 65vh;
+    overflow: auto;
+}
+
+#reviews img {
+    width: 5vh;
+}
+
+/* 8. Footer/Share */
+#share img {
+    width: 15vw;
+    height: auto;
+}

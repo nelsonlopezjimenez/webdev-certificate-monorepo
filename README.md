@@ -1,5 +1,45 @@
 # webdev-certificate-monorepo
 
+## 2.14.2026
+
+1. Version 1 sync-repo changed to v4 where .7z and SOLUTIONS folder are differentially pushed.
+```sh
+ # Step 2a: Exclude .7z files
+  if [ "$exclude_7z" = true ]; then
+    git ls-files "*.7z" 2>/dev/null | while read -r file; do
+      git rm --cached -q "$file" 2>/dev/null || true
+      rm -f "$file" 2>/dev/null || true
+    done
+    git add -A
+  fi
+
+  # Step 2b: Exclude SOLUTIONS folders (always on public repos)
+  if [ "$strip_solutions" = true ]; then
+    # Find all files under any SOLUTIONS directory at any depth
+    git ls-files 2>/dev/null | grep -i "/SOLUTIONS/\|^SOLUTIONS/" | while read -r file; do
+      git rm --cached -q "$file" 2>/dev/null || true
+      rm -f "$file" 2>/dev/null || true
+    done
+    git add -A
+  fi
+```
+1. Branch develop to work on SOLUTIONS folder first. Then swithched to main. Folder SOLUTIONS was not automatically deleted (default behavior, even asked to retry), inside is a zip (non-tracked file) and nothing else. I asked about forcing a commit but since folder is empty it won't do anything. 
+1. Only option to merge only one folder onto main from develop
+1. But first check what is being tracked:
+```sh
+   git ls-files | grep sync // display all sync-repos versions. 
+   git ls-files | grep SOLUTIONS // or any other folder ==> no result
+   git ls-files | grep all-recipes // list the content of cis-241-art-225/all-recipes/*
+```
+1. Next step merge:
+```sh
+   git checkout main
+   git checkout develop -- SOLUTIONS/
+   git commit -m "Merge folder SOLUTIONS from develop"
+   git push
+```
+
+
 ## 2.8.2026
 Current version of sync-repo is still 1: ie, it is saving full solutions and 7z in private-gitea/github. No amend in git commit yet.
 
