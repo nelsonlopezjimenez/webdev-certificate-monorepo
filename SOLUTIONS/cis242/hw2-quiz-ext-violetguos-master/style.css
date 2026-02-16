@@ -1,0 +1,58 @@
+/* TODO(you): Write the CSS to finish the assignment! */
+
+:root{
+    --section-width: 700px;
+    --padding-size: 10px;
+    --grid-size: calc(var(--section-width)*0.325);
+}
+
+.choice-grid{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;  
+}
+
+.choice-grid div img {
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.choice-grid div{
+    width: var(--grid-size);
+    border: 1px #dcdcdc;
+    background-color: #f4f4f4;
+    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+
+
+@media (max-width: 700px) {
+    :root{
+        --section-width: 95%;
+        --padding-size: 10px;
+        --grid-size: calc(var(--section-width)*0.325);
+    }
+    article{
+        width: var(--section-width);
+    }
+    header div span {
+        display: none;
+    }
+}
+
+@media (max-width: 500px) {
+    :root{
+        --section-width: 95%;
+        --padding-size: 10px;
+        --grid-size: calc(var(--section-width)*0.49);
+    }
+    article{
+        width: var(--section-width);
+    }
+    header div span {
+        display: none;
+    }
+}
