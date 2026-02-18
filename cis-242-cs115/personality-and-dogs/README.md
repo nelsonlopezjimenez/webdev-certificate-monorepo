@@ -72,7 +72,8 @@ Much of the CSS has already been completed for you, but you need to finish styli
 You need to also modify the CSS and HTML if necessary to implement support a mobile view. The video below shows an example of how it should look and behave:
 
 <!-- <iframe src="https://drive.google.com/file/d/0BxtKIz3gISunbDNhclNnMmNJVkU/preview" width="640" height="360"></iframe> -->
-<video src="quiz-responsive-behavior.mov.mp4" width="640" height="360"></video>
+<video src="./quiz-responsive-behavior.mov.mp4" width="640" height="360"></video>
+
 
 **Note:** You should **not** have to load your web page on your phone in order to test this layout. Emulate mobile in [Chrome](https://developers.google.com/web/tools/chrome-devtools/device-mode/), [FireFox](https://developer.mozilla.org/en-US/docs/Tools/Responsive_Design_Mode), or [Safari](http://www.kirkville.com/use-safaris-responsive-design-mode-in-el-capitan/).
 
