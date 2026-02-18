@@ -7,6 +7,12 @@
   homework because your style edits are all in one place.
 
 **/
+.menu-btn {
+  font-size: 30px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
 
 article {
   margin: auto;
@@ -29,12 +35,16 @@ h1 {
   margin: 18px 0;
 }
 
+
 header h1 {
   font-size: 32px;
+  text-align:center;
+  flex-grow:3;
 }
 
 header {
   display: flex;
+  justify-items: center;
   border-bottom: 1px solid #cccccc;
   height: 80px;
 }

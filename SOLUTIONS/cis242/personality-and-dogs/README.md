@@ -1,4 +1,6 @@
-# HW2: Personality quiz; From Stanford CS193X
+# CIS 242 : Personality Quiz Project
+
+Based on Stanford University course CS193X from spring 2023
 
 You are required to complete two parts of the assignment:
 
@@ -14,29 +16,15 @@ In this homework, you will be practicing the HTML, CSS, and JavaScript.
 
 For **Part 1**, you will be implementing a [Buzzfeed](https://www.buzzfeed.com/)-style personality quiz. A lot of the HTML and CSS is already implemented for you, but you will still need to make some HTML and CSS modifications to complete the assignment. None of the JavaScript has been implemented for you, other than `constants.js` that constants the quiz result information.
 
-
-
 ---
 
-
-<section class="part" markdown="1">
-## Part 0: Getting started
-
-
-
-
-
-</section>
-
-
-<section class="part" markdown="1">
 ## Part 1: Personality quiz `index.html`
 
 For Part 1, you will create a personality quiz called "Adopt A Dog And We'll Reveal A Deep Truth About You."
 
 We have completed a lot of the HTML and CSS for you already. We expect you will have to make modifications to the following files to complete the assignment:
 - `index.html`: Most of the HTML is written for you, but you will likely need to make some modifications for the mobile layout and the JavaScript.
-- `style.css`: A lot of the CSS is already written for you in `provided-style.css`, but you will need to make some modifications for all parts of the assignment. Please make your CSS changes in `style.css` and not `provided-style.css`, so that the TAs have an easier time grading.
+- `style.css`: A lot of the CSS is already written for you in `provided-style.css`, but you will need to make some modifications for all parts of the assignment. Please make your CSS changes in `style.css` and not `provided-style.css`.
 - `script.js`: Write your JavaScript here.
 
 ### Overall appearance and behavior
@@ -58,8 +46,7 @@ Much of the CSS has already been completed for you, but you need to finish styli
 
 **Choice grid**
 <img src="images/hw2-dog-grid.png" class="screenshot" />
-- You should use a **multi-row flexbox** to achieve this layout.
-  - We didn't talk about multi-row flexbox layout in class, but you can allow flex items to wrap onto the next line (i.e. the second row) by setting `flex-wrap: wrap;` onto the flex container.
+- You should use a **multi-row flexbox** to achieve this layout by allowing flex items to wrap onto the next line (i.e. the second row) by setting `flex-wrap: wrap;` onto the flex container.
 - There is `20px` of space between each row
 - Each flex item has a width of `32.5%`, and each item is spread out with as much space between the other as there can be in the flex container.
 
@@ -69,12 +56,10 @@ Much of the CSS has already been completed for you, but you need to finish styli
   - Background color is `#f4f4f4`
   - Border is `1px` thick and color is `#dcdcdc`
   - Width of the element **including** the border is `32.5%`
-    - **Hint:** The `box-sizing` CSS property might be helpful. See April 12 slides.
+    - **Hint:** The `box-sizing` CSS property might be helpful.
   - Space between the border and the content of the element is `10px`.
 - Choice image (i.e. dog, house, or toy image)
   - **Hints:** We did not tell you the width or height of the image intentionally, as we want you figure out how to get it to behave like this. There are many ways to get the images to "shrink" inside its container
-    - The [tic-tac-toe example]({{relative}}lectures/09/tictactoe.html) has almost the same layout, and fits the X and O images into the invisible `<div>` containers. Take a look at the CSS for this example.
-    - The beverage image of HW1 also had similar behavior. Recall what dimensions we gave you for the beverage image.
     - You are allowed to modify the HTML if you'd like (but you don't necessarily have to if you choose a different approach)
     - You might also find [`:first-child`](https://developer.mozilla.org/en-US/docs/Web/CSS/:first-child) pseudo-selector helpful (but you don't necessarily have to if you choose a different approach)
 - Checkbox
@@ -87,6 +72,7 @@ Much of the CSS has already been completed for you, but you need to finish styli
 You need to also modify the CSS and HTML if necessary to implement support a mobile view. The video below shows an example of how it should look and behave:
 
 <iframe src="https://drive.google.com/file/d/0BxtKIz3gISunbDNhclNnMmNJVkU/preview" width="640" height="360"></iframe>
+<iframe src="" width="640" height="360"></iframe>
 
 Please see April 14 Slides for details on how to implement and test your homework layout in mobile view on your desktop Chrome.
 
