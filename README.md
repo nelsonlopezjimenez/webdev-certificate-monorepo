@@ -1,5 +1,40 @@
 # webdev-certificate-monorepo
 
+## 2.20.2026
+### Make sure history stays linear
+# On new machine, before working
+git pull private-github main
+
+# Work, commit, push
+git push private-github main
+```
+
+As long as you pull before committing, history stays linear.
+
+**Public repos** — doesn't matter. They get force-pushed every sync, so whatever machine runs `npm run sync` last wins. That's fine since public repos are just a mirror.
+
+**The only rule:** Don't work on both machines simultaneously without syncing between them. The workflow is:
+```
+Machine A: commit → npm run sync → done for the day
+Machine B: git pull private-github main → commit → npm run sync
+
+### After cloning into new machine:
+# 1. Clone
+git clone git@github.com:nelsonlopezjimenez/webdev-certificate-monorepo-solution.git
+cd webdev-certificate-monorepo-solution
+
+# 2. Rename default remote
+git remote rename origin private-github
+
+# 3. Add other remotes
+npm run setup:remotes
+
+# 4. Install hooks
+npm run setup:hooks
+
+# 5. Verify
+npm run sync:status
+
 ## 2.14.2026
 
 1. Version 1 sync-repo changed to v4 where .7z and SOLUTIONS folder are differentially pushed.
