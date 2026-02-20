@@ -14,6 +14,7 @@
     "strip:student":    "node strip-solutions.js . -o ./student-dist -r todo",
     "strip:blank":      "node strip-solutions.js . -o ./student-dist -r blank",
     "setup:hooks":      "cp post-commit .git/hooks/post-commit && chmod +x .git/hooks/post-commit && echo '✅ Post-commit hook installed.'",
-   "setup:remotes":    "git remote add private-gitea http://192.168.1.28:3000/s888888/webdev-monorepo-solution.git && git remote add private-github git@github.com:nelsonlopezjimenez/webdev-certificate-monorepo-solution.git && git remote add public-gitea http://192.168.1.28:3000/s888888/webdev-monorepo.git && git remote add public-github git@github.com:nelsonlopezjimenez/webdev-certificate-monorepo.git && echo '✅ All remotes configured'"
+   "setup:remotes":    "git remote add private-gitea http://192.168.1.28:3000/s888888/webdev-monorepo-solution.git && git remote add private-github git@github.com:nelsonlopezjimenez/webdev-certificate-monorepo-solution.git && git remote add public-gitea http://192.168.1.28:3000/s888888/webdev-monorepo.git && git remote add public-github git@github.com:nelsonlopezjimenez/webdev-certificate-monorepo.git && echo '✅ All remotes configured'",
+   "pull": "git fetch private-github && git reset --hard private-github/main"
   }
 }
