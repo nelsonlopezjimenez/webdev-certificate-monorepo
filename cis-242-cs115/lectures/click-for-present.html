@@ -1,0 +1,16 @@
+<h1></h1>
+<img src="gift.png" alt="image of a present">
+<script>
+    function openPresent(event) {
+        const myImg = event.currentTarget;
+        const myHeader1 = document.querySelector('h1');
+        // alert(e.target);
+        console.log(myImg);
+        myImg.setAttribute('src', 'cake2.png');
+        myHeader1.textContent = "HOORAAAAY!!!!"
+
+        myImg.removeEventListener('click', openPresent);
+    }
+    const myImg = document.querySelector('img');
+    myImg.addEventListener('click', openPresent);
+</script>

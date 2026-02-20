@@ -1,0 +1,17 @@
+<div id="container"></div>
+<img src="gift.png" alt="image of a present">
+<script>
+    function openPresent(event) {
+       const newHeader = document.createElement('h1');
+       newHeader.textContent = "HOORAY!!";
+       const newImage = document.createElement('img');
+       newImage.setAttribute('src', "cake2.png");
+
+       const container = document.querySelector('#container');
+       container.innerHTML = "";
+       container.appendChild(newHeader);
+       container.appendChild(newImage);
+    }
+    const myImg = document.querySelector('img');
+    myImg.addEventListener('click', openPresent);
+</script>

@@ -1,0 +1,26 @@
+<style>
+    .hidden {
+        display: none;
+    }
+</style>
+<div id="gift-outside">
+    <h1>Click to get a present:</h1>
+    <img src="gift.png" alt="image of a present">
+</div>
+<div id="gift-inside" class="hidden">
+    <h1>Click to get a present:</h1>
+    <img src="cake2.png" alt="image of a cake">
+</div>
+<script>
+    function openPresent() {
+        const myImg = event.currentTarget;
+        const myHeader1 = document.querySelector('h1');
+
+        const giftOutside = document.querySelector('#gift-outside');
+        const giftInside = document.querySelector('#gift-inside');
+        giftOutside.classList.add('hidden');
+        giftInside.classList.remove('hidden');
+    }
+    const myImg = document.querySelector('#gift-outside img');
+    myImg.addEventListener('click', openPresent);
+</script>
