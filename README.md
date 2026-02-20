@@ -1,7 +1,9 @@
 # webdev-certificate-monorepo
 
 ## 2.20.2026
-### Make sure history stays linear
+
+### Make sure history stays linear and linear
+
 # On new machine, before working
 git pull private-github main
 
