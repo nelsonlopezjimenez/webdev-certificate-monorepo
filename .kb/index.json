@@ -1,0 +1,1210 @@
+[
+  {
+    "path": "README.md",
+    "title": "webdev-certificate-monorepo",
+    "tools": [
+      "git",
+      "npm",
+      "find",
+      "grep",
+      "bash"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "git pull private-github main",
+    "date": "",
+    "modified": "2026-02-20T11:42:05.070629"
+  },
+  {
+    "path": "TODO.md",
+    "title": "With the artifact approach:",
+    "tools": [
+      "git",
+      "npm",
+      "node",
+      "go",
+      "curl",
+      "bash"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "script"
+    ],
+    "excerpt": "**What changes:**\n- `.7z` files go in `.gitignore` \u2014 not tracked in Git at all\n- All 4 repos stay lightweight (no binaries)\n- `.7z` files are uploaded as **Gitea release attachments** on the public-gi...",
+    "date": "",
+    "modified": "2026-02-14T06:29:54.767131"
+  },
+  {
+    "path": "books\\js-from-beg-to-professional-chapter-src-code.md",
+    "title": "Chapter 01",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "troubleshooting",
+      "script"
+    ],
+    "excerpt": "Exercise_1.1.js\n<pre>\n4 + 10\n14",
+    "date": "",
+    "modified": "2026-02-06T08:52:40.980585"
+  },
+  {
+    "path": "books\\js-from-beg-to-professional.md",
+    "title": "JavaScript from Beginner to Professional: Learn JavaScript quickly by building fun, interactive, and dynamic web apps, games, and pages",
+    "tools": [
+      "node",
+      "react"
+    ],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "1. Percival\n1. Laurence Svekis\n1. Maaike van Putten\n1. Codestars By Rob Percival",
+    "date": "",
+    "modified": "2026-02-06T08:52:40.981587"
+  },
+  {
+    "path": "books\\wieruch-on-monorepo.md",
+    "title": "Monorepos in JavaScript & TypeScript",
+    "tools": [
+      "git",
+      "npm",
+      "node",
+      "find",
+      "go",
+      "vite",
+      "react"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "<Sponsorship />",
+    "date": "2025-02-03T09:52:46+02:00",
+    "modified": "2026-02-06T08:52:40.983586"
+  },
+  {
+    "path": "cis-242-cs115\\README.md",
+    "title": "CIS 242 JavaScript",
+    "tools": [
+      "find",
+      "go"
+    ],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "1. By Laurence Svekis | Rob Percival | Ms. Maaike van Putten | Enix Ltd\n1. Publication Date: 2021-12-15\n1. ISBN: 9781800562523",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.435735"
+  },
+  {
+    "path": "cis-243-245\\LINKS.md",
+    "title": "README.md",
+    "tools": [
+      "git",
+      "go",
+      "python",
+      "vite",
+      "react",
+      "express"
+    ],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "1. ![calendar 2025](image-folder/calendar.png)\n1. C:\\Users\\localepsilon\\Documents\\__REPO\\react.dev : github repo, node_modules compressed as 7z\n1. C:\\Users\\localepsilon\\Documents\\AFTER_IMAGE\\2025\\vite...",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.453743"
+  },
+  {
+    "path": "cis-243-245\\README.md",
+    "title": "cis243 cis245",
+    "tools": [],
+    "types": [
+      "command",
+      "script"
+    ],
+    "excerpt": "1. Introduction to backend server development\n1. How the  Internet works\n1. How the browser works\n1. Command  line interface and linux commands\n1. edu.gcfglobal.org offline resources: computer basics,...",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.455740"
+  },
+  {
+    "path": "cis-244-246\\README.md",
+    "title": "cis 244 and cis 246",
+    "tools": [],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "1. 5.16.2025: lab8 lab10 api and lab10 frontend",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.060682"
+  },
+  {
+    "path": "git\\claude-git-tag-complete-guide.md",
+    "title": "Tag the current commit",
+    "tools": [
+      "git",
+      "go",
+      "bash"
+    ],
+    "types": [
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "Git tags are **references that point to specific commits** in your repository's history. They're used to mark important points like release versions, milestones, or significant commits that you want t...",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.838653"
+  },
+  {
+    "path": "git\\finding-big-files.md",
+    "title": "Finding big items in repo as well in history",
+    "tools": [
+      "git",
+      "find",
+      "grep",
+      "awk",
+      "curl",
+      "bash",
+      "vite",
+      "express"
+    ],
+    "types": [
+      "installation"
+    ],
+    "excerpt": "```\nlocalepsilon@cis0768 MINGW64 ~/Documents/__REPO/webdev-certificate-monorepo-solution (master)\n$ du -sh .git\n139M    .git",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.587591"
+  },
+  {
+    "path": "git\\merge-cherry-pick.md",
+    "title": "Untitled",
+    "tools": [
+      "git",
+      "bash"
+    ],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "There are a few common approaches depending on your situation:",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.588596"
+  },
+  {
+    "path": "git\\mermaid-preview-vscode.md",
+    "title": "Untitled",
+    "tools": [],
+    "types": [
+      "installation",
+      "command"
+    ],
+    "excerpt": "Yes \u2014 install the extension **\"Markdown Preview Mermaid Support\"** by Matt Bierner:",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.589594"
+  },
+  {
+    "path": "git\\README.md",
+    "title": "Course Assignments \u2014 Two-Remote Workflow",
+    "tools": [
+      "git",
+      "npm",
+      "bash"
+    ],
+    "types": [
+      "installation",
+      "command",
+      "script"
+    ],
+    "excerpt": "The `solution` branch is the single source of truth. A pre-push hook automatically strips solution code and syncs the clean version to `main`, which is the only branch students see.",
+    "date": "",
+    "modified": "2026-02-21T08:17:05.485173"
+  },
+  {
+    "path": "git\\visual.md",
+    "title": "Untitled",
+    "tools": [
+      "git"
+    ],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "```mermaid\ngraph TD\n    subgraph LOCAL[\"\ud83d\udcbb Your Local Machine\"]\n        SOL[\"\ud83d\udd12 solution branch<br/>assignments + solutions<br/>with SOLUTION markers\"]\n        HOOK[\"\u26a1 pre-push hook<br/>strip-solutions....",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.590595"
+  },
+  {
+    "path": "laptop-configuration\\add_context_menu.md",
+    "title": "Prompt",
+    "tools": [],
+    "types": [
+      "installation",
+      "command"
+    ],
+    "excerpt": "my goal is to setup the local account programatically without using the GUI. In addition I want the syntax to add a program on either %localappdata% location or %public% location to the local user's c...",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.591599"
+  },
+  {
+    "path": "laptop-configuration\\disk-image-prep.md",
+    "title": "DISK IMAGE PREPARATION STEPS:",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "``` sh\nmkdir C:\\Users\\Public\\bin\nmkdir C:\\Users\\Public\\bin\\golden25-AppData\nmkdir C:\\Users\\Public\\bin\\golden25-AppData\\Local\nmkdir C:\\Users\\Public\\bin\\golden25-AppData\\Roaming\n```",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.593596"
+  },
+  {
+    "path": "laptop-configuration\\folder-structure.md",
+    "title": "Script Placement Structure",
+    "tools": [],
+    "types": [
+      "installation",
+      "script"
+    ],
+    "excerpt": "```\nC:\\Users\\Public\\bin\\\n\u251c\u2500\u2500 setup_appdata_silent.cmd       (automatic, silent)\n\u251c\u2500\u2500 setup_appdata_manual.cmd       (manual, with prompts)\n\u2514\u2500\u2500 golden25-AppData\\\n    \u251c\u2500\u2500 Local\\                     (targ...",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.594593"
+  },
+  {
+    "path": "links\\courses.md",
+    "title": "Computer Science Courses",
+    "tools": [],
+    "types": [
+      "script"
+    ],
+    "excerpt": "1. [CS193X Spring 2023](https://web.stanford.edu/class/cs193x/lectures.html)\n    1. [final-project](https://web.stanford.edu/class/cs193x/project/)\n    1. [Intro to JavaScript](https://web.stanford.ed...",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.600597"
+  },
+  {
+    "path": "links\\osn-available-websites.md",
+    "title": "OSN Working Websites (as of 2/17/2026)",
+    "tools": [
+      "react"
+    ],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "1. https://apnews.com\n1. https://www.jstor.org\n1. https://www.cjr.org\n1. https://plato.stanford.edu\n1. https://owl.purdue.edu\n1. https://www.freecodecamp.org\n1. https://www.w3schools.com\n1. https://de...",
+    "date": "",
+    "modified": "2026-02-18T15:02:12.997405"
+  },
+  {
+    "path": "question_bank\\README.md",
+    "title": "Claude quiz test",
+    "tools": [
+      "react",
+      "express"
+    ],
+    "types": [
+      "installation",
+      "script"
+    ],
+    "excerpt": "1. Using animal-express-mongo-schema-1.1.3.html\n1. Edit it by adding array with mongo questions in json format\n1. Change title in \n```js\n  const completeQuizData = {\n      title: \"MERN Stack Backend E...",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.608600"
+  },
+  {
+    "path": "SOLUTIONS\\CIS241\\allrecipes_lab_Part-A.md",
+    "title": "Full Stack Web Development",
+    "tools": [],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "In this assignment, you will be given a HTML file named \"index.html\" along with pictures and a video. You will apply CSS styling to this page to make it better suited for reading on the web using mode...",
+    "date": "",
+    "modified": "2026-02-21T08:17:48.934764"
+  },
+  {
+    "path": "SOLUTIONS\\claude\\6-instructor_answer_key.md",
+    "title": "AllRecipes HTML - Intentional Errors Answer Key",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "troubleshooting"
+    ],
+    "excerpt": "This document lists all intentional validation errors in the index.html file that students must find and fix using the W3C validator.",
+    "date": "",
+    "modified": "2026-02-21T08:17:49.609760"
+  },
+  {
+    "path": "SOLUTIONS\\claude\\all-recipes-lab-flexbox.md",
+    "title": "Full Stack Web Development",
+    "tools": [
+      "go"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "In this assignment, you will be given a HTML file named \"index.html\" along with pictures and a video. You will apply CSS styling to this page to make it better suited for reading on the web using mode...",
+    "date": "",
+    "modified": "2026-02-21T08:17:49.610757"
+  },
+  {
+    "path": "SOLUTIONS\\cis242\\hw2-quiz-ext-SergheiMihailov-master\\README.md",
+    "title": "HW2: Personality quiz; Chrome extension",
+    "tools": [],
+    "types": [
+      "script"
+    ],
+    "excerpt": "You are required to complete two parts of the assignment:",
+    "date": "",
+    "modified": "2026-02-21T08:17:48.935762"
+  },
+  {
+    "path": "SOLUTIONS\\cis242\\hw2-quiz-ext-violetguos-master\\README.md",
+    "title": "HW2: Personality quiz; Chrome extension",
+    "tools": [],
+    "types": [
+      "script"
+    ],
+    "excerpt": "You are required to complete two parts of the assignment:",
+    "date": "",
+    "modified": "2026-02-21T08:17:49.029764"
+  },
+  {
+    "path": "SOLUTIONS\\cis242\\personality-and-dogs\\README.md",
+    "title": "CIS 242 : Personality Quiz Project",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "command",
+      "script"
+    ],
+    "excerpt": "Based on Stanford University course CS193X from spring 2023",
+    "date": "",
+    "modified": "2026-02-21T08:17:49.127766"
+  },
+  {
+    "path": "SOLUTIONS\\cis242\\tic-tac-toe\\advanced\\algo-vanilla-react-factory.md",
+    "title": "Tic-Tac-Toe Game - Progressive Implementation",
+    "tools": [
+      "find",
+      "react"
+    ],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "**Tic-Tac-Toe** is a two-player game played on a 3x3 grid:\n- Players alternate turns placing their symbol (X or O)\n- First player to get 3 symbols in a row (horizontal, vertical, or diagonal) wins\n- I...",
+    "date": "",
+    "modified": "2026-02-21T08:17:49.568761"
+  },
+  {
+    "path": "SOLUTIONS\\cis242\\tic-tac-toe\\beginners\\vanilla-and-dom.md",
+    "title": "Tic-Tac-Toe for Teaching DOM Interactions",
+    "tools": [],
+    "types": [
+      "installation",
+      "command",
+      "script"
+    ],
+    "excerpt": "I'll create a progressive series starting with pure DOM manipulation, then build up complexity. Perfect for teaching!",
+    "date": "",
+    "modified": "2026-02-21T08:17:49.586762"
+  },
+  {
+    "path": "SOLUTIONS\\CIS241\\all-recipes\\README.md",
+    "title": "All Recipes Peach Cobbler",
+    "tools": [
+      "go"
+    ],
+    "types": [
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "1. First render ![6a first render](./images/image-2.png)\n1. ![first folder structure](./images/image-3.png)\n1. ![images after folder restructured](image.png)\n1. ![new folder structure](./images-4/imag...",
+    "date": "",
+    "modified": "2026-02-21T08:17:48.873760"
+  },
+  {
+    "path": "SOLUTIONS\\CIS241\\allrecipes-START\\allrecipes_lab_Part-A.md",
+    "title": "Full Stack Web Development",
+    "tools": [],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "In this assignment, you will be given a HTML file named \"index.html\" along with pictures and a video. You will apply CSS styling to this page to make it better suited for reading on the web using mode...",
+    "date": "",
+    "modified": "2026-02-21T08:17:48.912763"
+  },
+  {
+    "path": "question_bank\\html-generator\\README.md",
+    "title": "HTML QTI generator",
+    "tools": [],
+    "types": [
+      "installation"
+    ],
+    "excerpt": "1. add questions on json format:\n```js or json\n  {\n          id: 4024,\n          type: \"multiple_choice\",\n          category: \"Ternary Operator\",\n          difficulty: \"advanced\",\n          question: ...",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.609597"
+  },
+  {
+    "path": "question_bank\\html-generator\\sanity-check\\README.md",
+    "title": "Claude quiz test",
+    "tools": [
+      "react",
+      "express"
+    ],
+    "types": [
+      "installation",
+      "script"
+    ],
+    "excerpt": "1. Using animal-express-mongo-schema-1.1.3.html\n1. Edit it by adding array with mongo questions in json format\n1. Change title in \n```js\n  const completeQuizData = {\n      title: \"MERN Stack Backend E...",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.628592"
+  },
+  {
+    "path": "links\\linksecure\\batch-files.md",
+    "title": "Prompt",
+    "tools": [],
+    "types": [
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "cmd batch file, manual run when needed, console.log display, scope all for the first run, then symlinks only; report all findings each time for now.",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.603602"
+  },
+  {
+    "path": "cis-244-246\\recipe-app-2025\\README.md",
+    "title": "Recipe App",
+    "tools": [
+      "vite",
+      "react"
+    ],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "The goal of the recipe application is to study the provided code that allows to display all recipes, add a new recipe, and display just one recipe. You will implement the function update a recipe and ...",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.354685"
+  },
+  {
+    "path": "cis-244-246\\recipe-app-2025\\frontend-vite-2025\\README.md",
+    "title": "cis244-246/recipe-app-2025/frontend",
+    "tools": [
+      "mongodb",
+      "vite",
+      "react"
+    ],
+    "types": [
+      "installation",
+      "script"
+    ],
+    "excerpt": "1. ![recipe-app-no-apiCalls](image-1.png)",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.412690"
+  },
+  {
+    "path": "cis-244-246\\recipe-app-2025\\frontend-vite-2025\\public\\STEP-1J.md",
+    "title": "Step 1j : Recipe vite frontend",
+    "tools": [
+      "mongodb",
+      "vite",
+      "react"
+    ],
+    "types": [
+      "troubleshooting"
+    ],
+    "excerpt": "1. step-1a.png: title, List, Recipe, Form simple components\n1. step-1aa.png\n1. step-1b.png: Display three recipes hardcoded\n1. step-1bb.png\n1. step-1c.png App.jsx Form code begins\n1. step-1cc-form-fie...",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.494691"
+  },
+  {
+    "path": "cis-244-246\\offline-templates\\vite-other\\README.md",
+    "title": "Vite + Deno + React",
+    "tools": [
+      "vite",
+      "react"
+    ],
+    "types": [
+      "installation"
+    ],
+    "excerpt": "You need to have Deno v2.0.0 or later installed to run this repo.",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.239686"
+  },
+  {
+    "path": "cis-244-246\\offline-templates\\vite-react-js-no-router\\README.md",
+    "title": "React + Vite",
+    "tools": [
+      "vite",
+      "react"
+    ],
+    "types": [
+      "installation",
+      "script"
+    ],
+    "excerpt": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.281702"
+  },
+  {
+    "path": "cis-244-246\\offline-templates\\vite-react-ts\\README.md",
+    "title": "React + TypeScript + Vite",
+    "tools": [
+      "node",
+      "vite",
+      "react"
+    ],
+    "types": [
+      "installation",
+      "script"
+    ],
+    "excerpt": "This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.304684"
+  },
+  {
+    "path": "cis-243-245\\Challenges\\arrays.md",
+    "title": "Untitled",
+    "tools": [],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "1. **E1.6** Write a program that counts the number of letter occurrences in a string. Return an array that contains all letters and their count, like this for the string `cbb`: `[['c', 1],['b', 2]]`.\n...",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.451739"
+  },
+  {
+    "path": "cis-243-245\\Challenges\\palindrome.md",
+    "title": "Untitled",
+    "tools": [],
+    "types": [
+      "troubleshooting",
+      "script"
+    ],
+    "excerpt": "A palindrome is string or sequence of characters that reads the same backward as forward.",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.452736"
+  },
+  {
+    "path": "cis-243-245\\CURRICULUM\\express-todo.md",
+    "title": "Two-Week Express & MongoDB Backend Course",
+    "tools": [
+      "npm",
+      "node",
+      "find",
+      "mongodb",
+      "bash",
+      "express"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "Let's start with the absolute basics. First, initialize your project:",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.446735"
+  },
+  {
+    "path": "cis-243-245\\using-jwt\\README.md",
+    "title": "Hamzakhan securing express server",
+    "tools": [
+      "find",
+      "curl",
+      "express"
+    ],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "```js\n// server.js\nconst express = require('express');\nconst { registerUser, loginUser } = require('./userController');\nconst { verifyToken } = require('./authMiddleware');",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.530754"
+  },
+  {
+    "path": "cis-243-245\\week27.1\\README-week1.md",
+    "title": "cis243 cis245 week1 July 7 (M) to August 29 (F)",
+    "tools": [],
+    "types": [
+      "installation"
+    ],
+    "excerpt": "1. July 7, Monday staff meeting\n1. July 8-9 classroom setup: network, furniture, supplies\n1. July 10-11: Intro to Quarter 3: Backend server",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.579683"
+  },
+  {
+    "path": "cis-243-245\\week28.2\\README-week2.md",
+    "title": "cis243 cis245 week1 July 7 (M) to August 29 (F)",
+    "tools": [
+      "git",
+      "go",
+      "python",
+      "bash",
+      "react",
+      "express"
+    ],
+    "types": [
+      "command",
+      "script"
+    ],
+    "excerpt": "1. Introduction to backend server development\n1. How the  Internet works\n1. How the browser works\n1. Command  line interface and linux commands\n1. edu.gcfglobal.org offline resources: computer basics,...",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.022683"
+  },
+  {
+    "path": "cis-243-245\\week29.3\\build-a-calculator.md",
+    "title": "DEMO build a calculator",
+    "tools": [],
+    "types": [
+      "command",
+      "script"
+    ],
+    "excerpt": "In this demo we'll build a calculator using JavaScript and in particular I'll put a lot of emphasis on the topic of functions.\nSince we haven't talked yet about how to get input from the browser, or t...",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.027684"
+  },
+  {
+    "path": "cis-243-245\\week29.3\\cli-assign.md",
+    "title": "Lab2.3",
+    "tools": [],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "1. Navigate to week29.3 and create the folder \"animals\"\nPleases follow the instructions below:\n![alt text](../image-folder/image-3.png)\n(From udemy course by Colt Steele).\n1. Your assignment will be g...",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.028683"
+  },
+  {
+    "path": "cis-243-245\\week29.3\\README-week3.md",
+    "title": "cis243 cis245 week1 July 7 (M) to August 29 (F)",
+    "tools": [
+      "bash"
+    ],
+    "types": [
+      "command"
+    ],
+    "excerpt": "1. Read the documents on READ folder: fragments of 2025 bootcamp by Flavio Copes. Files are in docx format, so you will have to open them in MS Word. ",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.026683"
+  },
+  {
+    "path": "cis-243-245\\week30.4\\mern_js_curriculum.md",
+    "title": "2-Week JavaScript & NPM Curriculum for MERN Stack",
+    "tools": [
+      "npm",
+      "node",
+      "find",
+      "mongodb",
+      "react",
+      "express"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "**Learning Objectives:**\n- Understand modern JavaScript syntax essential for Node.js\n- Master destructuring, arrow functions, and template literals\n- Work with let/const vs var",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.040688"
+  },
+  {
+    "path": "cis-243-245\\week30.4\\README.md",
+    "title": "Week 30.4",
+    "tools": [
+      "npm",
+      "node",
+      "react",
+      "express"
+    ],
+    "types": [
+      "installation",
+      "command",
+      "script"
+    ],
+    "excerpt": "1. Modern JavaScript syntax essential for server-side development\n1. NPM ecosystem and package management\n1. Core array methods (map, filter, reduce, sort) with practical exercises",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.032689"
+  },
+  {
+    "path": "cis-243-245\\week31.5\\claude-promp-output.md",
+    "title": "Prompt",
+    "tools": [],
+    "types": [
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "I want  few and simple examples of landing pages using tailwindcss as well as flex for the layouts",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.051682"
+  },
+  {
+    "path": "cis-243-245\\week32.6\\express-todo.md",
+    "title": "Express & MongoDB Backend Course",
+    "tools": [
+      "npm",
+      "find",
+      "mongodb",
+      "bash",
+      "express"
+    ],
+    "types": [
+      "installation",
+      "script"
+    ],
+    "excerpt": "Let's start with the absolute basics. First, initialize your project:",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.056686"
+  },
+  {
+    "path": "cis-243-245\\week32.6\\README.md",
+    "title": "Week 6",
+    "tools": [],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "1. GET vs POST\n1. Import/export syntax",
+    "date": "",
+    "modified": "2026-02-06T08:52:42.054682"
+  },
+  {
+    "path": "cis-243-245\\week28.2\\Bash Command Line\\intro-to-unix\\README.md",
+    "title": "How to View this Assignment",
+    "tools": [
+      "git",
+      "find",
+      "grep",
+      "bash"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "A good development setup for this assignment may look like: one terminal window on\nleft-handside with assignment instructions, one terminal on righthand side for\ninputting commands. ",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.584681"
+  },
+  {
+    "path": "cis-243-245\\week28.2\\Bash Command Line\\more-bash\\README.md",
+    "title": "Overview: More Bash Practice **last modified 7.20.2025**",
+    "tools": [
+      "tar",
+      "go",
+      "bash"
+    ],
+    "types": [
+      "installation",
+      "command"
+    ],
+    "excerpt": "This assignment focuses on using the bash shell to execute common Unix commands.  You will create a file named ``more-bash-answers.txt`` that contains your answers to several questions below.",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.834697"
+  },
+  {
+    "path": "cis-243-245\\week28.2\\Bash Command Line\\moving-files\\README.md",
+    "title": "Bash: Moving Files **Last modified 7.20.2025**",
+    "tools": [
+      "curl",
+      "bash"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "An assignment designed to challenge students to manipulate files and folders on the command line.",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.894681"
+  },
+  {
+    "path": "cis-243-245\\week28.2\\Bash Command Line\\moving-files\\challenge_files\\delete_this_directory\\delete_tips.md",
+    "title": "Untitled",
+    "tools": [],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "You can use `rm -r` to remove directories and the files inside them.",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.897684"
+  },
+  {
+    "path": "cis-243-245\\Challenges\\QUESTION-BY-STUDENTS\\howto-reset-main-branch.md",
+    "title": "howto reset local/main branch to reflect remote/main",
+    "tools": [
+      "git"
+    ],
+    "types": [
+      "command"
+    ],
+    "excerpt": "Generated by AI in chrome",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.449735"
+  },
+  {
+    "path": "cis-243-245\\Challenges\\QUESTION-BY-STUDENTS\\howto-safely-delete-local-main.md",
+    "title": "howto safely delete your local main branch in Git",
+    "tools": [
+      "git"
+    ],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "Generated by AI in chrome",
+    "date": "",
+    "modified": "2026-02-06T08:52:41.450733"
+  },
+  {
+    "path": "cis-242-cs115\\freecodecamp\\obj-build-record-collection.js.md",
+    "title": "Claude refactored",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "script"
+    ],
+    "excerpt": "A couple of observations before the refactor:",
+    "date": "",
+    "modified": "2026-02-15T07:41:36.298265"
+  },
+  {
+    "path": "cis-242-cs115\\lectures\\click-for-present.html.md",
+    "title": "Web Programming Fundamentals",
+    "tools": [],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "Let's give us a present.\nAfter receiving the present (click event), let's show our thanks\n![gift](gift.png)",
+    "date": "",
+    "modified": "2026-02-20T19:02:48.656053"
+  },
+  {
+    "path": "cis-242-cs115\\midterm\\midterm-open-questions.md",
+    "title": "\ud83d\udcdd **JavaScript Midterm - Written Response Questions**",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "---",
+    "date": "",
+    "modified": "2026-02-21T08:17:05.310167"
+  },
+  {
+    "path": "cis-242-cs115\\personality-and-dogs\\README.md",
+    "title": "CIS 242 : Personality Quiz Project",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "command",
+      "script"
+    ],
+    "excerpt": "Based on Stanford University course CS193X from spring 2023",
+    "date": "",
+    "modified": "2026-02-18T12:44:55.179009"
+  },
+  {
+    "path": "cis-242-cs115\\review\\for_of-vs-for_in.md",
+    "title": "Untitled",
+    "tools": [],
+    "types": [
+      "troubleshooting",
+      "script"
+    ],
+    "excerpt": "**`for...in`** is for objects, **`for...of`** is for iterables (arrays, maps, sets, etc.).",
+    "date": "",
+    "modified": "2026-02-14T16:21:12.561926"
+  },
+  {
+    "path": "cis-242-cs115\\review\\if-else.md",
+    "title": "Untitled",
+    "tools": [],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "Let me present the examples directly:",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.490597"
+  },
+  {
+    "path": "cis-242-cs115\\theory\\break-continue-modern.md",
+    "title": "Untitled",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "It's **accepted**, yes \u2014 but with nuance. The stance has shifted over time:",
+    "date": "",
+    "modified": "2026-02-15T09:03:26.394593"
+  },
+  {
+    "path": "cis-242-cs115\\theory\\closures.md",
+    "title": "Untitled",
+    "tools": [
+      "react"
+    ],
+    "types": [
+      "installation",
+      "script"
+    ],
+    "excerpt": "A closure is a function that **remembers the variables from its outer scope** even after that outer scope has finished executing.",
+    "date": "",
+    "modified": "2026-02-15T09:36:14.634081"
+  },
+  {
+    "path": "cis-242-cs115\\theory\\large-array-what-is-large.md",
+    "title": "Untitled",
+    "tools": [],
+    "types": [
+      "script"
+    ],
+    "excerpt": "There's no magic number \u2014 it depends on the environment and what you're doing. But rough practical thresholds:",
+    "date": "",
+    "modified": "2026-02-15T07:51:07.137645"
+  },
+  {
+    "path": "cis-242-cs115\\theory\\linter-formatter-biome.md",
+    "title": "Untitled",
+    "tools": [
+      "react"
+    ],
+    "types": [
+      "installation"
+    ],
+    "excerpt": "The landscape has shifted significantly. **Airbnb's ESLint config is no longer the default recommendation** \u2014 it's still used but considered heavy and opinionated for modern setups.",
+    "date": "",
+    "modified": "2026-02-15T09:13:26.445711"
+  },
+  {
+    "path": "cis-242-cs115\\theory\\new-array-object-keyword.md",
+    "title": "Untitled",
+    "tools": [],
+    "types": [
+      "command",
+      "script"
+    ],
+    "excerpt": "You're thinking of **stack vs heap** memory, but the reality in JavaScript is a bit different than what you may have read:",
+    "date": "",
+    "modified": "2026-02-15T08:27:36.858401"
+  },
+  {
+    "path": "cis-242-cs115\\theory\\obj-are-not-iterable.md",
+    "title": "Untitled",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "troubleshooting",
+      "script"
+    ],
+    "excerpt": "No. **Plain objects are not iterable**, regardless of nesting. They don't implement the `Symbol.iterator` protocol.",
+    "date": "",
+    "modified": "2026-02-15T08:50:55.709962"
+  },
+  {
+    "path": "cis-242-cs115\\theory\\splice-vs-toSpliced.md",
+    "title": "Untitled",
+    "tools": [
+      "react"
+    ],
+    "types": [
+      "script"
+    ],
+    "excerpt": "`splice` mutates in place, which breaks the immutable pattern. But it's still used because:",
+    "date": "",
+    "modified": "2026-02-15T07:47:40.741322"
+  },
+  {
+    "path": "cis-242-cs115\\theory\\structuredClone-builtin.md",
+    "title": "Untitled",
+    "tools": [
+      "node",
+      "go"
+    ],
+    "types": [
+      "script"
+    ],
+    "excerpt": "Yes, `structuredClone()` is a **built-in global function** (added 2022, widely supported in all modern browsers and Node 17+):",
+    "date": "",
+    "modified": "2026-02-15T08:06:19.814596"
+  },
+  {
+    "path": "cis-242-cs115\\midterm\\jasmine-full\\README.md",
+    "title": "Intro to Jasmine Code Challenges",
+    "tools": [],
+    "types": [
+      "command",
+      "script"
+    ],
+    "excerpt": "Your assignment is to write the following functions, in ECMAScript 6 (aka ES6) Arrow Function format, using the descriptions below. When defining your functions, you cannot use built-in JavaScript Arr...",
+    "date": "",
+    "modified": "2025-01-30T15:18:41.495357"
+  },
+  {
+    "path": "cis-242-cs115\\MDN-challenges\\assessment-finished\\marking-guide.md",
+    "title": "Marking guide for \"Silly story generator\"",
+    "tools": [
+      "find",
+      "go"
+    ],
+    "types": [
+      "installation",
+      "command",
+      "script"
+    ],
+    "excerpt": "The following guide outlines a marking guide for the MDN Learning Area JavaScript Topic \u2014 [Silly story generator](https://developer.mozilla.org/en-US/Learn/JavaScript/First_steps/Silly_story_generator...",
+    "date": "",
+    "modified": "2026-02-14T06:17:32.302064"
+  },
+  {
+    "path": "cis-242-cs115\\MDN-challenges\\gallery\\marking-guide.md",
+    "title": "Marking guide for \"Image gallery\"",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "script"
+    ],
+    "excerpt": "The following guide outlines a marking guide for the MDN Learning Area JavaScript Topic \u2014 [Image gallery](https://developer.mozilla.org/en-US/Learn/JavaScript/Building_blocks/Image_gallery). Each subt...",
+    "date": "",
+    "modified": "2026-02-14T06:17:32.364070"
+  },
+  {
+    "path": "cis-242-cs115\\lectures\\tic-tac-toe\\tictactoe.md",
+    "title": "Tic Tac Toe",
+    "tools": [],
+    "types": [
+      "reference"
+    ],
+    "excerpt": "1. Every time we click on an empty space, change the empty space in an \"X\" by adding an image of an \"x\" into the empty <div>\n1. After our turn, the computer puts an \"O\" in a random empty space\n1. When...",
+    "date": "",
+    "modified": "2026-02-20T19:02:48.674053"
+  },
+  {
+    "path": "cis-241-art-225\\all-recipes\\allrecipes_lab_Part-A.md",
+    "title": "Full Stack Web Development",
+    "tools": [],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "In this assignment, you will be given a HTML file named \"index.html\" along with pictures and a video. You will apply CSS styling to this page to make it better suited for reading on the web using mode...",
+    "date": "",
+    "modified": "2026-02-14T06:17:32.253066"
+  },
+  {
+    "path": "cis-241-art-225\\cookie-monster\\instructions.md",
+    "title": "Assignment: Cookie Monster",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "The purpose of this lab is to practice writing Cascading Style Sheets to control the appearance and layout of a web page using modern CSS layout techniques.",
+    "date": "",
+    "modified": "2026-02-06T13:38:21.469594"
+  },
+  {
+    "path": "cis-241-art-225\\midterm\\midterm-answers-key.md",
+    "title": "\ud83d\udcda **HTML Midterm - Answer Key**",
+    "tools": [],
+    "types": [
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "---",
+    "date": "",
+    "modified": "2026-02-21T08:17:05.275166"
+  },
+  {
+    "path": "cis-241-art-225\\midterm\\midterm-open-questions.md",
+    "title": "\ud83d\udcdd **HTML Midterm - Written Response Questions**",
+    "tools": [],
+    "types": [
+      "troubleshooting",
+      "command",
+      "script"
+    ],
+    "excerpt": "---",
+    "date": "",
+    "modified": "2026-02-14T06:17:32.294064"
+  },
+  {
+    "path": "cis-241-art-225\\MDN_introduction-to-css\\fundamental-css-comprehension-finished\\marking-guide.md",
+    "title": "Marking guide for \"Fundamental CSS comprehension\"",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "installation",
+      "troubleshooting"
+    ],
+    "excerpt": "The following guide outlines a marking guide for the MDN Learning Area HTML Topic \u2014 [Fundamental CSS comprehension](https://developer.mozilla.org/en-US/Learn/CSS/Introduction_to_CSS/Fundamental_CSS_co...",
+    "date": "",
+    "modified": "2026-02-14T06:17:32.231066"
+  },
+  {
+    "path": "cis-241-art-225\\MDN-challenges-form-balls\\gallery\\marking-guide.md",
+    "title": "Marking guide for \"Image gallery\"",
+    "tools": [
+      "find"
+    ],
+    "types": [
+      "script"
+    ],
+    "excerpt": "The following guide outlines a marking guide for the MDN Learning Area JavaScript Topic \u2014 [Image gallery](https://developer.mozilla.org/en-US/Learn/JavaScript/Building_blocks/Image_gallery). Each subt...",
+    "date": "",
+    "modified": "2026-02-14T06:17:32.117092"
+  },
+  {
+    "path": "cis-241-art-225\\all-recipes\\all-recipes\\README.md",
+    "title": "All Recipes Peach Cobbler",
+    "tools": [
+      "go"
+    ],
+    "types": [
+      "troubleshooting",
+      "command"
+    ],
+    "excerpt": "- Understand viewport units (vw, vh) and their use in responsive design\n- Practice creating fluid typography",
+    "date": "",
+    "modified": "2026-02-17T09:22:01.433724"
+  }
+]
