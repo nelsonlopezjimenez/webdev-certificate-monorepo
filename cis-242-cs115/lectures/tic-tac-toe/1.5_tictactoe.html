@@ -1,0 +1,93 @@
+<style>
+    /**
+ See: CSS Variables
+ https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_variables
+**/
+    :root {
+        --grid-size: 300px;
+        --margin-size: 10px;
+        --square-size: calc((var(--grid-size) / 3) - var(--margin-size));
+    }
+
+    body {
+        font-family: sans-serif;
+    }
+
+    #grid {
+        align-content: space-between;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        height: var(--grid-size);
+        width: var(--grid-size);
+    }
+
+    #grid div {
+        background-color: white;
+        height: var(--square-size);
+        width: var(--square-size);
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #grid div img {
+        width: 100%;
+    }
+</style>
+<h1>Tic-Tac-Toe</h1>
+<div id="grid">
+    <div id="one"></div>
+    <div id="two"></div>
+    <div id="thr"></div>
+
+    <div id="fou"></div>
+    <div id="fiv"></div>
+    <div id="six"></div>
+ 
+    <div id="sev"></div>
+    <div id="eig"></div>
+    <div id="nin"></div>
+</div>
+<script>
+// 1. Every time we click on an empty space, change the empty space in an "X" by adding an image of an "x" into the empty <div>
+// 2. After our turn, the computer puts an "O" in a random empty space
+// 3. When there are 3 Xs or 3 Os in a row, declare a winner
+
+    //v1.5.0 declare a winner
+    const freeBoxes = []; //global variable Map of box number to x or circle
+    const takenBoxes = {}; //maps box number to the owner
+
+    const boxes = document.querySelectorAll('#grid div');
+    for (const box of boxes) {
+        box.addEventListener('click', changeToX);
+        freeBoxes.push(box);
+    }
+    function computerChooseO() {
+        const allBoxes  = document.querySelectorAll('#grid div');
+        const index = Math.floor(Math.random() * freeBoxes.length);
+        const freeSpace = freeBoxes[index];
+        freeBoxes.splice(index, 1);
+        const image = document.createElement('img');
+        image.setAttribute('src', 'circle.png');
+        freeSpace.removeEventListener('click', changeToX);
+        freeSpace.appendChild(image);
+    }
+
+
+    function changeToX(event) {
+        console.log(freeBoxes)
+        const container = event.currentTarget;
+        const image = document.createElement('img');
+        image.setAttribute('src', 'x.png');
+        container.appendChild(image);
+        container.removeEventListener('click', changeToX);
+
+        const indexToRemove = freeBoxes.indexOf(container);
+        freeBoxes.splice(indexToRemove, 1);
+        computerChooseO();
+    }
+    
+</script>

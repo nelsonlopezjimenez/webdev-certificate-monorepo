@@ -1,4 +1,6 @@
-# Events
+# Web Programming Fundamentals
+
+## Events
 
 ## Click for a Present
 
