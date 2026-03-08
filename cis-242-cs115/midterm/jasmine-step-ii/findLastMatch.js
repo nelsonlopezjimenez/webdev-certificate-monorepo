@@ -20,5 +20,17 @@
  */
 
 function findLastMatch(letters, target) {
-  // Your code here
+
+  // === SOLUTION START ===
+  // TODO: Write your solution here
+  for (let i = letters.length -1; i >= 0; i--){
+    if (letters[i] === target){
+      return i;
+    }
+  }
+  return -1;
+  // === SOLUTION END ===
 }
+  // === SOLUTION START ===
+  // TODO: Write your solution here
+  // === SOLUTION END ===

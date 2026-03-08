@@ -24,5 +24,27 @@
  */
 
 function collectUntilSpace(chars) {
-  // Your code here
+  // === SOLUTION START ===
+  // TODO: Write your solution here
+  let i = 0;
+  let str = "";
+
+  function shouldStop(char){
+    return char === ' ' ? true : false;
+  }
+  while (i < chars.length) {
+    // Check condition
+    if (shouldStop(chars[i])) {
+      break; // Exit loop
+    }
+    // Do work
+    str += chars[i];
+    i++; // IMPORTANT: increment counter!
+  }
+  return str;
+  // === SOLUTION END ===
 }
+
+// === SOLUTION START ===
+// TODO: Write your solution here
+// === SOLUTION END ===
