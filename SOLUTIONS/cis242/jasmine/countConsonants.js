@@ -14,6 +14,7 @@
  *   // Code here only runs for consonants
  * }
  */
+const letters = process.argv.slice(2);
 
 function countConsonants(letters) {
   // === SOLUTION START ===
@@ -23,17 +24,18 @@ function countConsonants(letters) {
   }
   let counter = 0;
   if (letters.length === 0) {return 0}
-  
   for (let i = 0; i < letters.length; i++){
     if (isVowel(letters[i])){
       continue;
     }
+    console.log(`isVowel(${letters[i]}: ${isVowel(letters[i])})`)
     counter++;
   }
-
+  console.log(counter)
   return counter;
   // === SOLUTION END ===
 }
+countConsonants(letters);
   // === SOLUTION START ===
   // TODO: Write your solution here
   // === SOLUTION END ===

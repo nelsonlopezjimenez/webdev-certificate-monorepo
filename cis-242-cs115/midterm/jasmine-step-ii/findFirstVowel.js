@@ -17,7 +17,6 @@ function findFirstVowel(letters) {
   // === SOLUTION START ===
 // TODO: Write your solution here
 
-  // Your code here
   let result = "";
   if (letters.length === 0) { return null }
   for (let i = 0; i < letters.length; i++) {
@@ -30,6 +29,9 @@ function findFirstVowel(letters) {
       result = null;
     }
   }
-          // === SOLUTION END ===
+ // === SOLUTION END ===
   return result;
 }
+  // === SOLUTION START ===
+  // TODO: Write your solution here
+  // === SOLUTION END ===
