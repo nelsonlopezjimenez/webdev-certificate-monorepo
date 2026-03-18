@@ -21,15 +21,16 @@ function findFirstVowel(letters) {
     if ('AEIOU'.includes(letters[i])) {
       result = letters[i];
       //  ********* break closes the for loop
-      // break;
+       break;
     } else {
       result = null;
     }
   }
   console.log(result);
   return result;
+
 }
-findFirstVowel(letters);
+console.log(findFirstVowel(letters));
 
 function findFirstVowel1(letters) {
   let result = "";
@@ -86,7 +87,7 @@ function findFirstVowel3(letters) {
 }
 
 // Test it
-findFirstVowel3(['d', 'g', 'i']);
+//findFirstVowel3(['d', 'g', 'i']);
 
 // **Output:**
 // ```
