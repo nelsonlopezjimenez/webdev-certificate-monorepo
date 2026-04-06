@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CIS 242 – Date Challenges (Temporal API)</title>
+
+  <!--
+      ═══════════════════════════════════════════════════════════════════
+      WHAT IS A POLYFILL?
+      ═══════════════════════════════════════════════════════════════════
+      A polyfill is JavaScript code that adds a feature to a browser
+      that does not support it yet.
+
+      Temporal is a new JavaScript API approved by the TC39 standards
+      committee (Stage 3 as of 2024) but not yet built into all browsers.
+
+      This <script> tag loads the Temporal polyfill from a CDN
+      (Content Delivery Network — a server that hosts shared libraries).
+      It makes Temporal available globally as if the browser had it built in.
+
+      Once browsers fully support Temporal, you can remove this line
+      and the code below will still work without any other changes.
+      ═══════════════════════════════════════════════════════════════════
+    -->
+  <script src="./index.umd.js"></script>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 640px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+
+    h1 {
+      font-size: 1.4rem;
+    }
+
+    h2 {
+      font-size: 1rem;
+      color: #555;
+      margin-top: 0;
+    }
+
+    .challenge {
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .challenge h3 {
+      margin: 0 0 0.5rem;
+      font-size: 0.95rem;
+      color: #333;
+    }
+
+    button {
+      padding: 0.4rem 0.9rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      border: 1px solid #999;
+      border-radius: 4px;
+      background: #f5f5f5;
+    }
+
+    button:hover {
+      background: #e0e0e0;
+    }
+
+    .result {
+      margin-top: 0.6rem;
+      font-size: 1rem;
+      min-height: 1.4rem;
+      color: #222;
+    }
+
+    /* highlight the month fix so students notice it */
+    .month-note {
+      font-size: 0.8rem;
+      color: #2a7a2a;
+      margin-top: 0.3rem;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Your Name Here</h1>
+  <h2>CIS 242 – JavaScript Date Challenges — Temporal API</h2>
+
+  <!-- ── Starter: full date/time string ─────────────────────────── -->
+  <div class="challenge">
+    <h3>Starter – Display Date and Time</h3>
+    <button id="btn-datetime">Click me to display Date and Time</button>
+    <p class="result" id="result-datetime"></p>
+  </div>
+
+  <!-- ── Challenge 1: Year ───────────────────────────────────────── -->
+  <div class="challenge">
+    <h3>Challenge 1 – Display Year Only</h3>
+    <button id="btn-year">Display Year only</button>
+    <p class="result" id="result-year"></p>
+  </div>
+
+  <!-- ── Challenge 2: Month ─────────────────────────────────────── -->
+  <div class="challenge">
+    <h3>Challenge 2 – Display Month Only</h3>
+    <button id="btn-month">Display Month only</button>
+    <p class="result" id="result-month"></p>
+    <p class="month-note" id="month-note"></p>
+  </div>
+
+  <!-- ── Challenge 3: Day ───────────────────────────────────────── -->
+  <div class="challenge">
+    <h3>Challenge 3 – Display Day Only</h3>
+    <button id="btn-day">Display Day only</button>
+    <p class="result" id="result-day"></p>
+  </div>
+
+  <!-- ── Challenge 4: Full date ─────────────────────────────────── -->
+  <div class="challenge">
+    <h3>Challenge 4 – Display Full Date</h3>
+    <button id="btn-fulldate">Display Full Date</button>
+    <p class="result" id="result-fulldate"></p>
+  </div>
+
+  <!-- ── Challenge 5: Full time ─────────────────────────────────── -->
+  <div class="challenge">
+    <h3>Challenge 5 – Display Full Time</h3>
+    <button id="btn-fulltime">Display Full Time</button>
+    <p class="result" id="result-fulltime"></p>
+  </div>
+
+  <script>
+    /*
+    ═══════════════════════════════════════════════════════════════════
+    WHY TEMPORAL? — THE PROBLEM WITH THE OLD Date OBJECT
+    ═══════════════════════════════════════════════════════════════════
+    JavaScript's original Date object was written in 10 days in 1995.
+    It has several well-known bugs and confusing behaviors:
+
+      1. MONTHS ARE 0-INDEXED
+         new Date().getMonth()  →  0 means January, 11 means December
+         Developers have been adding +1 manually for 30 years.
+
+      2. MUTABLE — Date objects can be accidentally changed
+         const d = new Date();
+         d.setMonth(5);  // oops — original value is gone
+
+      3. NO TIMEZONE SUPPORT
+         Date has no way to represent "3pm in Tokyo" reliably.
+
+      4. INCONSISTENT PARSING
+         new Date("01/02/2024") — is that Jan 2 or Feb 1?
+         Depends on the browser.
+
+    ───────────────────────────────────────────────────────────────────
+    HOW TEMPORAL FIXES THESE
+    ───────────────────────────────────────────────────────────────────
+      • Months are 1-indexed  →  January = 1, December = 12. Finally.
+      • Objects are IMMUTABLE →  methods return new objects, never
+                                 modify the original.
+      • Timezone-aware        →  ZonedDateTime knows exactly where
+                                 in the world a time lives.
+      • Strict parsing        →  ambiguous strings are rejected.
+
+    ═══════════════════════════════════════════════════════════════════
+    KEY TEMPORAL CONCEPTS
+    ═══════════════════════════════════════════════════════════════════
+
+    Temporal.Now
+      The entry point. Like asking "what time is it right now?"
+      All "get current time" operations start here.
+
+    Temporal.PlainDate
+      A calendar date with NO time and NO timezone.
+      Example: "April 4, 2026" — useful when the exact clock
+      time doesn't matter (birthdays, deadlines, etc.)
+
+    Temporal.PlainTime
+      A clock time with NO date and NO timezone.
+      Example: "14:35:00" — useful for schedules or alarms.
+
+    Temporal.ZonedDateTime
+      A full date + time + timezone.
+      Example: "2026-04-04T14:35:00-07:00[America/Los_Angeles]"
+      The most complete and precise Temporal type.
+
+    Temporal.Instant
+      A single point in universal time (like a timestamp).
+      No calendar, no timezone — just a moment in history.
+
+    IMMUTABLE means: once created, the object cannot be changed.
+      const today = Temporal.Now.plainDateISO();
+      const tomorrow = today.add({ days: 1 }); // new object
+      // today is still today — it was never modified
+    ═══════════════════════════════════════════════════════════════════
+    */
+
+    /*
+    ── POLYFILL SETUP ─────────────────────────────────────────────────
+    The polyfill script loaded in <head> exposes its own Temporal
+    object under a different name to avoid conflicts.
+    This line makes it available as "Temporal" — the standard name —
+    so our code below matches exactly what browsers will use natively.
+    */
+    const { Temporal } =
+      typeof temporalPolyfill !== "undefined" ? temporalPolyfill :
+        typeof TemporalPolyfill !== "undefined" ? TemporalPolyfill :
+          globalThis; // last resort — if browser has native Temporal already;
+
+    // ── Helper: pad single digits with a leading zero ───────────────
+    // Temporal gives us numbers, not strings.
+    // pad(9) → "09"   pad(12) → "12"
+    function pad(number) {
+      return String(number).padStart(2, "0");
+    }
+
+
+    // ── Starter: full date/time string ─────────────────────────────
+    /*
+    Temporal.Now.zonedDateTimeISO() returns a ZonedDateTime —
+    a complete snapshot of date + time + timezone right now.
+
+    .toString() produces a precise ISO 8601 string like:
+      "2026-04-04T14:35:00-07:00[America/Los_Angeles]"
+
+    Compare to old Date():
+      new Date().toString() → "Sat Apr 04 2026 14:35:00 GMT-0700"
+      → format varies by browser and OS locale
+    */
+    document.getElementById("btn-datetime").addEventListener("click", function () {
+      const now = Temporal.Now.zonedDateTimeISO();
+      document.getElementById("result-datetime").textContent = now.toString();
+    });
+
+
+    // ── Challenge 1: Year ──────────────────────────────────────────
+    /*
+    Temporal.Now.plainDateISO() returns a PlainDate.
+    PlainDate has three properties: .year  .month  .day
+
+    OLD WAY:  new Date().getFullYear()  → method call, parentheses needed
+    NEW WAY:  plainDate.year            → plain property, no parentheses
+
+    No gotcha here — year works the same in both.
+    */
+    document.getElementById("btn-year").addEventListener("click", function () {
+      const today = Temporal.Now.plainDateISO();
+      document.getElementById("result-year").textContent = today.year;
+    });
+
+
+    // ── Challenge 2: Month ─────────────────────────────────────────
+    /*
+    ╔══════════════════════════════════════════════════════════════╗
+    ║  THE BIG FIX — NO MORE +1                                   ║
+    ╠══════════════════════════════════════════════════════════════╣
+    ║  OLD Date object:                                           ║
+    ║    new Date().getMonth()  →  0  (means January)            ║
+    ║    new Date().getMonth()  →  11 (means December)           ║
+    ║    Developers had to remember to always add +1             ║
+    ║                                                             ║
+    ║  Temporal PlainDate:                                        ║
+    ║    today.month  →  1  (means January)   ← correct!         ║
+    ║    today.month  →  12 (means December)  ← correct!         ║
+    ║    No +1 needed. Ever.                                      ║
+    ╚══════════════════════════════════════════════════════════════╝
+    */
+    document.getElementById("btn-month").addEventListener("click", function () {
+      const today = Temporal.Now.plainDateISO();
+
+      document.getElementById("result-month").textContent = today.month;
+
+      // Show students the comparison in the page itself
+      const oldMonth = new Date().getMonth();
+      document.getElementById("month-note").textContent =
+        "✓ Temporal: " + today.month +
+        "   |   Old Date.getMonth(): " + oldMonth +
+        " (0-indexed — needed +1 to get the real month)";
+    });
+
+
+    // ── Challenge 3: Day ───────────────────────────────────────────
+    /*
+    today.day → day of the month (1–31). Same as old getDate().
+
+    IMPORTANT DISTINCTION (same gotcha as old Date):
+      today.day          → day of the MONTH  (1, 2, 3 … 31)
+      today.dayOfWeek    → day of the WEEK   (1=Monday … 7=Sunday)
+
+    Temporal uses 1=Monday, 7=Sunday (ISO standard).
+    Old Date used 0=Sunday, 6=Saturday — also confusing.
+    */
+    document.getElementById("btn-day").addEventListener("click", function () {
+      const today = Temporal.Now.plainDateISO();
+      document.getElementById("result-day").textContent = today.day;
+    });
+
+
+    // ── Challenge 4: Full date ─────────────────────────────────────
+    /*
+    We build the date string in MM/DD/YYYY format manually
+    so students can see each part clearly.
+
+    Temporal also provides a built-in ISO format:
+      today.toString()  →  "2026-04-04"  (YYYY-MM-DD)
+    That format is the international standard and sorts correctly
+    as a string — but the challenge asks for MM/DD/YYYY.
+
+    Notice we still use pad() — Temporal gives us numbers,
+    and April is 4 not "04".
+    */
+    document.getElementById("btn-fulldate").addEventListener("click", function () {
+      const today = Temporal.Now.plainDateISO();
+
+      const month = pad(today.month); // already 1-indexed — no +1 needed
+      const day = pad(today.day);
+      const year = today.year;
+
+      document.getElementById("result-fulldate").textContent =
+        month + "/" + day + "/" + year;
+    });
+
+
+    // ── Challenge 5: Full time ─────────────────────────────────────
+    /*
+    Temporal.Now.plainTimeISO() returns a PlainTime.
+    PlainTime has: .hour  .minute  .second  .millisecond
+
+    .hour is 0–23 (24-hour clock), same as old getHours().
+
+    PlainTime also has a built-in toString():
+      time.toString()  →  "14:05:09"  (HH:MM:SS, already padded)
+
+    We build it manually below so students can see each part.
+    Then we show the shortcut with toString() as a bonus.
+    */
+    document.getElementById("btn-fulltime").addEventListener("click", function () {
+      const time = Temporal.Now.plainTimeISO();
+
+      const hours = pad(time.hour);
+      const minutes = pad(time.minute);
+      const seconds = pad(time.second);
+
+      // Manual build — same result as time.toString()
+      document.getElementById("result-fulltime").textContent =
+        hours + ":" + minutes + ":" + seconds;
+
+      /*
+      BONUS — you could also just write:
+        time.toString()
+      and get "14:05:09" directly.
+      Temporal objects know how to format themselves.
+      */
+    });
+
+  </script>
+</body>
+
+</html>

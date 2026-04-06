@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CIS 242 – Date Challenges</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 600px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      h1 { font-size: 1.4rem; }
+      h2 { font-size: 1.1rem; color: #555; }
+
+      /* Each challenge is wrapped in a section */
+      .challenge {
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .challenge h3 {
+        margin: 0 0 0.5rem;
+        font-size: 0.95rem;
+        color: #333;
+      }
+
+      button {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: 1px solid #999;
+        border-radius: 4px;
+        background: #f5f5f5;
+      }
+
+      button:hover { background: #e0e0e0; }
+
+      /* Each result paragraph starts empty */
+      .result {
+        margin-top: 0.6rem;
+        font-size: 1rem;
+        min-height: 1.4rem;
+        color: #222;
+      }
+    </style>
+  </head>
+  <body>
+
+    <h1>Your Name Here</h1>
+    <h2>CIS 242 – JavaScript Date Challenges</h2>
+
+    <!-- ── Starter: full date/time string ─────────────────────────── -->
+    <div class="challenge">
+      <h3>Starter – Display Date and Time</h3>
+      <button id="btn-datetime">Click me to display Date and Time</button>
+      <p class="result" id="result-datetime"></p>
+    </div>
+
+    <!-- ── Challenge 1: Year ───────────────────────────────────────── -->
+    <div class="challenge">
+      <h3>Challenge 1 – Display Year Only</h3>
+      <button id="btn-year">Display Year only</button>
+      <p class="result" id="result-year"></p>
+    </div>
+
+    <!-- ── Challenge 2: Month ─────────────────────────────────────── -->
+    <div class="challenge">
+      <h3>Challenge 2 – Display Month Only</h3>
+      <button id="btn-month">Display Month only</button>
+      <p class="result" id="result-month"></p>
+    </div>
+
+    <!-- ── Challenge 3: Day ───────────────────────────────────────── -->
+    <div class="challenge">
+      <h3>Challenge 3 – Display Day Only</h3>
+      <button id="btn-day">Display Day only</button>
+      <p class="result" id="result-day"></p>
+    </div>
+
+    <!-- ── Challenge 4: Full date ─────────────────────────────────── -->
+    <div class="challenge">
+      <h3>Challenge 4 – Display Full Date</h3>
+      <button id="btn-fulldate">Display Full Date</button>
+      <p class="result" id="result-fulldate"></p>
+    </div>
+
+    <!-- ── Challenge 5: Full time ─────────────────────────────────── -->
+    <div class="challenge">
+      <h3>Challenge 5 – Display Full Time</h3>
+      <button id="btn-fulltime">Display Full Time</button>
+      <p class="result" id="result-fulltime"></p>
+    </div>
+
+    <script>
+      // ── Helper: pad single digits with a leading zero ─────────────
+      // Example: 9 → "09",  12 → "12"
+      function pad(number) {
+        return String(number).padStart(2, "0");
+      }
+
+      // ── Starter ───────────────────────────────────────────────────
+      // Date() with no arguments returns a human-readable string
+      // of the current date and time.
+      document.getElementById("btn-datetime").addEventListener("click", function () {
+        document.getElementById("result-datetime").textContent = Date();
+      });
+
+      // ── Challenge 1: Year ─────────────────────────────────────────
+      // getFullYear() returns a 4-digit year — no gotcha here.
+      document.getElementById("btn-year").addEventListener("click", function () {
+        const myDate = new Date();
+        document.getElementById("result-year").textContent = myDate.getFullYear();
+      });
+
+      // ── Challenge 2: Month ────────────────────────────────────────
+      // IMPORTANT: getMonth() is 0-indexed.
+      // January = 0, February = 1 … December = 11.
+      // We add +1 so it shows the number humans expect.
+      document.getElementById("btn-month").addEventListener("click", function () {
+        const myDate = new Date();
+        document.getElementById("result-month").textContent = myDate.getMonth() + 1;
+      });
+
+      // ── Challenge 3: Day ──────────────────────────────────────────
+      // getDate() returns the day of the month (1–31).
+      // Note: getDay() is different — it returns the weekday (0=Sunday).
+      document.getElementById("btn-day").addEventListener("click", function () {
+        const myDate = new Date();
+        document.getElementById("result-day").textContent = myDate.getDate();
+      });
+
+      // ── Challenge 4: Full date ────────────────────────────────────
+      // We build MM/DD/YYYY manually so we control the format.
+      // pad() adds a leading zero when month or day is a single digit.
+      document.getElementById("btn-fulldate").addEventListener("click", function () {
+        const myDate = new Date();
+        const month = pad(myDate.getMonth() + 1); // +1 fixes 0-index
+        const day   = pad(myDate.getDate());
+        const year  = myDate.getFullYear();
+
+        document.getElementById("result-fulldate").textContent =
+          month + "/" + day + "/" + year;
+      });
+
+      // ── Challenge 5: Full time ────────────────────────────────────
+      // getHours()   → 0–23
+      // getMinutes() → 0–59
+      // getSeconds() → 0–59
+      // pad() ensures two digits for each part: 9:5:3 → 09:05:03
+      document.getElementById("btn-fulltime").addEventListener("click", function () {
+        const myDate = new Date();
+        const hours   = pad(myDate.getHours());
+        const minutes = pad(myDate.getMinutes());
+        const seconds = pad(myDate.getSeconds());
+
+        document.getElementById("result-fulltime").textContent =
+          hours + ":" + minutes + ":" + seconds;
+      });
+    </script>
+
+  </body>
+</html>

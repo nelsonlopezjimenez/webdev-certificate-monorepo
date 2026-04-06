@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section2 Lab1</title>
+</head>
+
+<body>
+    <h1>Javascript My First Script</h1>
+    <div>
+        <p id="demo"></p>
+        <button onclick="getLocation()">Show Geolocation</button>
+    </div>
+    <script>
+        document.write(navigator.userAgent);
+        document.write("<p>");
+        document.write(navigator.language);
+        document.write("</p>");
+        
+        // === SOLUTION END ===
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude + ", longitude:  " + position.coords.longitude  ;
+        }
+// === SOLUTION START ===
+ 
+    </script>
+</body>
+
+</html>

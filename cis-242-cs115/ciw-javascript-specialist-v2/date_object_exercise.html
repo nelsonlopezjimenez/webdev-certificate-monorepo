@@ -1,0 +1,225 @@
+
+<style>
+  .ex-wrap { padding: 1rem 0; font-family: var(--font-sans); }
+  .ex-section { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: var(--border-radius-lg); padding: 1rem 1.25rem; margin-bottom: 1rem; }
+  .ex-label { font-size: 12px; color: var(--color-text-secondary); margin-bottom: 8px; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+  button { font-family: var(--font-sans); font-size: 13px; padding: 6px 14px; border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); background: transparent; color: var(--color-text-primary); cursor: pointer; }
+  button:hover { background: var(--color-background-secondary); }
+  button.active { background: #E6F1FB; border-color: #378ADD; color: #0C447C; }
+  .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .result-card { border-radius: var(--border-radius-md); padding: 12px; }
+  .result-card.old { background: #FCEBEB; border: 0.5px solid #F09595; }
+  .result-card.new { background: #EAF3DE; border: 0.5px solid #97C459; }
+  .card-title { font-size: 11px; font-weight: 500; margin-bottom: 6px; }
+  .card-title.old { color: #A32D2D; }
+  .card-title.new { color: #3B6D11; }
+  .card-value { font-family: var(--font-mono); font-size: 20px; font-weight: 500; color: var(--color-text-primary); }
+  .card-note { font-size: 11px; color: var(--color-text-secondary); margin-top: 4px; }
+  .warn { color: #854F0B; font-size: 11px; font-weight: 500; }
+  .ok { color: #3B6D11; font-size: 11px; font-weight: 500; }
+  .code-block { background: var(--color-background-secondary); border-radius: var(--border-radius-md); padding: 10px 14px; font-family: var(--font-mono); font-size: 12px; color: var(--color-text-primary); margin-top: 10px; white-space: pre; overflow-x: auto; }
+  .divider { border: none; border-top: 0.5px solid var(--color-border-tertiary); margin: 12px 0; }
+  .hint { font-size: 12px; color: var(--color-text-secondary); margin-top: 8px; }
+  @media (max-width: 480px) { .result-grid { grid-template-columns: 1fr; } }
+</style>
+
+<div class="ex-wrap">
+  <div class="ex-section">
+    <div class="ex-label">Current date being used</div>
+    <div id="current-date-display" style="font-size:14px; color: var(--color-text-primary); margin-bottom:10px;"></div>
+    <div class="ex-label">Click a button to inspect part of the date</div>
+    <div class="btn-row">
+      <button onclick="show('year', this)">Year</button>
+      <button onclick="show('month', this)">Month</button>
+      <button onclick="show('day', this)">Day</button>
+      <button onclick="show('time', this)">Full time</button>
+      <button onclick="show('fulldate', this)">Full date</button>
+    </div>
+    <div id="result-area" style="display:none;">
+      <div class="result-grid">
+        <div class="result-card old">
+          <div class="card-title old">old — new Date()</div>
+          <div class="card-value" id="old-val">—</div>
+          <div class="card-note" id="old-note"></div>
+        </div>
+        <div class="result-card new">
+          <div class="card-title new">modern approach</div>
+          <div class="card-value" id="new-val">—</div>
+          <div class="card-note" id="new-note"></div>
+        </div>
+      </div>
+      <div class="code-block" id="code-display"></div>
+      <div class="hint" id="hint-text"></div>
+    </div>
+  </div>
+
+  <div class="ex-section">
+    <div class="ex-label" style="font-weight:500; color: var(--color-text-primary); font-size:13px;">The January trap — try it yourself</div>
+    <div style="font-size:13px; color: var(--color-text-secondary); margin-bottom:10px;">Type a month number (1–12) and see what <code>new Date()</code> actually stores</div>
+    <div style="display:flex; align-items:center; gap:8px;">
+      <input type="number" id="month-input" min="1" max="12" placeholder="month (1-12)" style="width:160px; padding:6px 10px; font-family: var(--font-mono);" oninput="checkMonth()">
+      <span style="font-size:13px; color: var(--color-text-secondary);">→</span>
+      <span id="month-result" style="font-family: var(--font-mono); font-size:14px;"></span>
+    </div>
+    <div id="month-warn" style="margin-top:8px; font-size:12px;"></div>
+    <div class="code-block" id="month-code" style="display:none;"></div>
+  </div>
+
+  <div class="ex-section">
+    <div class="ex-label" style="font-weight:500; color: var(--color-text-primary); font-size:13px;">Build your own date</div>
+    <div style="font-size:13px; color: var(--color-text-secondary); margin-bottom:10px;">Fill in year, month, day — compare what each approach produces</div>
+    <div style="display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;">
+      <input type="number" id="b-year" placeholder="year" style="width:80px; font-family:var(--font-mono);">
+      <input type="number" id="b-month" placeholder="month" min="1" max="12" style="width:80px; font-family:var(--font-mono);">
+      <input type="number" id="b-day" placeholder="day" min="1" max="31" style="width:80px; font-family:var(--font-mono);">
+      <button onclick="buildDate()">Compare</button>
+    </div>
+    <div id="build-result" style="display:none;">
+      <div class="result-grid">
+        <div class="result-card old">
+          <div class="card-title old">new Date(y, m-1, d)</div>
+          <div class="card-value" id="build-old" style="font-size:14px;"></div>
+          <div class="card-note warn">month index is m−1</div>
+        </div>
+        <div class="result-card new">
+          <div class="card-title new">modern — correct month</div>
+          <div class="card-value" id="build-new" style="font-size:14px;"></div>
+          <div class="card-note ok">month stored as entered</div>
+        </div>
+      </div>
+      <div class="code-block" id="build-code"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const now = new Date();
+  const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+  document.getElementById('current-date-display').textContent =
+    days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear();
+
+  const modernDate = {
+    year: now.getFullYear(),
+    month: now.getMonth() + 1,
+    day: now.getDate(),
+    hour: now.getHours(),
+    minute: now.getMinutes(),
+    second: now.getSeconds(),
+    monthName: months[now.getMonth()]
+  };
+
+  function pad(n){ return String(n).padStart(2,'0'); }
+
+  const configs = {
+    year: {
+      oldVal: () => now.getFullYear(),
+      newVal: () => modernDate.year,
+      oldNote: 'getFullYear() — 4 digit year',
+      newNote: 'same result — no issue here',
+      code: `const d = new Date();\n\n// old\nd.getFullYear();     // → ${now.getFullYear()}\n\n// modern\nconst year = d.getFullYear(); // same`,
+      hint: 'Year is straightforward — no gotcha here. Both approaches agree.'
+    },
+    month: {
+      oldVal: () => now.getMonth(),
+      newVal: () => modernDate.month,
+      oldNote: () => `getMonth() returns ${now.getMonth()} — that is ${months[now.getMonth()]}`,
+      newNote: () => `getMonth()+1 returns ${modernDate.month} — what humans expect`,
+      code: `const d = new Date();\n\n// old — 0 indexed!\nd.getMonth();        // → ${now.getMonth()}  (means ${months[now.getMonth()]})\n\n// modern — add 1\nd.getMonth() + 1;    // → ${modernDate.month}`,
+      hint: 'This is the famous gotcha. January = 0, February = 1 … December = 11. Always add +1 when displaying.'
+    },
+    day: {
+      oldVal: () => now.getDate(),
+      newVal: () => modernDate.day,
+      oldNote: 'getDate() — day of month (1-31)',
+      newNote: 'same result — day is 1-indexed',
+      code: `const d = new Date();\n\n// old\nd.getDate();         // → ${now.getDate()}\n\n// modern — same\nconst day = d.getDate();`,
+      hint: 'Day of month is 1-indexed — no gotcha. getDay() (different!) returns weekday 0=Sunday.'
+    },
+    time: {
+      oldVal: () => now.toLocaleTimeString(),
+      newVal: () => `${pad(modernDate.hour)}:${pad(modernDate.minute)}:${pad(modernDate.second)}`,
+      oldNote: 'toLocaleTimeString() — browser formats it',
+      newNote: 'manual HH:MM:SS — you control format',
+      code: `const d = new Date();\n\n// old — locale-dependent format\nd.toLocaleTimeString();  // → "${now.toLocaleTimeString()}"\n\n// modern — build it yourself\nconst h = d.getHours();\nconst m = d.getMinutes();\nconst s = d.getSeconds();\n\`\${h}:\${m}:\${s}\`;  // → "${modernDate.hour}:${modernDate.minute}:${modernDate.second}"`,
+      hint: 'toLocaleTimeString() output depends on the user\'s OS locale — the same code gives different strings on different machines.'
+    },
+    fulldate: {
+      oldVal: () => now.toLocaleDateString(),
+      newVal: () => `${modernDate.year}-${pad(modernDate.month)}-${pad(modernDate.day)}`,
+      oldNote: 'toLocaleDateString() — varies by locale',
+      newNote: 'ISO 8601 format — universal standard',
+      code: `const d = new Date();\n\n// old — locale-dependent\nd.toLocaleDateString();  // → "${now.toLocaleDateString()}"\n\n// modern — ISO 8601 (universal)\nconst y = d.getFullYear();\nconst m = String(d.getMonth()+1).padStart(2,'0');\nconst day = String(d.getDate()).padStart(2,'0');\n\`\${y}-\${m}-\${day}\`;  // → "${modernDate.year}-${pad(modernDate.month)}-${pad(modernDate.day)}"`,
+      hint: 'ISO 8601 (YYYY-MM-DD) is the safest format — it sorts correctly as a string and is understood everywhere.'
+    }
+  };
+
+  let activeBtn = null;
+
+  function show(key, btn) {
+    if(activeBtn) activeBtn.classList.remove('active');
+    btn.classList.add('active');
+    activeBtn = btn;
+
+    const c = configs[key];
+    const area = document.getElementById('result-area');
+    area.style.display = 'block';
+
+    document.getElementById('old-val').textContent = typeof c.oldVal === 'function' ? c.oldVal() : c.oldVal;
+    document.getElementById('new-val').textContent = typeof c.newVal === 'function' ? c.newVal() : c.newVal;
+    document.getElementById('old-note').textContent = typeof c.oldNote === 'function' ? c.oldNote() : c.oldNote;
+    document.getElementById('new-note').textContent = typeof c.newNote === 'function' ? c.newNote() : c.newNote;
+    document.getElementById('code-display').textContent = c.code;
+    document.getElementById('hint-text').textContent = c.hint;
+  }
+
+  function checkMonth() {
+    const val = parseInt(document.getElementById('month-input').value);
+    const res = document.getElementById('month-result');
+    const warn = document.getElementById('month-warn');
+    const code = document.getElementById('month-code');
+
+    if(isNaN(val) || val < 1 || val > 12) {
+      res.textContent = '';
+      warn.textContent = '';
+      code.style.display = 'none';
+      return;
+    }
+
+    const oldIndex = val - 1;
+    const d = new Date(2024, oldIndex, 1);
+    const stored = d.getMonth();
+    res.textContent = months[stored];
+
+    warn.innerHTML = val === stored + 1
+      ? `<span class="ok">You entered ${val} — Date stores it as ${stored} — displays as ${months[stored]} ✓</span>`
+      : '';
+
+    code.style.display = 'block';
+    code.textContent = `// You want month: ${val} (${months[val-1]})\nnew Date(2024, ${val}, 1)   // WRONG — stores month ${val} = ${months[val] || 'out of range!'}\nnew Date(2024, ${oldIndex}, 1) // CORRECT — stores month ${oldIndex} = ${months[oldIndex]}`;
+  }
+
+  function buildDate() {
+    const y = parseInt(document.getElementById('b-year').value);
+    const m = parseInt(document.getElementById('b-month').value);
+    const d = parseInt(document.getElementById('b-day').value);
+
+    if(isNaN(y) || isNaN(m) || isNaN(d)) {
+      alert('Please fill in all three fields');
+      return;
+    }
+
+    const oldD = new Date(y, m - 1, d);
+    const newD = { year: y, month: m, day: d };
+
+    document.getElementById('build-result').style.display = 'block';
+    document.getElementById('build-old').textContent = oldD.toDateString();
+    document.getElementById('build-new').textContent =
+      `${newD.year}-${String(newD.month).padStart(2,'0')}-${String(newD.day).padStart(2,'0')}`;
+
+    document.getElementById('build-code').textContent =
+      `// To create ${months[m-1]} ${d}, ${y}:\n\n// old — pass month-1\nnew Date(${y}, ${m-1}, ${d})  // ← month is ${m-1}, not ${m}\n\n// modern — store what you intend\nconst date = { year: ${y}, month: ${m}, day: ${d} };\n// month ${m} stays ${m} — no confusion`;
+  }
+</script>
