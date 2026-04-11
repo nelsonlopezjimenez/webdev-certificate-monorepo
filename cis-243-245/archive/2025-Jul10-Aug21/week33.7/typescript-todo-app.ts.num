@@ -1,0 +1,880 @@
+     1	// ============================================
+     2	// FILE: src/types/Todo.ts
+     3	// Purpose: Define TypeScript interfaces and types
+     4	// ============================================
+     5	
+     6	/**
+     7	 * Interface defining the structure of a Todo item
+     8	 * This helps TypeScript understand what properties a Todo should have
+     9	 */
+    10	export interface ITodo {
+    11	  _id?: string;           // Optional because MongoDB generates this
+    12	  text: string;           // The todo description (required)
+    13	  completed: boolean;     // Whether the todo is done or not
+    14	  createdAt?: Date;       // Optional because MongoDB timestamps add this
+    15	  updatedAt?: Date;       // Optional because MongoDB timestamps add this
+    16	}
+    17	
+    18	/**
+    19	 * Interface for creating a new Todo (without MongoDB generated fields)
+    20	 * This is what we expect when someone creates a new todo
+    21	 */
+    22	export interface CreateTodoRequest {
+    23	  text: string;
+    24	}
+    25	
+    26	/**
+    27	 * Interface for updating a Todo
+    28	 * Both fields are optional because user might only want to update one
+    29	 */
+    30	export interface UpdateTodoRequest {
+    31	  text?: string;
+    32	  completed?: boolean;
+    33	}
+    34	
+    35	/**
+    36	 * Standard API response structure for consistency
+    37	 */
+    38	export interface ApiResponse<T = any> {
+    39	  success: boolean;
+    40	  message?: string;
+    41	  data?: T;
+    42	  error?: string;
+    43	}
+    44	
+    45	// ============================================
+    46	// FILE: src/models/Todo.ts
+    47	// Purpose: Define MongoDB schema and model
+    48	// ============================================
+    49	
+    50	import mongoose, { Schema, Document } from 'mongoose';
+    51	import { ITodo } from '../types/Todo.js';
+    52	
+    53	/**
+    54	 * Extend ITodo interface with MongoDB Document properties
+    55	 * This gives us access to MongoDB methods like save(), remove(), etc.
+    56	 */
+    57	export interface ITodoDocument extends ITodo, Document {}
+    58	
+    59	/**
+    60	 * Define the MongoDB schema structure
+    61	 * This tells MongoDB how to store our todos
+    62	 */
+    63	const todoSchema: Schema<ITodoDocument> = new Schema(
+    64	  {
+    65	    text: {
+    66	      type: String,
+    67	      required: [true, 'Todo text is required'],    // Custom error message
+    68	      trim: true,                                   // Remove whitespace automatically
+    69	      minlength: [1, 'Todo text cannot be empty'], // Minimum length validation
+    70	      maxlength: [500, 'Todo text is too long']    // Maximum length validation
+    71	    },
+    72	    completed: {
+    73	      type: Boolean,
+    74	      default: false  // New todos are incomplete by default
+    75	    }
+    76	  },
+    77	  {
+    78	    timestamps: true,  // Automatically add createdAt and updatedAt fields
+    79	    versionKey: false  // Remove the __v field that MongoDB adds by default
+    80	  }
+    81	);
+    82	
+    83	/**
+    84	 * Add an index to improve query performance
+    85	 * This makes searching by 'completed' status faster
+    86	 */
+    87	todoSchema.index({ completed: 1 });
+    88	
+    89	/**
+    90	 * Create and export the Todo model
+    91	 * This is what we'll use to interact with the database
+    92	 */
+    93	export default mongoose.model<ITodoDocument>('Todo', todoSchema);
+    94	
+    95	// ============================================
+    96	// FILE: src/middleware/validation.ts
+    97	// Purpose: Input validation middleware
+    98	// ============================================
+    99	
+   100	import { Request, Response, NextFunction } from 'express';
+   101	import { body, param, validationResult } from 'express-validator';
+   102	import { ApiResponse } from '../types/Todo.js';
+   103	
+   104	/**
+   105	 * Middleware to check if validation errors occurred
+   106	 * This runs after express-validator rules and formats errors nicely
+   107	 */
+   108	export const handleValidationErrors = (
+   109	  req: Request,
+   110	  res: Response<ApiResponse>,
+   111	  next: NextFunction
+   112	): void => {
+   113	  const errors = validationResult(req);
+   114	  
+   115	  if (!errors.isEmpty()) {
+   116	    // Format validation errors into a readable message
+   117	    const errorMessages = errors.array().map(error => error.msg).join(', ');
+   118	    
+   119	    res.status(400).json({
+   120	      success: false,
+   121	      error: errorMessages
+   122	    });
+   123	    return;
+   124	  }
+   125	  
+   126	  next(); // Continue to next middleware if no errors
+   127	};
+   128	
+   129	/**
+   130	 * Validation rules for creating a new todo
+   131	 * These run before the route handler
+   132	 */
+   133	export const validateCreateTodo = [
+   134	  body('text')
+   135	    .trim()                                    // Remove whitespace
+   136	    .notEmpty()                               // Must not be empty
+   137	    .withMessage('Todo text is required')
+   138	    .isLength({ min: 1, max: 500 })          // Length constraints
+   139	    .withMessage('Todo text must be between 1 and 500 characters'),
+   140	  
+   141	  handleValidationErrors  // Check for errors after validation
+   142	];
+   143	
+   144	/**
+   145	 * Validation rules for updating a todo
+   146	 */
+   147	export const validateUpdateTodo = [
+   148	  body('text')
+   149	    .optional()                               // Field is optional for updates
+   150	    .trim()
+   151	    .notEmpty()
+   152	    .withMessage('Todo text cannot be empty if provided')
+   153	    .isLength({ max: 500 })
+   154	    .withMessage('Todo text must not exceed 500 characters'),
+   155	  
+   156	  body('completed')
+   157	    .optional()
+   158	    .isBoolean()
+   159	    .withMessage('Completed must be a boolean value'),
+   160	  
+   161	  handleValidationErrors
+   162	];
+   163	
+   164	/**
+   165	 * Validation for MongoDB ObjectId parameters
+   166	 */
+   167	export const validateObjectId = [
+   168	  param('id')
+   169	    .isMongoId()
+   170	    .withMessage('Invalid todo ID format'),
+   171	  
+   172	  handleValidationErrors
+   173	];
+   174	
+   175	// ============================================
+   176	// FILE: src/middleware/errorHandler.ts
+   177	// Purpose: Global error handling middleware
+   178	// ============================================
+   179	
+   180	import { Request, Response, NextFunction } from 'express';
+   181	import { ApiResponse } from '../types/Todo.js';
+   182	
+   183	/**
+   184	 * Custom error class for application-specific errors
+   185	 */
+   186	export class AppError extends Error {
+   187	  public statusCode: number;
+   188	  public isOperational: boolean;
+   189	
+   190	  constructor(message: string, statusCode: number) {
+   191	    super(message);
+   192	    this.statusCode = statusCode;
+   193	    this.isOperational = true; // Mark as operational error (not programming error)
+   194	    
+   195	    Error.captureStackTrace(this, this.constructor);
+   196	  }
+   197	}
+   198	
+   199	/**
+   200	 * Global error handling middleware
+   201	 * This catches any errors that occur in route handlers
+   202	 */
+   203	export const globalErrorHandler = (
+   204	  error: any,
+   205	  req: Request,
+   206	  res: Response<ApiResponse>,
+   207	  next: NextFunction
+   208	): void => {
+   209	  console.error('Error occurred:', error);
+   210	
+   211	  // Default error values
+   212	  let statusCode = 500;
+   213	  let message = 'Something went wrong!';
+   214	
+   215	  // Handle specific error types
+   216	  if (error instanceof AppError) {
+   217	    // Our custom application errors
+   218	    statusCode = error.statusCode;
+   219	    message = error.message;
+   220	  } else if (error.name === 'ValidationError') {
+   221	    // MongoDB validation errors
+   222	    statusCode = 400;
+   223	    message = Object.values(error.errors).map((err: any) => err.message).join(', ');
+   224	  } else if (error.name === 'CastError') {
+   225	    // MongoDB ObjectId casting errors
+   226	    statusCode = 400;
+   227	    message = 'Invalid ID format';
+   228	  } else if (error.code === 11000) {
+   229	    // MongoDB duplicate key error
+   230	    statusCode = 400;
+   231	    message = 'Duplicate entry found';
+   232	  }
+   233	
+   234	  res.status(statusCode).json({
+   235	    success: false,
+   236	    error: message,
+   237	    ...(process.env.NODE_ENV === 'development' && { stack: error.stack })
+   238	  });
+   239	};
+   240	
+   241	/**
+   242	 * Middleware to handle routes that don't exist
+   243	 */
+   244	export const notFoundHandler = (req: Request, res: Response<ApiResponse>): void => {
+   245	  res.status(404).json({
+   246	    success: false,
+   247	    error: `Route ${req.originalUrl} not found`
+   248	  });
+   249	};
+   250	
+   251	// ============================================
+   252	// FILE: src/controllers/todoController.ts
+   253	// Purpose: Handle business logic for todo operations
+   254	// ============================================
+   255	
+   256	import { Request, Response, NextFunction } from 'express';
+   257	import Todo from '../models/Todo.js';
+   258	import { CreateTodoRequest, UpdateTodoRequest, ApiResponse, ITodo } from '../types/Todo.js';
+   259	import { AppError } from '../middleware/errorHandler.js';
+   260	
+   261	/**
+   262	 * Get all todos from the database
+   263	 * Query parameters: completed (optional) - filter by completion status
+   264	 */
+   265	export const getAllTodos = async (
+   266	  req: Request,
+   267	  res: Response<ApiResponse<ITodo[]>>,
+   268	  next: NextFunction
+   269	): Promise<void> => {
+   270	  try {
+   271	    // Build query object based on query parameters
+   272	    const query: any = {};
+   273	    
+   274	    // Filter by completion status if provided
+   275	    if (req.query.completed !== undefined) {
+   276	      query.completed = req.query.completed === 'true';
+   277	    }
+   278	
+   279	    // Fetch todos from database
+   280	    const todos = await Todo.find(query)
+   281	      .sort({ createdAt: -1 })  // Sort by newest first
+   282	      .exec();                  // Execute the query
+   283	
+   284	    res.status(200).json({
+   285	      success: true,
+   286	      message: `Found ${todos.length} todos`,
+   287	      data: todos
+   288	    });
+   289	  } catch (error) {
+   290	    next(error); // Pass error to error handler middleware
+   291	  }
+   292	};
+   293	
+   294	/**
+   295	 * Get a single todo by ID
+   296	 */
+   297	export const getTodoById = async (
+   298	  req: Request,
+   299	  res: Response<ApiResponse<ITodo>>,
+   300	  next: NextFunction
+   301	): Promise<void> => {
+   302	  try {
+   303	    const { id } = req.params;
+   304	
+   305	    const todo = await Todo.findById(id).exec();
+   306	
+   307	    if (!todo) {
+   308	      throw new AppError('Todo not found', 404);
+   309	    }
+   310	
+   311	    res.status(200).json({
+   312	      success: true,
+   313	      data: todo
+   314	    });
+   315	  } catch (error) {
+   316	    next(error);
+   317	  }
+   318	};
+   319	
+   320	/**
+   321	 * Create a new todo
+   322	 */
+   323	export const createTodo = async (
+   324	  req: Request<{}, ApiResponse<ITodo>, CreateTodoRequest>,
+   325	  res: Response<ApiResponse<ITodo>>,
+   326	  next: NextFunction
+   327	): Promise<void> => {
+   328	  try {
+   329	    const { text } = req.body;
+   330	
+   331	    // Create new todo instance
+   332	    const todo = new Todo({ text });
+   333	
+   334	    // Save to database
+   335	    const savedTodo = await todo.save();
+   336	
+   337	    res.status(201).json({
+   338	      success: true,
+   339	      message: 'Todo created successfully',
+   340	      data: savedTodo
+   341	    });
+   342	  } catch (error) {
+   343	    next(error);
+   344	  }
+   345	};
+   346	
+   347	/**
+   348	 * Update an existing todo
+   349	 */
+   350	export const updateTodo = async (
+   351	  req: Request<{ id: string }, ApiResponse<ITodo>, UpdateTodoRequest>,
+   352	  res: Response<ApiResponse<ITodo>>,
+   353	  next: NextFunction
+   354	): Promise<void> => {
+   355	  try {
+   356	    const { id } = req.params;
+   357	    const updateData = req.body;
+   358	
+   359	    // Find and update todo, return the updated document
+   360	    const updatedTodo = await Todo.findByIdAndUpdate(
+   361	      id,
+   362	      updateData,
+   363	      {
+   364	        new: true,        // Return updated document instead of original
+   365	        runValidators: true  // Run schema validators on update
+   366	      }
+   367	    ).exec();
+   368	
+   369	    if (!updatedTodo) {
+   370	      throw new AppError('Todo not found', 404);
+   371	    }
+   372	
+   373	    res.status(200).json({
+   374	      success: true,
+   375	      message: 'Todo updated successfully',
+   376	      data: updatedTodo
+   377	    });
+   378	  } catch (error) {
+   379	    next(error);
+   380	  }
+   381	};
+   382	
+   383	/**
+   384	 * Delete a todo by ID
+   385	 */
+   386	export const deleteTodo = async (
+   387	  req: Request,
+   388	  res: Response<ApiResponse>,
+   389	  next: NextFunction
+   390	): Promise<void> => {
+   391	  try {
+   392	    const { id } = req.params;
+   393	
+   394	    const deletedTodo = await Todo.findByIdAndDelete(id).exec();
+   395	
+   396	    if (!deletedTodo) {
+   397	      throw new AppError('Todo not found', 404);
+   398	    }
+   399	
+   400	    res.status(200).json({
+   401	      success: true,
+   402	      message: 'Todo deleted successfully'
+   403	    });
+   404	  } catch (error) {
+   405	    next(error);
+   406	  }
+   407	};
+   408	
+   409	/**
+   410	 * Delete all completed todos
+   411	 * Useful for cleaning up completed tasks
+   412	 */
+   413	export const deleteCompletedTodos = async (
+   414	  req: Request,
+   415	  res: Response<ApiResponse>,
+   416	  next: NextFunction
+   417	): Promise<void> => {
+   418	  try {
+   419	    const result = await Todo.deleteMany({ completed: true }).exec();
+   420	
+   421	    res.status(200).json({
+   422	      success: true,
+   423	      message: `Deleted ${result.deletedCount} completed todos`
+   424	    });
+   425	  } catch (error) {
+   426	    next(error);
+   427	  }
+   428	};
+   429	
+   430	/**
+   431	 * Get todo statistics
+   432	 * Returns count of total, completed, and pending todos
+   433	 */
+   434	export const getTodoStats = async (
+   435	  req: Request,
+   436	  res: Response<ApiResponse>,
+   437	  next: NextFunction
+   438	): Promise<void> => {
+   439	  try {
+   440	    // Use MongoDB aggregation for efficient counting
+   441	    const stats = await Todo.aggregate([
+   442	      {
+   443	        $group: {
+   444	          _id: null,
+   445	          total: { $sum: 1 },
+   446	          completed: {
+   447	            $sum: { $cond: ['$completed', 1, 0] }
+   448	          },
+   449	          pending: {
+   450	            $sum: { $cond: ['$completed', 0, 1] }
+   451	          }
+   452	        }
+   453	      }
+   454	    ]);
+   455	
+   456	    const result = stats[0] || { total: 0, completed: 0, pending: 0 };
+   457	    delete result._id; // Remove MongoDB's _id field
+   458	
+   459	    res.status(200).json({
+   460	      success: true,
+   461	      data: result
+   462	    });
+   463	  } catch (error) {
+   464	    next(error);
+   465	  }
+   466	};
+   467	
+   468	// ============================================
+   469	// FILE: src/routes/todoRoutes.ts
+   470	// Purpose: Define API routes for todo operations
+   471	// ============================================
+   472	
+   473	import { Router } from 'express';
+   474	import {
+   475	  getAllTodos,
+   476	  getTodoById,
+   477	  createTodo,
+   478	  updateTodo,
+   479	  deleteTodo,
+   480	  deleteCompletedTodos,
+   481	  getTodoStats
+   482	} from '../controllers/todoController.js';
+   483	import {
+   484	  validateCreateTodo,
+   485	  validateUpdateTodo,
+   486	  validateObjectId
+   487	} from '../middleware/validation.js';
+   488	
+   489	/**
+   490	 * Create Express router instance
+   491	 * This allows us to define routes in a modular way
+   492	 */
+   493	const router = Router();
+   494	
+   495	// GET /api/todos/stats - Get todo statistics
+   496	router.get('/stats', getTodoStats);
+   497	
+   498	// GET /api/todos - Get all todos (with optional filtering)
+   499	router.get('/', getAllTodos);
+   500	
+   501	// GET /api/todos/:id - Get single todo by ID
+   502	router.get('/:id', validateObjectId, getTodoById);
+   503	
+   504	// POST /api/todos - Create new todo
+   505	router.post('/', validateCreateTodo, createTodo);
+   506	
+   507	// PUT /api/todos/:id - Update todo by ID
+   508	router.put('/:id', validateObjectId, validateUpdateTodo, updateTodo);
+   509	
+   510	// DELETE /api/todos/:id - Delete single todo by ID
+   511	router.delete('/:id', validateObjectId, deleteTodo);
+   512	
+   513	// DELETE /api/todos/completed/all - Delete all completed todos
+   514	router.delete('/completed/all', deleteCompletedTodos);
+   515	
+   516	export default router;
+   517	
+   518	// ============================================
+   519	// FILE: src/config/database.ts
+   520	// Purpose: Database connection configuration
+   521	// ============================================
+   522	
+   523	import mongoose from 'mongoose';
+   524	
+   525	/**
+   526	 * Database connection configuration
+   527	 */
+   528	interface DatabaseConfig {
+   529	  url: string;
+   530	  options: mongoose.ConnectOptions;
+   531	}
+   532	
+   533	/**
+   534	 * Get database configuration based on environment
+   535	 */
+   536	const getDatabaseConfig = (): DatabaseConfig => {
+   537	  const nodeEnv = process.env.NODE_ENV || 'development';
+   538	  
+   539	  // Default configuration for development
+   540	  let config: DatabaseConfig = {
+   541	    url: process.env.MONGODB_URI || 'mongodb://localhost:27017/todoapp',
+   542	    options: {
+   543	      // No need for deprecated options in newer versions of mongoose
+   544	    }
+   545	  };
+   546	
+   547	  // Modify configuration for different environments
+   548	  if (nodeEnv === 'test') {
+   549	    config.url = process.env.MONGODB_TEST_URI || 'mongodb://localhost:27017/todoapp_test';
+   550	  }
+   551	
+   552	  return config;
+   553	};
+   554	
+   555	/**
+   556	 * Connect to MongoDB database
+   557	 * Returns a promise that resolves when connected
+   558	 */
+   559	export const connectDatabase = async (): Promise<void> => {
+   560	  try {
+   561	    const config = getDatabaseConfig();
+   562	    
+   563	    // Connect to MongoDB
+   564	    await mongoose.connect(config.url, config.options);
+   565	    
+   566	    console.log(`✅ Connected to MongoDB: ${config.url}`);
+   567	    
+   568	    // Log database events
+   569	    mongoose.connection.on('error', (error) => {
+   570	      console.error('❌ MongoDB connection error:', error);
+   571	    });
+   572	
+   573	    mongoose.connection.on('disconnected', () => {
+   574	      console.log('📴 MongoDB disconnected');
+   575	    });
+   576	
+   577	    // Graceful shutdown
+   578	    process.on('SIGINT', async () => {
+   579	      await mongoose.connection.close();
+   580	      console.log('🔌 MongoDB connection closed through app termination');
+   581	      process.exit(0);
+   582	    });
+   583	    
+   584	  } catch (error) {
+   585	    console.error('❌ Failed to connect to MongoDB:', error);
+   586	    process.exit(1); // Exit with failure
+   587	  }
+   588	};
+   589	
+   590	// ============================================
+   591	// FILE: src/app.ts
+   592	// Purpose: Express application setup and configuration
+   593	// ============================================
+   594	
+   595	import express, { Application } from 'express';
+   596	import cors from 'cors';
+   597	import helmet from 'helmet';
+   598	import compression from 'compression';
+   599	import rateLimit from 'express-rate-limit';
+   600	import todoRoutes from './routes/todoRoutes.js';
+   601	import { globalErrorHandler, notFoundHandler } from './middleware/errorHandler.js';
+   602	
+   603	/**
+   604	 * Create and configure Express application
+   605	 */
+   606	export const createApp = (): Application => {
+   607	  const app: Application = express();
+   608	
+   609	  // =====================================
+   610	  // Security and Performance Middleware
+   611	  // =====================================
+   612	
+   613	  // Enable trust proxy for accurate IP addresses behind reverse proxy
+   614	  app.set('trust proxy', 1);
+   615	
+   616	  // Helmet helps secure Express apps by setting various HTTP headers
+   617	  app.use(helmet());
+   618	
+   619	  // Enable CORS for cross-origin requests
+   620	  app.use(cors({
+   621	    origin: process.env.FRONTEND_URL || 'http://localhost:3000',
+   622	    credentials: true
+   623	  }));
+   624	
+   625	  // Compress responses for better performance
+   626	  app.use(compression());
+   627	
+   628	  // Rate limiting to prevent abuse
+   629	  const limiter = rateLimit({
+   630	    windowMs: 15 * 60 * 1000, // 15 minutes
+   631	    max: 100, // Limit each IP to 100 requests per windowMs
+   632	    message: {
+   633	      success: false,
+   634	      error: 'Too many requests from this IP, please try again later'
+   635	    },
+   636	    standardHeaders: true, // Return rate limit info in headers
+   637	    legacyHeaders: false
+   638	  });
+   639	  app.use('/api/', limiter);
+   640	
+   641	  // =====================================
+   642	  // Body Parsing Middleware
+   643	  // =====================================
+   644	
+   645	  // Parse JSON payloads (with size limit)
+   646	  app.use(express.json({ 
+   647	    limit: '10mb',
+   648	    type: 'application/json'
+   649	  }));
+   650	
+   651	  // Parse URL-encoded payloads
+   652	  app.use(express.urlencoded({ 
+   653	    extended: true, 
+   654	    limit: '10mb'
+   655	  }));
+   656	
+   657	  // =====================================
+   658	  // Request Logging (Development)
+   659	  // =====================================
+   660	
+   661	  if (process.env.NODE_ENV === 'development') {
+   662	    app.use((req, res, next) => {
+   663	      console.log(`${req.method} ${req.path} - ${new Date().toISOString()}`);
+   664	      next();
+   665	    });
+   666	  }
+   667	
+   668	  // =====================================
+   669	  // Health Check Route
+   670	  // =====================================
+   671	
+   672	  app.get('/health', (req, res) => {
+   673	    res.status(200).json({
+   674	      success: true,
+   675	      message: 'Server is healthy',
+   676	      timestamp: new Date().toISOString(),
+   677	      uptime: process.uptime()
+   678	    });
+   679	  });
+   680	
+   681	  // =====================================
+   682	  // API Routes
+   683	  // =====================================
+   684	
+   685	  // Mount todo routes under /api/todos
+   686	  app.use('/api/todos', todoRoutes);
+   687	
+   688	  // API root endpoint
+   689	  app.get('/api', (req, res) => {
+   690	    res.json({
+   691	      success: true,
+   692	      message: 'Todo API is running!',
+   693	      version: '1.0.0',
+   694	      endpoints: {
+   695	        todos: '/api/todos',
+   696	        health: '/health'
+   697	      }
+   698	    });
+   699	  });
+   700	
+   701	  // =====================================
+   702	  // Error Handling
+   703	  // =====================================
+   704	
+   705	  // Handle 404 errors (route not found)
+   706	  app.use(notFoundHandler);
+   707	
+   708	  // Global error handler (must be last)
+   709	  app.use(globalErrorHandler);
+   710	
+   711	  return app;
+   712	};
+   713	
+   714	// ============================================
+   715	// FILE: src/server.ts
+   716	// Purpose: Application entry point
+   717	// ============================================
+   718	
+   719	import dotenv from 'dotenv';
+   720	import { createApp } from './app.js';
+   721	import { connectDatabase } from './config/database.js';
+   722	
+   723	// Load environment variables from .env file
+   724	dotenv.config();
+   725	
+   726	/**
+   727	 * Start the server
+   728	 */
+   729	const startServer = async (): Promise<void> => {
+   730	  try {
+   731	    // Connect to database first
+   732	    await connectDatabase();
+   733	
+   734	    // Create Express application
+   735	    const app = createApp();
+   736	
+   737	    // Get port from environment or use default
+   738	    const PORT = process.env.PORT || 4000;
+   739	
+   740	    // Start listening for requests
+   741	    const server = app.listen(PORT, () => {
+   742	      console.log(`🚀 Server is running on http://localhost:${PORT}`);
+   743	      console.log(`📚 API documentation: http://localhost:${PORT}/api`);
+   744	      console.log(`❤️  Health check: http://localhost:${PORT}/health`);
+   745	    });
+   746	
+   747	    // Handle server shutdown gracefully
+   748	    process.on('SIGTERM', () => {
+   749	      console.log('SIGTERM received, shutting down gracefully...');
+   750	      server.close(() => {
+   751	        console.log('Server closed');
+   752	      });
+   753	    });
+   754	
+   755	  } catch (error) {
+   756	    console.error('❌ Failed to start server:', error);
+   757	    process.exit(1);
+   758	  }
+   759	};
+   760	
+   761	// Start the server if this file is run directly
+   762	if (import.meta.url === `file://${process.argv[1]}`) {
+   763	  startServer();
+   764	}
+   765	
+   766	// ============================================
+   767	// FILE: package.json
+   768	// Purpose: Project dependencies and scripts
+   769	// ============================================
+   770	/*
+   771	{
+   772	  "name": "typescript-todo-api",
+   773	  "version": "1.0.0",
+   774	  "description": "A professional Todo API built with TypeScript, Express, and MongoDB",
+   775	  "type": "module",
+   776	  "main": "dist/server.js",
+   777	  "scripts": {
+   778	    "build": "tsc",
+   779	    "start": "node dist/server.js",
+   780	    "dev": "tsx watch src/server.ts",
+   781	    "dev:nodemon": "nodemon --exec tsx src/server.ts",
+   782	    "test": "jest",
+   783	    "test:watch": "jest --watch",
+   784	    "lint": "eslint src --ext .ts",
+   785	    "lint:fix": "eslint src --ext .ts --fix",
+   786	    "format": "prettier --write src/**/*.ts"
+   787	  },
+   788	  "dependencies": {
+   789	    "express": "^4.18.2",
+   790	    "mongoose": "^8.0.0",
+   791	    "cors": "^2.8.5",
+   792	    "helmet": "^7.1.0",
+   793	    "compression": "^1.7.4",
+   794	    "express-rate-limit": "^7.1.5",
+   795	    "express-validator": "^7.0.1",
+   796	    "dotenv": "^16.3.1"
+   797	  },
+   798	  "devDependencies": {
+   799	    "@types/express": "^4.17.21",
+   800	    "@types/cors": "^2.8.17",
+   801	    "@types/compression": "^1.7.5",
+   802	    "@types/node": "^20.10.0",
+   803	    "typescript": "^5.3.0",
+   804	    "tsx": "^4.6.0",
+   805	    "nodemon": "^3.0.0",
+   806	    "@typescript-eslint/eslint-plugin": "^6.13.0",
+   807	    "@typescript-eslint/parser": "^6.13.0",
+   808	    "eslint": "^8.54.0",
+   809	    "prettier": "^3.1.0",
+   810	    "jest": "^29.7.0",
+   811	    "@types/jest": "^29.5.0",
+   812	    "ts-jest": "^29.1.0"
+   813	  },
+   814	  "engines": {
+   815	    "node": ">=18.0.0"
+   816	  }
+   817	}
+   818	*/
+   819	
+   820	// ============================================
+   821	// FILE: tsconfig.json
+   822	// Purpose: TypeScript compiler configuration
+   823	// ============================================
+   824	/*
+   825	{
+   826	  "compilerOptions": {
+   827	    "target": "ES2022",
+   828	    "module": "ESNext",
+   829	    "moduleResolution": "Node",
+   830	    "outDir": "./dist",
+   831	    "rootDir": "./src",
+   832	    "strict": true,
+   833	    "esModuleInterop": true,
+   834	    "allowSyntheticDefaultImports": true,
+   835	    "skipLibCheck": true,
+   836	    "forceConsistentCasingInFileNames": true,
+   837	    "resolveJsonModule": true,
+   838	    "isolatedModules": true,
+   839	    "noEmit": false,
+   840	    "declaration": true,
+   841	    "declarationMap": true,
+   842	    "sourceMap": true,
+   843	    "removeComments": false,
+   844	    "noImplicitAny": true,
+   845	    "noImplicitReturns": true,
+   846	    "noFallthroughCasesInSwitch": true,
+   847	    "noUncheckedIndexedAccess": true,
+   848	    "exactOptionalPropertyTypes": true
+   849	  },
+   850	  "include": [
+   851	    "src/**/*"
+   852	  ],
+   853	  "exclude": [
+   854	    "node_modules",
+   855	    "dist",
+   856	    "**/*.test.ts",
+   857	    "**/*.spec.ts"
+   858	  ]
+   859	}
+   860	*/
+   861	
+   862	// ============================================
+   863	// FILE: .env.example
+   864	// Purpose: Environment variables template
+   865	// ============================================
+   866	/*
+   867	# Server Configuration
+   868	PORT=4000
+   869	NODE_ENV=development
+   870	
+   871	# Database Configuration
+   872	MONGODB_URI=mongodb://localhost:27017/todoapp
+   873	MONGODB_TEST_URI=mongodb://localhost:27017/todoapp_test
+   874	
+   875	# Frontend URL for CORS
+   876	FRONTEND_URL=http://localhost:3000
+   877	
+   878	# Optional: MongoDB Atlas connection
+   879	# MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/todoapp?retryWrites=true&w=majority
+   880	*/

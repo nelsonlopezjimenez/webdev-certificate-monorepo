@@ -1,0 +1,141 @@
+# Overview: More Bash Practice
+
+This assignment focuses on using the bash shell to execute common Unix commands.  You will create a file named ``more-bash-answers.txt`` that contains your answers to several questions below.
+
+## Learning Objectives
+
+Upon completion of this assignment, students should be able to:
+
+1. Use most common Bash commands to:
+	- Navigate through a computer's filesystem
+	- Manipulate directories and files of a computer 
+	- "Zip" and "unzip" (some) compressed folders through the command line
+
+2. Obtain a fair understanding of Bash commands.
+
+# Instructions
+
+## Part A: Obtain the files
+
+Copy this folder ``more-bash`` to your ``Bash_Tutorial`` directory. Your command for this should look like below if you are currently inside your ``Bash_Tutorial`` directory.
+
+```
+cp -r "R:\Full Stack Web Development\Practice Exercises\Bash Command Line\more-bash" .
+```
+
+The above command is saying: copy recursively (meaning all its files and sub-folders) the folder "more-bash" into my current directory (the dot represents your current folder).
+
+## Part B: Setup
+
+For each of the numbered items below, determine a single bash command that will perform the operation(s) requested. Each of your solutions must be a **single one-line shell statement**.
+
+You will be turning in a file called ``more-bash-answers.txt``. This file will contain the **commands** required to perform the tasks described for each numbered item.
+
+To accomplish this you have two primary options:
+1. Manually copy the commands as you go into your ``more-bash-answers.txt`` file.
+
+Use the vim editor in Insert Mode to add your commands. To paste content from your clipboard into the vim editor, you have two options: (Ctrl+Shift+Insert) OR (Esc key -> p -> Enter).
+
+2. Leverage the ```history``` command. 
+
+a. When you have completed all the numbered items, you can redirect the output of your ``history`` command to the ``more-bash-answers.txt`` file. (Be sure to remove any incorrect commands you may have entered and only list the commands that correspond to the numbered items in this assignment.) 
+
+b. As you answer each question, output your last command to your more-bash-answers.txt file:
+
+```
+echo "!!" >> more-bash-answers.txt
+```
+
+The above command is saying: append my previous command into my ``more-bash-answers.txt`` file. **Note: this command will "expand" your wildcard characters. If you use this method, please make a note at the end of your ``more-bash-answers.txt`` file.
+
+## Part C: Numbered Exercises
+
+1. List all files in the ``more-bash`` directory, in "long listing format" (Hint: see -l flag).
+
+2. List all files in the ``java`` directory, in reverse alphabetical order. (Hint: see sort --help for the flag needed).
+
+3. Copy the file ``numbers.txt`` into the ``java`` subdirectory.
+
+4. Rename the file ``Starr.java`` to ``Ringo.java``. (Hint: Renaming is done using the mv (move) command.)
+
+5. Delete the files ``diff.html`` and ``diff.css``. Note that this must be done with a single command and not multiple commands. (Hint: use a wildcard).
+
+6. Set the file ``MyProgram.java`` to have a last-modified date of March 15, 2015 4:56pm. 
+
+Your command should look something like this:
+
+``
+touch -a -m -t 201503151656.00 MyProgram.java
+``
+Where:
+-a = accessed
+-m = modified
+-t = timestamp in the format: [[CC]YY]MMDDhhmm[.ss] 
+
+7. List all web page files (files whose names end with the extension ``.html`` or ``.css``) in the current directory.
+
+You can use a ``*`` (asterisk) as a "wild-card" character to specify a group of files.  For example, ``*foo`` means all files whose names end with foo, and  ``foo*`` means all files whose names begin with foo. You can use a wildcard in the middle of a file name, such as ``foo*baz`` for all files that start with foo and end with baz.
+
+8. Copy all the text files (files whose names end with .txt) to the ``website`` subdirectory.
+
+9. Display the contents of all files whose names begin with ``song`` and end with the extension ``.txt``, such as ``song1.txt`` and ``song2.txt``. (Write a single command that displays all their contents concatenated.)
+
+10.	The ``head`` and ``tail`` commands output only the first or last few lines (respectively) of a file to the terminal. Display the last 5 lines of the file ``animals.txt`` on the terminal. (Hint: check help documentation for the flag which allows you to specify the number of lines.)
+
+11. The ``wc`` command outputs how many bytes, words, lines, etc. a file occupies. Display the number of lines occupied by the file ``animals.txt``. (Hint: check help documentation for correct flag.)
+
+12. We've seen zipped folders before. What does it mean to "zip"? Zipping is just a way to compress or decrease the amount of space our files take up on our harddrive. There are many different compression algorithms but at their core they all have one aim-- to reduce redundant data in our files--therefore decreasing the amount of space they take up. 
+
+The zip compression format is generally seen on Windows machines. Zip folders use a proprietary compression algorithm called "deflate". Because of the algorithm's proprietary nature, a free version of the compression algorithm was created and was named "gzip." Because Unix/Linux systems run on free/open source software, you will generally see "gzipped" files on Unix systems.
+
+Now, we will get practice archiving and compressing some files and folders using the gzip compression format.
+
+# Compression & Archiving
+Goal: compress the files inside the "more-bash/img" folder by archiving (tar) then compressing it using gzip.
+
+Step 1: Archiving our files. This effectively "packages up" multiple files into one file.
+
+``
+tar -cvf img-compressed.tar img/*
+``
+
+Where:
+-c = creates a .tar archive
+-v = tells you what is happening (verbose)
+-f = assembles the archive into one file
+
+Step 2:
+``
+gzip img-compressed.tar
+``
+
+Step 3:
+Use the ``ls`` command to check that your folder now contains a file named ``img-compressed.tar.gz``.
+
+# Decompression / Extraction
+Goal: extract/decompress the "expand-me.tar.gz" file.
+
+Step 1:
+``
+gunzip expand-me.tar.gz
+``
+
+Step 2:
+Use the ``ls`` command to check that you now have a file named "expand-me.tar"
+``
+
+Step 3:
+De-archive the .tar file with the following command:
+
+``
+tar -xvf expand-me.tar
+``
+
+Step 4:
+Use the ``ls`` command to check that your folder now contains the files: 'leo davinci man.jpeg', 'prisoner artwork 2.jpeg' and 'mona_lisa.jpeg'. Notice that the file 'expand-me.tar' still remains.
+
+## Submission
+
+Submit your ``more-bash-answers.txt`` to the Moodle assignment page titled "Bash Scavenger Hunt #3".
+
+(Remember to remove any commands that are incorrect.)
