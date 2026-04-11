@@ -1,8 +1,8 @@
-# Week 30.4
+# Exercises async/await modern syntax
 
 ## 7/28 to 8/1
 
-## Week 30.4 Focus:
+## Asyn/await exercises:
 1. Modern JavaScript syntax essential for server-side development
 1. NPM ecosystem and package management
 1. Core array methods (map, filter, reduce, sort) with practical exercises
