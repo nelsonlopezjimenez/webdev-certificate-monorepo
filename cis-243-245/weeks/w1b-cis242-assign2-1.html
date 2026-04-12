@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Section2 Assign1-1</title>
+</head>
+
+<body>
+    <h1>Nelson Lopez 4/12/2026</h1>
+    <button id="btn-geo">Show Geolocation</button>
+    <p id="demo"></p>
+    <h2>The Window Navigator Object</h2>
+    <p id="demo1"></p>
+    <h2>The Language Property</h2>
+    <p id="demo2"></p>
+
+    <!-- Challenge 1: add more navigator properties below -->
+
+    <!-- === SOLUTION START === -->
+    <p id="demo3"></p> 
+    <p id="demo4"></p>
+    <p id="demo5"></p>
+    <p id="demo6"></p>
+    <p id="demo7"></p>
+    <p id="demo8"></p>
+    <p id="demo9"></p>
+    <p id="demo10"></p>
+
+    <!-- === SOLUTION END === -->
+    <hr>
+
+
+    <!-- Challenge 2:  add font color button -->
+
+      <!-- === SOLUTION START === -->
+    <button id="colorBtn">Change Font Color</button>
+     <!-- === SOLUTION START === -->
+
+    <script>
+        // --- Base properties ---
+        document.getElementById("demo2").innerHTML =
+            "navigator.language:<br>" + navigator.language;
+
+        document.getElementById("demo1").innerHTML =
+            "navigator.appName:<br>" + navigator.appName;
+
+
+        document.getElementById("btn-geo").addEventListener("click", getLocation);
+        // fake geolocation — runs instantly, no permission prompt
+        navigator.geolocation.getCurrentPosition = function (onSuccess, onError, options) {
+            const fakePosition = {
+                coords: {
+                    latitude: 47.8062,   // Edmonds, WA
+                    longitude: -122.3776,
+                    accuracy: 10,
+                    altitude: null,
+                    altitudeAccuracy: null,
+                    heading: null,
+                    speed: null
+                },
+                timestamp: Date.now()
+            };
+
+            // simulate a small delay like a real device would have
+            setTimeout(function () {
+                onSuccess(fakePosition);
+            }, 800);
+        };
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                document.getElementById("demo").innerHTML = "Geolocation is not supported by this browser.";
+            }
+        }
+        function showPosition(position) {
+            console.log(position);
+            document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude + ", longitude:  " + position.coords.longitude;
+        }
+        // --- Challenge 1: uncomment each block and add a matching <p id="demoN"> above ---
+        let appVersion = navigator.appVersion;
+        document.getElementById("demo3").innerHTML = "navigator.appVersion:<br>" + appVersion;
+
+        let appCodeName = navigator.appCodeName;
+        document.getElementById("demo4").innerHTML = "navigator.appCodeName:<br>" + appCodeName;
+
+        let cookieEnabled = navigator.cookieEnabled;
+        document.getElementById("demo5").innerHTML = "navigator.cookieEnabled:<br>" + cookieEnabled;
+
+        let onLine = navigator.onLine;
+        document.getElementById("demo6").innerHTML = "navigator.onLine:<br>" + onLine;
+
+        let platform = navigator.platform;
+        document.getElementById("demo7").innerHTML = "navigator.platform:<br>" + platform;
+
+        let product = navigator.product;
+        document.getElementById("demo8").innerHTML = "navigator.product:<br>" + product;
+
+        let userAgent = navigator.userAgent;
+        document.getElementById("demo9").innerHTML = "navigator.userAgent:<br>" + userAgent;
+
+        let javaEnabled = navigator.javaEnabled();
+        document.getElementById("demo10").innerHTML = "navigator.javaEnabled():<br>" + javaEnabled;
+
+        
+        
+        // --- Challenge 2: changes color of all demo paragraphs to red ---
+        // === SOLUTION START ===
+        function changeFontColor() {
+            alert("You are about to change the color of one of the items below!!!");
+            document.querySelectorAll('[id^="demo"]').forEach(el => el.style.color = 'red');
+        }
+        
+        document.getElementById("colorBtn").addEventListener('click', changeFontColor);
+
+        // === SOLUTION END ===
+    </script>
+</body>
+
+</html>

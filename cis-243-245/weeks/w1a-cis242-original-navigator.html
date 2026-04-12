@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CIS 242 – Navigator Object</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 680px;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+
+      h1 { font-size: 1.4rem; }
+      h2 { font-size: 1rem; color: #555; margin-top: 0; }
+
+      .challenge {
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .challenge h3 {
+        margin: 0 0 0.5rem;
+        font-size: 0.95rem;
+        color: #333;
+      }
+
+      button {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: 1px solid #999;
+        border-radius: 4px;
+        background: #f5f5f5;
+      }
+
+      button:hover { background: #e0e0e0; }
+      button:disabled { opacity: 0.5; cursor: not-allowed; }
+
+      .result {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+        color: #222;
+        line-height: 1.7;
+      }
+
+      /* each property row */
+      .prop-row {
+        display: flex;
+        gap: 1rem;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 0.3rem 0;
+      }
+
+      .prop-name {
+        font-family: monospace;
+        font-size: 0.85rem;
+        color: #c0392b;
+        min-width: 220px;
+      }
+
+      .prop-value {
+        font-size: 0.85rem;
+        color: #222;
+        word-break: break-all;
+      }
+
+      .deprecated {
+        font-size: 0.75rem;
+        color: #999;
+        font-style: italic;
+        margin-left: 0.4rem;
+      }
+
+      .warn  { color: #b94a00; font-size: 0.82rem; margin-top: 0.5rem; }
+      .ok    { color: #2a7a2a; font-size: 0.82rem; margin-top: 0.5rem; }
+      .error { color: #c0392b; font-size: 0.82rem; margin-top: 0.5rem; }
+
+      #geo-status { font-size: 0.85rem; color: #555; margin-top: 0.5rem; }
+    </style>
+  </head>
+  <body>
+
+    <h1>Your Name Here</h1>
+    <h2>CIS 242 – The navigator Object</h2>
+
+    <!-- ── What is navigator? ──────────────────────────────────────── -->
+    <div class="challenge">
+      <h3>Starter – Display All navigator Properties</h3>
+      <button id="btn-navigator">Show navigator properties</button>
+      <div class="result" id="result-navigator"></div>
+    </div>
+
+    <!-- ── Geolocation ─────────────────────────────────────────────── -->
+    <div class="challenge">
+      <h3>Challenge – Show Geolocation</h3>
+      <button id="btn-geo">Get my location</button>
+      <p id="geo-status"></p>
+      <div class="result" id="result-geo"></div>
+    </div>
+
+    <script>
+      /*
+      ═══════════════════════════════════════════════════════════════════
+      WHAT IS THE navigator OBJECT?
+      ═══════════════════════════════════════════════════════════════════
+      The browser gives JavaScript a built-in object called "navigator".
+      It contains information ABOUT the browser itself — not the page.
+
+      Think of it like the browser's ID card:
+        - What browser is this?
+        - What language is the user's OS set to?
+        - Is the user online?
+        - Does the browser support cookies?
+        - Where is the user located? (geolocation)
+
+      You access it anywhere in JavaScript — it is always available.
+      You do NOT create it with "new". It already exists.
+
+      ═══════════════════════════════════════════════════════════════════
+      WHY NOT document.write()?
+      ═══════════════════════════════════════════════════════════════════
+      The original lab used document.write() — an old technique that
+      writes HTML directly into the page as it loads.
+
+      PROBLEM: If you call document.write() AFTER the page has finished
+      loading (e.g. inside a button click), it ERASES the entire page
+      and replaces it with just what you wrote.
+
+      MODERN APPROACH: Use DOM manipulation instead.
+        element.textContent = "some text"   → safe, always works
+        element.innerHTML   = "<b>bold</b>" → also works, use carefully
+
+      ═══════════════════════════════════════════════════════════════════
+      */
+
+      // ── Starter: navigator properties ──────────────────────────────
+      document.getElementById("btn-navigator").addEventListener("click", function () {
+
+        /*
+        ── DEPRECATED PROPERTIES ────────────────────────────────────────
+        CONCEPT: "Deprecated" means a feature still works but is no
+        longer recommended. It may be removed in a future browser update.
+
+        navigator.appName    → DEPRECATED. Always returns "Netscape"
+                               in every modern browser, regardless of
+                               what browser you are actually using.
+                               (Netscape was a 1990s browser — this is
+                               a historical accident kept for compatibility.)
+
+        navigator.appVersion → DEPRECATED. Returns a long string that
+                               starts with "5.0" for every browser.
+                               Completely useless for detecting browsers.
+
+        navigator.taintEnabled() → DEPRECATED and removed.
+                               Calling it throws an error in modern browsers.
+                               It was a 1990s security concept that never worked.
+
+        Use navigator.userAgent or the User-Agent Client Hints API instead.
+        ──────────────────────────────────────────────────────────────────
+        */
+
+        /*
+        ── MODERN PROPERTIES ────────────────────────────────────────────
+        These are reliable and widely supported.
+        ──────────────────────────────────────────────────────────────────
+        */
+
+        // Build an array of property objects to display
+        // Each object has: name, value, and an optional deprecated flag
+        const properties = [
+          {
+            name: "navigator.userAgent",
+            // userAgent: the full browser identification string
+            // This is the modern replacement for appName + appVersion
+            // Example: "Mozilla/5.0 (Windows NT 10.0...) Chrome/124..."
+            value: navigator.userAgent
+          },
+          {
+            name: "navigator.language",
+            // The user's preferred language set in their OS or browser
+            // Format: language code + region code
+            // Examples: "en-US"  "es-CO"  "fr-FR"  "ja-JP"
+            value: navigator.language
+          },
+          {
+            name: "navigator.languages",
+            // An ordered list of ALL languages the user accepts
+            // Browsers send this list to web servers for localization
+            // The first item matches navigator.language
+            value: navigator.languages.join(", ")
+          },
+          {
+            name: "navigator.onLine",
+            // Boolean: true if the browser has a network connection
+            // false if the device is in airplane mode or offline
+            // GOTCHA: true does not guarantee internet access —
+            // the device might be connected to a router with no internet
+            value: navigator.onLine
+          },
+          {
+            name: "navigator.cookieEnabled",
+            // Boolean: true if the browser allows cookies
+            // Users can disable cookies in browser privacy settings
+            value: navigator.cookieEnabled
+          },
+          {
+            name: "navigator.hardwareConcurrency",
+            // Number of logical CPU cores available
+            // Useful for deciding how many Web Workers to create
+            // Example: 8 on a modern quad-core with hyperthreading
+            value: navigator.hardwareConcurrency
+          },
+          {
+            name: "navigator.platform",
+            // The OS platform the browser is running on
+            // Examples: "Win32"  "MacIntel"  "Linux x86_64"
+            // NOTE: being phased out — browsers are starting to
+            // return a generic string to protect user privacy
+            value: navigator.platform,
+            deprecated: true
+          },
+          {
+            name: "navigator.appName",
+            // DEPRECATED — always "Netscape" no matter the browser
+            value: navigator.appName,
+            deprecated: true
+          },
+          {
+            name: "navigator.appVersion",
+            // DEPRECATED — always starts with "5.0" no matter the browser
+            value: navigator.appVersion,
+            deprecated: true
+          }
+        ];
+
+        // ── Render property rows into the result div ──────────────────
+        // We build the HTML as a string, then set innerHTML once.
+        // Setting innerHTML many times in a loop is slow —
+        // building one string and setting it once is faster.
+        let html = "";
+
+        properties.forEach(function (prop) {
+          const deprecatedLabel = prop.deprecated
+            ? "<span class='deprecated'>(deprecated)</span>"
+            : "";
+
+          html +=
+            "<div class='prop-row'>" +
+              "<span class='prop-name'>" + prop.name + deprecatedLabel + "</span>" +
+              "<span class='prop-value'>" + prop.value + "</span>" +
+            "</div>";
+        });
+
+        document.getElementById("result-navigator").innerHTML = html;
+      });
+
+
+      // ── Challenge: Geolocation ──────────────────────────────────────
+      /*
+      ═══════════════════════════════════════════════════════════════════
+      WHAT IS navigator.geolocation?
+      ═══════════════════════════════════════════════════════════════════
+      navigator.geolocation is a built-in browser API that asks the
+      device for its current physical location.
+
+      HOW IT WORKS:
+        The browser asks the user for permission first — you cannot
+        access location silently. If the user denies, you get an error.
+
+        The browser uses one or more sources to find location:
+          1. GPS (most accurate — phones outdoors)
+          2. Wi-Fi network positions
+          3. Cell tower triangulation
+          4. IP address (least accurate — may be off by miles)
+
+      IMPORTANT: Geolocation only works on HTTPS in production.
+        Browsers block it on plain HTTP pages to protect user privacy.
+        It works on localhost (your own computer) during development.
+
+      ═══════════════════════════════════════════════════════════════════
+      THE METHOD SIGNATURE
+      ═══════════════════════════════════════════════════════════════════
+      navigator.geolocation.getCurrentPosition(
+        successCallback,   ← runs if location is found
+        errorCallback,     ← runs if something goes wrong
+        options            ← optional settings object
+      );
+
+      CALLBACK: a function you write that the browser calls FOR YOU
+      when it has a result. You do not call it yourself.
+      This is an example of ASYNCHRONOUS programming — the browser
+      goes off to find the location while your code keeps running,
+      then calls your function when it is ready.
+      ═══════════════════════════════════════════════════════════════════
+      */
+
+      document.getElementById("btn-geo").addEventListener("click", function () {
+
+        const statusEl = document.getElementById("geo-status");
+        const resultEl = document.getElementById("result-geo");
+        const btn      = document.getElementById("btn-geo");
+
+        // ── Feature detection ─────────────────────────────────────────
+        // NEVER assume a feature exists. Check first.
+        // Old code used to skip this — crashes if geolocation is absent.
+        if (!("geolocation" in navigator)) {
+          resultEl.innerHTML =
+            "<span class='error'>Geolocation is not supported by this browser.</span>";
+          return; // stop here — nothing more to do
+        }
+
+        // ── Show loading state ────────────────────────────────────────
+        // Getting location can take several seconds.
+        // Disable the button and show a status message so the user
+        // knows something is happening.
+        btn.disabled  = true;
+        statusEl.textContent = "Requesting location — please allow access if prompted…";
+        resultEl.innerHTML   = "";
+
+        // ── Options object ────────────────────────────────────────────
+        // These are optional settings passed as the third argument.
+        const options = {
+          enableHighAccuracy: true,   // use GPS if available (slower but precise)
+          timeout: 10000,             // give up after 10 seconds (milliseconds)
+          maximumAge: 0               // always get a fresh reading, not a cached one
+        };
+
+        // ── Success callback ──────────────────────────────────────────
+        // The browser calls this function and passes a "position" object.
+        // position.coords contains the actual location data.
+        function onSuccess(position) {
+          btn.disabled = false;
+          statusEl.textContent = "";
+
+          const coords = position.coords;
+
+          /*
+          coords properties:
+            .latitude          → degrees North/South  (-90 to 90)
+            .longitude         → degrees East/West    (-180 to 180)
+            .accuracy          → radius of uncertainty in meters
+            .altitude          → meters above sea level (null if unavailable)
+            .altitudeAccuracy  → accuracy of altitude in meters (null if unavailable)
+            .heading           → direction of travel in degrees (null if not moving)
+            .speed             → speed in meters/second (null if not moving)
+
+          position.timestamp  → when the reading was taken (milliseconds since 1970)
+          */
+
+          // Build a Google Maps link from the coordinates
+          // Template literals use backticks and ${} to embed variables
+          const mapsUrl =
+            `https://www.google.com/maps?q=${coords.latitude},${coords.longitude}`;
+
+          let html =
+            "<div class='prop-row'><span class='prop-name'>coords.latitude</span>" +
+            "<span class='prop-value'>" + coords.latitude + "</span></div>" +
+
+            "<div class='prop-row'><span class='prop-name'>coords.longitude</span>" +
+            "<span class='prop-value'>" + coords.longitude + "</span></div>" +
+
+            "<div class='prop-row'><span class='prop-name'>coords.accuracy</span>" +
+            "<span class='prop-value'>±" + Math.round(coords.accuracy) + " meters</span></div>" +
+
+            "<div class='prop-row'><span class='prop-name'>coords.altitude</span>" +
+            "<span class='prop-value'>" + (coords.altitude !== null ? coords.altitude + " m" : "not available") + "</span></div>" +
+
+            "<div class='prop-row'><span class='prop-name'>coords.speed</span>" +
+            "<span class='prop-value'>" + (coords.speed !== null ? coords.speed + " m/s" : "not moving") + "</span></div>" +
+
+            "<div class='prop-row'><span class='prop-name'>position.timestamp</span>" +
+            "<span class='prop-value'>" + new Date(position.timestamp).toLocaleString() + "</span></div>" +
+
+            "<p class='ok'>" +
+              "<a href='" + mapsUrl + "' target='_blank'>View on Google Maps ↗</a>" +
+            "</p>";
+
+          resultEl.innerHTML = html;
+        }
+
+        // ── Error callback ────────────────────────────────────────────
+        // The browser calls this if something goes wrong.
+        // "error" is a GeolocationPositionError object with a .code property.
+        function onError(error) {
+          btn.disabled = false;
+          statusEl.textContent = "";
+
+          /*
+          Error codes — always use the named constants, not magic numbers.
+          These are properties of the error object itself:
+            error.PERMISSION_DENIED     = 1  → user clicked "Block"
+            error.POSITION_UNAVAILABLE  = 2  → device could not get a fix
+            error.TIMEOUT               = 3  → took longer than options.timeout
+          */
+          let message = "";
+
+          switch (error.code) {
+            case error.PERMISSION_DENIED:
+              message = "Permission denied — the user blocked location access.";
+              break;
+            case error.POSITION_UNAVAILABLE:
+              message = "Position unavailable — the device could not determine location.";
+              break;
+            case error.TIMEOUT:
+              message = "Timed out — location was not retrieved within 10 seconds.";
+              break;
+            default:
+              message = "Unknown error: " + error.message;
+          }
+
+          resultEl.innerHTML = "<span class='error'>" + message + "</span>";
+        }
+
+        // ── Make the actual request ───────────────────────────────────
+        // Pass both callbacks and the options object.
+        // The browser handles the rest asynchronously.
+        navigator.geolocation.getCurrentPosition(onSuccess, onError, options);
+      });
+
+    </script>
+  </body>
+</html>

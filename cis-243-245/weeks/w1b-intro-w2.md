@@ -5,13 +5,13 @@ On week 1 you learned the differences between frontend and backend in Full-Stack
 Fast, unopinionated, minimalist web framework for Node.js (Links to an external site.)
 Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
 
-## APIs
+## Feature: APIs (Application Programming Interface)
 With a myriad of HTTP utility methods and middleware at your disposal, creating a robust API is quick and easy.
 
-## Performance
+## Feature: Performance
 Express provides a thin layer of fundamental web application features, without obscuring Node.js features that you know and love.
 
-## Middleware
+## Feature: Middleware
 Express is a lightweight and flexible routing framework with minimal core features meant to be augmented through the use of Express middleware (Links to an external site.) modules.
 
 # Learning Outcomes

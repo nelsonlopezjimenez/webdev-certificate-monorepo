@@ -1,10 +1,8 @@
-// ============================================================================
-// WEEK 2 EXERCISE SOLUTIONS WITH DETAILED COMMENTS FOR BEGINNERS
-// ============================================================================
+# WEEK 2 EXERCISE SOLUTIONS WITH DETAILED COMMENTS FOR BEGINNERS
 
-// DAY 1: MODERN JAVASCRIPT SYNTAX
-// ============================================================================
+## DAY 1: MODERN JAVASCRIPT SYNTAX
 
+```js
 // Exercise 1.1: Modern Syntax Conversion
 console.log("=== Exercise 1.1: Modern Syntax Conversion ===");
 
@@ -61,10 +59,11 @@ console.log(`Company: ${companyName}`);
 console.log(`Location: ${city}, ${state}`);
 console.log(`First Employee: ${firstEmployee}`);
 console.log(`Second Employee: ${employee2}`);
+```
 
-// DAY 2: NPM & PACKAGE MANAGEMENT
-// ============================================================================
+## DAY 2: NPM & PACKAGE MANAGEMENT
 
+```js
 // Exercise 2.1: Package Management - Complete package.json example
 console.log("\n=== Exercise 2.1: Package Management ===");
 
@@ -124,10 +123,11 @@ if (require.main === module) {
         console.log(`Server running on port ${PORT}`);
     });
 }
+```
 
-// DAY 3: WORKING WITH EXTERNAL LIBRARIES
-// ============================================================================
+## DAY 3: WORKING WITH EXTERNAL LIBRARIES
 
+```js
 // Exercise 3.1: Library Integration - Weather App
 console.log("\n=== Exercise 3.1: Library Integration ===");
 
@@ -249,10 +249,11 @@ async function demonstrateWeatherApp() {
 
 // CommonJS export (current approach)
 module.exports = { WeatherApp };
+```
 
-// DAY 4: ARRAY METHODS FUNDAMENTALS
-// ============================================================================
+## DAY 4: ARRAY METHODS FUNDAMENTALS
 
+```js
 // Exercise 4.1: E-commerce Data Processing
 console.log("\n=== Exercise 4.1: E-commerce Data Processing ===");
 
@@ -367,10 +368,10 @@ const userProfiles = users.map(user => {
 });
 
 console.log(userProfiles);
+```
+## DAY 5: ADVANCED ARRAY METHODS
 
-// DAY 5: ADVANCED ARRAY METHODS
-// ============================================================================
-
+```js
 // Exercise 5.1: Data Analytics with Reduce
 console.log("\n=== Exercise 5.1: Data Analytics with Reduce ===");
 
@@ -476,14 +477,14 @@ const sortedByDate = sales.sort((a, b) => {
 });
 
 console.log(sortedByDate);
+```
 
-// ============================================================================
-// WEEK 2 EXERCISE SOLUTIONS
-// ============================================================================
+## WEEK 3 EXERCISE SOLUTIONS
 
-// DAY 6: COMPLEX ARRAY METHOD COMBINATIONS
-// ============================================================================
 
+// DAY 1: COMPLEX ARRAY METHOD COMBINATIONS
+
+```js
 // Exercise 6.1: Restaurant Order System
 console.log("\n=== Exercise 6.1: Restaurant Order System ===");
 
@@ -587,7 +588,7 @@ const averageOrderValue = completedOrders
 console.log(`Average order value: $${averageOrderValue.toFixed(2)}`);
 
 // DAY 7: ERROR HANDLING & ASYNC OPERATIONS
-// ============================================================================
+
 
 // Exercise 7.1: Async Data Processing
 console.log("\n=== Exercise 7.1: Async Data Processing ===");
@@ -710,10 +711,10 @@ async function demonstrateAsyncProcessing() {
     const sequentialResult = await fetchUserProfilesSequential(userIds);
     console.log(JSON.stringify(sequentialResult, null, 2));
 }
+```
+## DAY 8: REAL-WORLD MERN INTEGRATION
 
-// DAY 8: REAL-WORLD MERN INTEGRATION
-// ============================================================================
-
+```js
 // Exercise 8.1: Blog API Routes
 console.log("\n=== Exercise 8.1: Blog API Routes ===");
 
@@ -1144,6 +1145,7 @@ function updateCategoriesBulk(req, res) {
     }
 }
 
+
 // Express.js setup example (commented out since we can't run a real server)
 /*
 const express = require('express');
@@ -1161,10 +1163,10 @@ app.listen(3000, () => {
     console.log('Blog API server running on port 3000');
 });
 */
+```
+## DAY 9: PERFORMANCE & BEST PRACTICES
 
-// DAY 9: PERFORMANCE & BEST PRACTICES
-// ============================================================================
-
+```js
 // Exercise 9.1: Performance Optimization
 console.log("\n=== Exercise 9.1: Performance Optimization ===");
 
@@ -1418,10 +1420,10 @@ function createIndexedSearch(data) {
         }
     };
 }
+```
+## DAY 10: FINAL PROJECT COMPONENTS
 
-// DAY 10: FINAL PROJECT COMPONENTS
-// ============================================================================
-
+```js
 console.log("\n=== Final Project: Task Management API Components ===");
 
 // Mock data for the task management system
@@ -1658,3 +1660,43 @@ comparePerformance();
 console.log("\n" + "=".repeat(50));
 console.log("EXERCISE SOLUTIONS COMPLETE!");
 console.log("=".repeat(50));
+```
+
+# PROMPT: js color 
+Here's the CSS matching VS Code Dark+ theme colors for those highlight.js classes:
+
+```css
+pre code {
+    display: block;
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1rem;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.hljs-comment                { color: #6a9955; font-style: italic; }
+.hljs-keyword                { color: #569cd6; }
+.hljs-literal                { color: #569cd6; }  /* true, false, null */
+.hljs-string                 { color: #ce9178; }
+.hljs-subst                  { color: #9cdcfe; }  /* ${...} inside template literals */
+.hljs-number                 { color: #b5cea8; }
+.hljs-variable.language_     { color: #9cdcfe; }  /* console, document, window */
+.hljs-title.function_        { color: #dcdcaa; }  /* function calls */
+.hljs-title.class_           { color: #4ec9b0; }  /* Date, Map, etc. */
+.hljs-params                 { color: #9cdcfe; }
+.hljs-attr                   { color: #9cdcfe; }  /* object keys */
+.hljs-property               { color: #9cdcfe; }  /* obj.property */
+.hljs-function               { color: #d4d4d4; }
+```
+
+Key color mapping:
+- **Blue** `#569cd6` → `const`, `let`, `function`, `true/false`
+- **Yellow** `#dcdcaa` → function names at call site
+- **Orange** `#ce9178` → strings
+- **Light blue** `#9cdcfe` → `console`, params, properties, object keys
+- **Teal** `#4ec9b0` → class names (`Date`)
+- **Light green** `#b5cea8` → numbers
+- **Green** `#6a9955` → comments

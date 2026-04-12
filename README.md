@@ -1,5 +1,19 @@
 # webdev-certificate-monorepo
 
+## 4.12.2026
+```
+  // === SOLUTION START ===
+  // === SOLUTION END ===
+
+
+  /* === SOLUTION START === */
+  /* === SOLUTION END === */
+
+  <!-- === SOLUTION START === -->
+
+  <!-- === SOLUTION END === -->
+```
+
 ## 2.20.2026
 
 ### Make sure history stays linear and linear
