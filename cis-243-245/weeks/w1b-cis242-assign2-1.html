@@ -15,7 +15,7 @@
     <p id="demo1"></p>
     <h2>The Language Property</h2>
     <p id="demo2"></p>
-
+    
     <!-- Challenge 1: add more navigator properties below -->
 
     <!-- === SOLUTION START === -->
@@ -36,7 +36,7 @@
 
       <!-- === SOLUTION START === -->
     <button id="colorBtn">Change Font Color</button>
-     <!-- === SOLUTION START === -->
+     <!-- === SOLUTION END === -->
 
     <script>
         // --- Base properties ---
@@ -49,7 +49,7 @@
 
         document.getElementById("btn-geo").addEventListener("click", getLocation);
         // fake geolocation — runs instantly, no permission prompt
-        navigator.geolocation.getCurrentPosition = function (onSuccess, onError, options) {
+        navigator.geolocation.getCurrentPosition = function (onSuccess) {
             const fakePosition = {
                 coords: {
                     latitude: 47.8062,   // Edmonds, WA
@@ -80,7 +80,8 @@
             console.log(position);
             document.getElementById("demo").innerHTML = "Latitude: " + position.coords.latitude + ", longitude:  " + position.coords.longitude;
         }
-        // --- Challenge 1: uncomment each block and add a matching <p id="demoN"> above ---
+        
+       
         let appVersion = navigator.appVersion;
         document.getElementById("demo3").innerHTML = "navigator.appVersion:<br>" + appVersion;
 
