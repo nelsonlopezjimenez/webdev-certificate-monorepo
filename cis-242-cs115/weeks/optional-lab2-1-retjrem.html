@@ -1,0 +1,32 @@
+
+Already refactored this one earlier in our conversation — here it is again:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Optional Lab 2-1: Retirement Calculator</title>
+</head>
+<body>
+  <h2 style="text-align:center; color:blue">CIW JavaScript Specialist</h2>
+  <h3 style="text-align:center; color:green">JavaScript Retirement Calculator</h3>
+  <hr>
+  <div id="output"></div>
+
+  <script>
+    const currentAge    = Number(prompt("Enter your age:", ""));
+    const retirementAge = Number(prompt("Enter your expected retirement age:", ""));
+    const yearsLeft     = retirementAge - currentAge;
+    const extendedAge   = retirementAge + 10;
+
+    document.getElementById("output").innerHTML = `
+      <p>You have ${yearsLeft} years until you retire.</p>
+      <p>If you wait until you are ${extendedAge}, your retirement savings can grow much larger!</p>
+    `;
+  </script>
+</body>
+</html>
+```
+
+Key fixes were: duplicate `var a` / `var b` declarations, redundant `Number()` wrapping on already-converted values, `document.write` → `innerHTML`, and descriptive variable names. Full explanation is up in the earlier message.

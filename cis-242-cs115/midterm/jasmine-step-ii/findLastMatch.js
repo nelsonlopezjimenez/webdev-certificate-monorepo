@@ -23,12 +23,6 @@ function findLastMatch(letters, target) {
 
   // === SOLUTION START ===
   // TODO: Write your solution here
-  for (let i = letters.length -1; i >= 0; i--){
-    if (letters[i] === target){
-      return i;
-    }
-  }
-  return -1;
   // === SOLUTION END ===
 }
   // === SOLUTION START ===

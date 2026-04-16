@@ -24,99 +24,6 @@
 </details>
 ---
 
-## 🛠️ VS Code Extensions (Install Week 1)
-
-| Extension | Purpose |
-|-----------|---------|
-| **REST Client** (Huachao Mao) | Test HTTP routes without Postman |
-| **Thunder Client** | Lightweight Postman alternative inside VS Code |
-| **ESLint** | Catch JS errors early |
-| **Prettier** | Auto-format on save |
-| **MongoDB for VS Code** | Browse collections inside the editor |
-| **GitLens** | Git history inline |
-| **Tailwind CSS IntelliSense** | Autocomplete for Tailwind classes |
-| **Error Lens** | Show errors inline |
-| **DotENV** | Syntax highlight `.env` files |
-
----
-
----
-
-# 📅 WEEK 1 — Node.js Fundamentals & Full-Stack Motivation
-
-## Learning Goals
-- Articulate what backend development is and why it matters
-- Run `.js` files with Node.js from the terminal
-- Use `npm` to install and use packages
-- Write reusable functions (modules) in Node.js
-- Understand the difference between `require()` (CommonJS) and `import` (ESM)
-
----
-
-## Monday — Frontend vs Backend + The Full-Stack Picture
-
-### Motivation: Why Become a Full-Stack Developer?
-
-| Role | What they control | Tools |
-|------|-------------------|-------|
-| Frontend dev | What the user **sees** | HTML, CSS, JS, React |
-| Backend dev | What the server **does** | Node.js, Express, databases |
-| **Full-stack dev** | **Both** | All of the above |
-
-**The MERN Stack:**
-```
-React (browser) ←→ Express + Node.js (server) ←→ MongoDB (database)
-     M               E        N                      M
-```
-
-> 💡 **Real-world hook:** Every time you log into Instagram, the frontend (React/React Native) sends your credentials to a backend server (Node.js/Python/Go), which checks a database (MongoDB/PostgreSQL) and sends back a token. You are about to build exactly that.
-
-### Client-Side vs Server-Side — The Key Distinction
-
-| | Client-Side | Server-Side |
-|--|-------------|-------------|
-| **Runs on** | User's browser | Server (your computer, a cloud VM) |
-| **Languages** | HTML, CSS, JS | Node.js, Python, PHP, Java, Go |
-| **Can access DB?** | ❌ Never directly | ✅ Yes |
-| **Visible to user?** | ✅ Source is inspectable | ❌ Hidden |
-| **Examples** | Form validation, animations | Auth, database queries, business logic |
-
-### 🖥️ Classroom Discussion Prompt
-> "You've built websites with HTML, CSS, and JavaScript. Where does the data go when a user submits a form? Where does it come from when you load a page?"
-
----
-
-## Thursday — Your First Node.js Scripts
-
-### Terminal Survival Kit (for students with minimal CLI experience)
-
-```bash
-pwd          # where am I?
-ls           # list files
-cd folder    # enter a folder
-cd ..        # go up one level
-mkdir name   # create a folder
-touch file   # create a file
-node file.js # run a JS file with Node
-```
-
-### Running JavaScript Outside the Browser
-
-Create `hello.js`:
-```js
-// No DOM, no window, no document — just JavaScript
-const name = "CIS 243";
-console.log(`Hello from ${name}!`);
-
-// Node.js gives us access to the system
-console.log("Node version:", process.version);
-console.log("Platform:", process.platform);
-```
-
-```bash
-node hello.js
-```
-
 # 📅 WEEK 2 — Monday April 13
 ## Monday — April 13
 
@@ -189,7 +96,8 @@ npm init -y        # creates package.json with defaults
 ```bash
 npm install knock-knock-jokes
 npm install cat-me
-npm install @faker-js/faker@10.3.0 //disregard the warning```
+npm install @faker-js/faker@10.3.0 //disregard the warning
+```
 
 **Using them:**
 
@@ -215,8 +123,9 @@ console.log(catMe());
 
 import { faker } from '@faker-js/faker';
 
-// OR CJS
+// CJS
 const { faker } = require('@faker-js/faker');
+
 
 // Generate 5 fake users
 const users = Array.from({ length: 5 }, () => ({

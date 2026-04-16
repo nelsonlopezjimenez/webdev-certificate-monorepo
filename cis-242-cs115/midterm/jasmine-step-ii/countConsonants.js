@@ -18,20 +18,6 @@
 function countConsonants(letters) {
   // === SOLUTION START ===
   // TODO: Write your solution here
-  function isVowel(char){
-    return 'AEIUO'.includes(char);
-  }
-  let counter = 0;
-  if (letters.length === 0) {return 0}
-  
-  for (let i = 0; i < letters.length; i++){
-    if (isVowel(letters[i])){
-      continue;
-    }
-    counter++;
-  }
-
-  return counter;
   // === SOLUTION END ===
 }
   // === SOLUTION START ===

@@ -15,9 +15,5 @@
 
 function findFirstVowel(letters) {
   // === SOLUTION START ===
-
-  return result;
-}
-  // === SOLUTION START ===
   // TODO: Write your solution here
   // === SOLUTION END ===

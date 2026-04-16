@@ -1,6 +1,0 @@
-Victoria Kirst, instructor (vrk@)
-Amy Xu, TA (xuamyj@)
-Cindy Lin, TA (cinlin@)
-Helen Fang, TA (hfang9@)
-Zach Maurer, TA (zmaurer@)
-Everyone: cs193x-spr1617-staff@lists.stanford.edu

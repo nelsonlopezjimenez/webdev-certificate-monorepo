@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Optional Lab 3-2: JavaScript Event Handlers</title>
+</head>
+<body>
+  <h3>CIW JavaScript Specialist</h3>
+  <hr>
+  <h4>Event Handler Examples</h4>
+
+  <p>Vote for your favorite sport:</p>
+  <form id="myform">
+    <label><input type="radio" name="sports" value="Football">Football</label><br>
+    <label><input type="radio" name="sports" value="Hockey">Hockey</label><br>
+    <label><input type="radio" name="sports" value="Auto Racing">Auto Racing</label><br>
+    <label><input type="radio" name="sports" value="MMA">MMA</label><br>
+    <label><input type="radio" name="sports" value="Basketball">Basketball</label><br>
+    <label><input type="radio" name="sports" value="Tennis">Tennis</label><br>
+    <label><input type="radio" name="sports" value="Golf">Golf</label><br>
+
+    <p>
+      <button type="button" id="voteBtn">VOTE</button>
+      &nbsp;<button type="reset">RESET</button>
+    </p>
+    <p>
+      <input type="text" id="txt" size="40">
+      &nbsp;Click in then click out!
+    </p>
+    <p>
+      <input type="text" id="txt1" size="40">
+      &nbsp;Hover over this field!
+    </p>
+    <p>
+      <input type="text" id="txt2" size="40">
+      &nbsp;Hover this field then away!
+    </p>
+  </form>
+
+  <script>
+    function vote() {
+      // querySelector with :checked replaces manual loop over radio buttons
+      const selected = document.querySelector('input[name="sports"]:checked');
+      const result   = selected
+        ? `Your favorite sport is: ${selected.value}`
+        : "Choose a sport";
+
+      document.getElementById("txt").value  = result;
+      document.getElementById("txt1").value = result;
+      document.getElementById("txt2").value = result;
+    }
+
+    function upperCase() {
+      const txt = document.getElementById("txt");
+      txt.value = txt.value.toUpperCase();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("voteBtn").addEventListener('click', vote);
+
+      // blur fires when the field loses focus — triggers uppercase conversion
+      document.getElementById("txt").addEventListener('blur', upperCase);
+
+      // mouseover fires when cursor enters the field
+      document.getElementById("txt1").addEventListener('mouseover', () => {
+        alert("Your mouse is over the text!");
+      });
+
+      // mouseout fires when cursor leaves the field
+      document.getElementById("txt2").addEventListener('mouseout', () => {
+        alert("Your mouse has left the text!");
+      });
+    });
+  </script>
+</body>
+</html>
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Optional Lab 3-2: JavaScript Event Handlers</title>
+</head>
+<body>
+  <h3>CIW JavaScript Specialist</h3>
+  <hr>
+  <h4>Event Handler Examples</h4>
+
+  <p>Vote for your favorite sport:</p>
+  <form id="myform">
+    <label><input type="radio" name="sports" value="Football">Football</label><br>
+    <label><input type="radio" name="sports" value="Hockey">Hockey</label><br>
+    <label><input type="radio" name="sports" value="Auto Racing">Auto Racing</label><br>
+    <label><input type="radio" name="sports" value="MMA">MMA</label><br>
+    <label><input type="radio" name="sports" value="Basketball">Basketball</label><br>
+    <label><input type="radio" name="sports" value="Tennis">Tennis</label><br>
+    <label><input type="radio" name="sports" value="Golf">Golf</label><br>
+
+    <p>
+      <button type="button" id="voteBtn">VOTE</button>
+      &nbsp;<button type="reset">RESET</button>
+    </p>
+    <p>
+      <input type="text" id="txt" size="40">
+      &nbsp;Click in then click out!
+    </p>
+    <p>
+      <input type="text" id="txt1" size="40">
+      &nbsp;Hover over this field!
+    </p>
+    <p>
+      <input type="text" id="txt2" size="40">
+      &nbsp;Hover this field then away!
+    </p>
+  </form>
+
+  <script>
+    function vote() {
+      // querySelector with :checked replaces manual loop over radio buttons
+      const selected = document.querySelector('input[name="sports"]:checked');
+      const result   = selected
+        ? `Your favorite sport is: ${selected.value}`
+        : "Choose a sport";
+
+      document.getElementById("txt").value  = result;
+      document.getElementById("txt1").value = result;
+      document.getElementById("txt2").value = result;
+    }
+
+    function upperCase() {
+      const txt = document.getElementById("txt");
+      txt.value = txt.value.toUpperCase();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById("voteBtn").addEventListener('click', vote);
+
+      // blur fires when the field loses focus — triggers uppercase conversion
+      document.getElementById("txt").addEventListener('blur', upperCase);
+
+      // mouseover fires when cursor enters the field
+      document.getElementById("txt1").addEventListener('mouseover', () => {
+        alert("Your mouse is over the text!");
+      });
+
+      // mouseout fires when cursor leaves the field
+      document.getElementById("txt2").addEventListener('mouseout', () => {
+        alert("Your mouse has left the text!");
+      });
+    });
+  </script>
+</body>
+</html>
+```
+
+---
+
+Key changes beyond the usual:
+
+- **`vote()` rewritten** — original looped through all radio buttons manually checking `.checked`; `querySelector('input[name="sports"]:checked')` returns the checked one directly in one line
+- **`SayHello`/`SayGoodbye`** — collapsed into inline arrow functions on the listeners since they're single-line and not reused elsewhere; no reason to name them
+- **`document.myform.sports`** — replaced with `querySelector`; same `document.forms[]` issue as the previous lab
+- `&nbsp;` kept between buttons and labels intentionally this time — could be replaced with CSS `margin` but left as-is since the layout is minimal and the focus is on the JS concepts
+- `<label>` wrapped around each radio + text — clicking the label text now also selects the radio, which is the expected browser behavior students should see
+- `xmlns` and `type="text/javascript"` removed
+- `<!-- -->` comment wrappers removed

@@ -17,11 +17,6 @@
 function reverseLetters(letters) {
   // === SOLUTION START ===
   // TODO: Write your solution here
-  const revArr = [];
-  for (let i = letters.length -1; i >= 0; i--){
-    revArr.push(letters[i]);
-  }
-  return revArr;
   // === SOLUTION END ===
 }
   // === SOLUTION START ===
